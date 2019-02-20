@@ -1,0 +1,95 @@
+== Plasma ==
+Appearance > 
+	Workspace Theme >
+		Look and Feel > Breeze Dark
+		Desktop Theme > Breeze Dark
+		Cursor Theme > Breeze Snow, size 36 (setting the size fixes the different-sizes cursor issue)
+		Splash Theme > Breeze
+	Icons > Icons > Breeze Dark
+	Font > Force dpi: 150
+	Application Style >
+		Widget Style >
+			Applications > Widget Style > Configure > Transparency > Menu=8 (9th notch)
+		Window Decorations > 
+			Buttons tab > set up buttons
+			Border size: No borders
+			Configure Breeze > 
+				Uncheck "add handle to resize windows with no border"
+				Uncheck "draw separator between titlebar and window"
+				Shadows > Very Large, 50%, #000000
+		Gnome Application Style >
+			GTK2 Theme > Breeze Dark
+			GTK3 Theme > Breeze Dark
+			Prefer Dark GTK Theme
+			Cursor Theme > Breeze Snow
+			Icon Theme > Breeze Dark
+Workspace > 
+	Desktop Behaviour >
+		Workspace > Double-click to open files
+		Desktop Effects > Blur > enable, set blur=3 (4th notch), noise=7 (8th notch)
+		Screen Edges > disable all
+		Screen Locking > disable
+	Window Management > Window Behaviour > Titlebar Actions >
+		Middle Button: Lower / Lower
+	Shortcuts >
+		Global Shortcuts > System Settings > 
+			Launch Konsole = Meta+T
+			Log Out = Meta+X
+		Custom Shortcuts >
+			Web Browser = Meta+W = google-chrome
+			File Manager = Meta+F = dolphin
+			Text Editor = Meta+E = subl
+			Calculator = Meta+C = speedcrunch
+	Startup and Shutdown >
+		Background Services > Disable KScreen 2, Bluetooth, Plasma Vault module
+		Desktop Session > Start with an empty session
+	Search > File Search > Disable file search
+Power Management > Energy Saving >
+	Screen Energy Saving = 30 min
+Hardware > Display and Monitor > Compositor >
+	Rendering backend: OpenGL 3.1
+	Uncheck "Allow applications to block compositing"
+
+
+Application Launcher:
+	Show applications by name
+	Uncheck expand search
+	Sort alphabetically
+
+Kwallet:
+	Edit: ~/.config/kwalletrc
+	Add: "Enabled=false"
+
+
+
+== Konsole ==
+# Konsole colour scheme
+cp ~/Scripts/setup/LinuxMint.colorscheme ~/.local/share/konsole/
+
+Settings > Configure Konsole > Uncheck "Show menubar by default"
+
+.bashrc :
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+root .bashrc:
+[[ $- != *i* ]] && return
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]# '
+
+root .profile:
+. ~/.bashrc
+
+
+
+=== GTK3 Fixes ===
+Edit ~/.config/gtk-3.0/settings.ini -
+	Add to bottom: gtk-decoration-layout=minimize:close
+
+
+
+== Flatpak Theme Fixes ==
+flatpak install flathub org.gtk.Gtk3theme.Breeze-Dark
+[ sudo apt install | sudo pacman -S ] xsettingsd
+echo 'Net/ThemeName "Breeze-Dark"' >> ~/.xsettingsd
+Settings > Workspace > Startup and Shutdown > Autostart > Add program > xsettingsd
+cd ~/.themes/
+ln -s Breeze-dark-gtk Breeze-Dark # Required if the GTK theme has a different name to "Breeze-Dark"

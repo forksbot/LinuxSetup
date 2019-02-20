@@ -1,0 +1,42 @@
+== Cinnamon ==
+General: User interface scaling: Double
+
+Fonts: Text scaling factor = 0.9
+
+Desktop: No desktop icons
+
+Screensaver: Settings > Delay = Never
+
+Windows: Change buttons
+
+Window Tiling: Maximise, instead of tile, when dragging a window to the top edge
+
+Hardware Driver: Switch to NVIDIA prop driver
+
+Keyboard shortcuts:
+	System > Shut down = Super+X
+	Launchers >
+		Terminal = Super+T
+		Calculator = Super+C
+		Web Browser = Super+W
+		Home folder = Super+F
+	Customer Shortcuts >
+		Text Editor = subl, Super+E
+
+Login window: Users > Automatic login > Username = jordan
+
+Edit /etc/environment, add:
+CLUTTER_VBLANK=none
+
+
+
+== Cinnamon Themes ==
+sudo apt install arc-theme
+sudo add-apt-repository ppa:papirus/papirus
+sudo apt-get update
+sudo apt-get install papirus-icon-theme
+
+Windows borders: Arc-Darker
+Icons: Papyrus
+Controls: Arc-Darker
+Desktop: Arc-Dark

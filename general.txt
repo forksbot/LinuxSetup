@@ -1,0 +1,82 @@
+== Networked Drives ==
+Install: cifs-utils
+
+Edit /etc/hosts - set IP for humphrey
+
+Add to /etc/fstab:
+
+//humphrey/Jordan       /mnt/jordan     cifs    x-systemd.automount,x-systemd.device-timeout=10,nolock,uid=jordan,username=jordan,password=daemon1234,vers=1.0 0       0
+//humphrey/Download     /mnt/download   cifs    x-systemd.automount,x-systemd.device-timeout=10,nolock,uid=jordan,username=jordan,password=daemon1234,vers=1.0 0       0
+//humphrey/Public       /mnt/public     cifs    x-systemd.automount,x-systemd.device-timeout=10,nolock,uid=jordan,username=jordan,password=daemon1234,vers=1.0 0       0
+//humphrey/Multimedia   /mnt/multimedia cifs    x-systemd.automount,x-systemd.device-timeout=10,nolock,uid=jordan,username=jordan,password=daemon1234,vers=1.0 0       0
+
+As root:
+mkdir /mnt/jordan
+mkdir /mnt/download
+mkdir /mnt/public
+mkdir /mnt/multimedia
+sudo mount -a
+
+As jordan:
+sh /mnt/jordan/Scripts/setup/links.sh
+
+
+
+== Chrome ==
+Enter blank password for keyring, otherwise search for "Passwords and Keys" and set password to blank for "Default keyring"
+
+Default zoom = 125%
+
+Default font: Nimbus Sans
+
+
+
+== Firefox ==
+Go to about:config:
+	general.smoothScroll.currentVelocityWeighting = 0
+	general.smoothScroll.mouseWheel.durationMaxMS = 200
+	general.smoothScroll.mouseWheel.durationMinMS = 0
+	layers.acceleration.force-enabled = true
+
+
+
+== KSP ==
+Copy ksp dir to ~
+
+
+
+== Minecraft ==
+ON ARCH:
+	yay -S minecraft-launcher
+
+	Copy .minecraft backup to ~/.minecraft
+
+ELSE:
+	Install Java:
+		Move extracted folder into /usr/lib/jvm/
+		Point default-java to it
+		In /etc/alternatives make java point to /usr/lib/jvm/default-java/bin/java
+
+	Download Minecraft .jar, make executable
+
+	Copy .minecraft backup to ~/.minecraft
+
+
+
+=== Sublime ===
+Settings:
+{
+	"dpi_scale": 1.5,
+	"font_size": 11,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"folder_exclude_patterns": ["__pycache__"],
+	"scroll_speed": 0
+}
+
+Python-specific settings:
+{
+	"translate_tabs_to_spaces": true
+}

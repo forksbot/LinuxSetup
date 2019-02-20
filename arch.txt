@@ -1,0 +1,155 @@
+### LOCALE ###
+
+# Keyboard layout
+loadkeys uk
+
+# Time and date
+timedatectl set-ntp true
+
+
+
+### DISK SETUP ###
+
+# Verify if UEFI enabled
+ls /sys/firmware/efi/efivars
+
+# List all drives
+fdisk -l
+
+# Edit partitions
+cfdisk /dev/sda1
+
+# Format partition
+mkfs.ext4 /dev/sda1
+
+# Mount partition
+mount /dev/sda1 /mnt
+
+
+
+### INSTALLATION ###
+
+# Move UK mirrors higher up the list
+vim /etc/pacman.d/mirrorlist
+
+# Configure pacman to install OS to mounted filesystem
+pacstrap /mnt base base-devel
+
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
+hwclock --systohc
+
+
+
+### LOCALIZATION ###
+
+vi /etc/locale.gen
+# Uncomment en_GB.UTF-8, save, exit
+
+locale-gen
+
+echo "LANG=en_GB.UTF-8" > /etc/locale.conf
+echo "KEYMAP=uk" > /etc/vconsole.conf
+echo "rupert" > /etc/hostname
+
+vi /etc/hosts
+	127.0.0.1       localhost
+	127.0.1.1       rupert
+	::1     localhost ip6-localhost ip6-loopback
+	192.168.0.24    humphrey
+
+
+
+### USERS ###
+
+# Set root password
+passwd
+
+useradd -m jordan
+passwd jordan
+
+chmod 0640 /etc/sudoers
+vi /etc/sudoers
+# Copy root line, change root to jordan
+
+
+
+### BOOTLOADER
+
+pacman -S grub
+grub-install --target=i386-pc /dev/sda
+vim /etc/default/grub #remove quiet
+grub-mkconfig -o /boot/grub/grub.cfg
+
+
+
+### NETWORKING ###
+
+systemctl enable dhcpcd.service
+
+
+
+### KERNEL ENTROPY FIX ###
+
+pacman -S haveged
+systemctl enable haveged.service
+
+
+
+### REBOOT ###
+
+exit
+reboot
+
+
+
+#############################
+### ARCH IS NOW INSTALLED ###
+#############################
+
+
+
+### Graphical environment setup
+
+pacman -S xorg xorg-server xf86-video-amdgpu
+pacman -S plasma konsole dolphin kio-extras packagekit-qt5
+pacman -S gsfonts ttf-dejavu #ttf-bitstream-vera
+pacman -S pulseaudio pulseaudio-alsa
+systemctl enable sddm.service
+
+
+
+### AUR / Yay ###
+
+sudo pacman -S git
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
+
+
+### Software ###
+
+# Chrome, INXI, Core MS Fonts (for KSP) Libreoffice, MPV player, GlxInfo (for INXI), SSH, Okular PDF viewer, Sublime, GIMP, Steam
+yay -S google-chrome aur/inxi ttf-ms-fonts
+sudo pacman -S flatpak mpv glxinfo core/openssh
+flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak --user install flathub com.sublimetext.three org.gimp.GIMP org.libreoffice.LibreOffice org.kde.okular com.valvesoftware.Steam
+flatpak override com.valvesoftware.Steam --filesystem=$HOME
+ln -s ~/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/ ~/SteamApps
+
+# Timeshift
+yay -S timeshift
+sudo systemctl enable cronie.service
+
+
+
+### Printing & Scanning ###
+
+sudo pacman -S extra/cups extra/hplip extra/wget sane community/python-pillow
+sudo systemctl enable org.cups.cupsd.service
+sudo systemctl start org.cups.cupsd.service
+sudo hp-setup
+sudo hp-plugin # select d
+# To scan: hp-scan
