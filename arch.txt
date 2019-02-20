@@ -113,7 +113,11 @@ reboot
 ### Graphical environment setup
 
 pacman -S xorg xorg-server xf86-video-amdgpu
-pacman -S plasma konsole dolphin kio-extras packagekit-qt5
+Plasma:
+	pacman -S plasma konsole dolphin kio-extras packagekit-qt5
+Gnome:
+	pacman -S gnome
+	systemctl enable gdm.service
 pacman -S gsfonts ttf-dejavu #ttf-bitstream-vera
 pacman -S pulseaudio pulseaudio-alsa
 systemctl enable sddm.service
