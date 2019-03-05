@@ -1,0 +1,85 @@
+### Chrome integration ###
+
+sudo pacman -S chrome-gnome-shell
+Go to: https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep
+
+
+
+### Extensions ###
+
+Dash to Panel - https://extensions.gnome.org/extension/1160/dash-to-panel/
+Remove Accessibility - https://extensions.gnome.org/extension/112/remove-accesibility/
+Disable Screen Shield - https://extensions.gnome.org/extension/672/disable-screen-shield/
+Custom Hot Corners - https://extensions.gnome.org/extension/1362/custom-hot-corners/
+Top Icons - https://extensions.gnome.org/extension/1031/topicons/
+#System Monitor - https://extensions.gnome.org/extension/120/system-monitor/ (causes crashes on Wayland after sleep)
+
+
+
+### Appearance ###
+
+# Cursor
+yay -S aur/breeze-snow-cursor-theme # Don't install this if planning to install Breeze theme/icons
+dconf write /org/gnome/desktop/interface/cursor-size 48
+
+# Breeze-Dark:
+sudo pacman -S extra/breeze extra/breeze-gtk extra/breeze-icons
+flatpak --user install org.gtk.Gtk3theme.Breeze-Dark
+
+# Adwaita-Dark:
+yay -S aur/adwaita-qt5
+
+# Papirus icons
+sudo pacman -S community/papirus-icon-theme
+
+# Qt
+sudo pacman -S community/qt5ct
+sudo vim /etc/profile # Append:
+>>>
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export QT_SCALE_FACTOR=1
+export QT_FONT_DPI=150
+<<<
+For Qt on Wayland:
+	sudo pacman -S qt5-wayland
+	export QT_QPA_PLATFORM=wayland
+	export QT_WAYLAND_FORCE_DPI=80
+Open new terminal
+qt5ct
+Reboot after changing config
+
+# GTK
+vim ~/.config/gtk-3.0/settings.ini # Change:
+>>>
+gtk-application-prefer-dark-theme=0
+===
+gtk-application-prefer-dark-theme=1
+<<<
+
+# Flatpak theme
+vim ~/.profile # Append:
+>>>
+export GTK_THEME=Adwaita:dark
+<<<
+
+
+
+### GDM autologin ###
+
+sudo vim /etc/gdm/custom.conf - After [daemon]:
+>>>
+AutomaticLoginEnable=True
+AutomaticLogin=jordan
+TimedLoginDelay=5
+<<<
+
+
+
+### Keyring ###
+
+sudo pacman -S extra/seahorse
+* Run seahorse
+* Right click Passwords > Login, Change password
+* Enter old password
+* Leave new password blank, click Finish

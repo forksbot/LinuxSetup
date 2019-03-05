@@ -66,7 +66,7 @@ vi /etc/hosts
 # Set root password
 passwd
 
-useradd -m jordan
+useradd -m jordan # alternatively add to wheel (-g wheel) to auto add to sudoers group
 passwd jordan
 
 chmod 0640 /etc/sudoers
@@ -87,6 +87,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ### NETWORKING ###
 
 systemctl enable dhcpcd.service
+# or install networkmanager
 
 
 
@@ -112,15 +113,14 @@ reboot
 
 ### Graphical environment setup
 
-pacman -S xorg xorg-server xf86-video-amdgpu
 Plasma:
+	pacman -S xorg xorg-server xf86-video-amdgpu
 	pacman -S plasma konsole dolphin kio-extras packagekit-qt5
+	pacman -S gsfonts ttf-dejavu #ttf-bitstream-vera
+	systemctl enable sddm.service
 Gnome:
-	pacman -S gnome
+	pacman -S gnome gnome-tweaks ttf-dejavu
 	systemctl enable gdm.service
-pacman -S gsfonts ttf-dejavu #ttf-bitstream-vera
-pacman -S pulseaudio pulseaudio-alsa
-systemctl enable sddm.service
 
 
 
@@ -137,15 +137,23 @@ makepkg -si
 
 # Chrome, INXI, Core MS Fonts (for KSP) Libreoffice, MPV player, GlxInfo (for INXI), SSH, Okular PDF viewer, Sublime, GIMP, Steam
 yay -S google-chrome aur/inxi ttf-ms-fonts
-sudo pacman -S flatpak mpv glxinfo core/openssh
+sudo pacman -S flatpak mpv mesa-demos core/openssh
 flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak --user install flathub com.sublimetext.three org.gimp.GIMP org.libreoffice.LibreOffice org.kde.okular com.valvesoftware.Steam
-flatpak override com.valvesoftware.Steam --filesystem=$HOME
-ln -s ~/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/ ~/SteamApps
+flatpak --user override com.valvesoftware.Steam --filesystem=$HOME
+#ln -s ~/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/ ~/SteamApps
+ln -s .local/share/Steam/steamapps/ SteamApps
 
 # Timeshift
 yay -S timeshift
 sudo systemctl enable cronie.service
+
+# Software Installer
+sudo ln -s /home/jordan/Scripts/python/softwareinstaller/softwareinstaller /usr/bin/si
+
+# Modular calculator
+sudo pacman -S extra/python-pyqt5
+sudo ln -s /home/jordan/Scripts/python/modularcalculator/run /usr/bin/modularcalculator
 
 
 
@@ -154,6 +162,6 @@ sudo systemctl enable cronie.service
 sudo pacman -S extra/cups extra/hplip extra/wget sane community/python-pillow
 sudo systemctl enable org.cups.cupsd.service
 sudo systemctl start org.cups.cupsd.service
-sudo hp-setup
+sudo hp-setup -i
 sudo hp-plugin # select d
 # To scan: hp-scan
