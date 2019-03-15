@@ -86,8 +86,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 ### NETWORKING ###
 
-systemctl enable dhcpcd.service
-# or install networkmanager
+systemctl enable dhcpcd.service # is this needed when installing network manager?
+pacman -S networkmanager network-manager-applet
+systemctl enable NetworkManager.service
 
 
 
@@ -95,6 +96,12 @@ systemctl enable dhcpcd.service
 
 pacman -S haveged
 systemctl enable haveged.service
+
+
+
+### NETWORK TIME ###
+pacman -S ntp
+systemctl enable ntpd.service
 
 
 
