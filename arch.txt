@@ -20,10 +20,12 @@ fdisk -l
 cfdisk /dev/sda1
 
 # Format partition
-mkfs.ext4 /dev/sda1
+mkfs.btrfs /dev/sda1
+mkfs.ext4 /dev/sda2
 
 # Mount partition
 mount /dev/sda1 /mnt
+mount /dev/sda2 /mnt/home
 
 
 
@@ -32,32 +34,39 @@ mount /dev/sda1 /mnt
 # Move UK mirrors higher up the list
 vim /etc/pacman.d/mirrorlist
 
-# Configure pacman to install OS to mounted filesystem
+# Install OS to mounted filesystem
 pacstrap /mnt base base-devel
 
+# Generate FS table
 genfstab -U /mnt >> /mnt/etc/fstab
+genfstab -U /mnt/home >> /mnt/etc/fstab
+
+# Chroot into system
 arch-chroot /mnt
-ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
-hwclock --systohc
 
 
 
 ### LOCALIZATION ###
 
-vi /etc/locale.gen
-# Uncomment en_GB.UTF-8, save, exit
+ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
+hwclock --systohc
 
+echo "en_GB.UTF-8" >> /etc/locale.gen
 locale-gen
 
 echo "LANG=en_GB.UTF-8" > /etc/locale.conf
 echo "KEYMAP=uk" > /etc/vconsole.conf
+
+
+
+### HOSTNAME / HOSTS ###
+
 echo "rupert" > /etc/hostname
 
-vi /etc/hosts
-	127.0.0.1       localhost
+echo "127.0.0.1       localhost
 	127.0.1.1       rupert
 	::1     localhost ip6-localhost ip6-loopback
-	192.168.0.24    humphrey
+	192.168.0.24    humphrey" > /etc/hosts
 
 
 
@@ -66,12 +75,12 @@ vi /etc/hosts
 # Set root password
 passwd
 
-useradd -m jordan # alternatively add to wheel (-g wheel) to auto add to sudoers group
+useradd -m -g wheel jordan
 passwd jordan
 
 chmod 0640 /etc/sudoers
 vi /etc/sudoers
-# Copy root line, change root to jordan
+# Uncomment "%wheel ALL=(ALL) ALL"
 
 
 

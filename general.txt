@@ -48,8 +48,9 @@ Copy ksp dir to ~
 == Minecraft ==
 ON ARCH:
 	yay -S minecraft-launcher
-
-	Copy .minecraft backup to ~/.minecraft
+	rm -rf ~/.minecraft
+	cp -r ~/Jordan/backup/minecraft ~/.minecraft
+	ln -s ~/.minecraft ~/Minecraft
 
 ELSE:
 	Install Java:
@@ -66,7 +67,7 @@ ELSE:
 === Sublime ===
 Settings:
 {
-	"dpi_scale": 1.5,
+	"ui_scale": 1.5,
 	"font_size": 11,
 	"ignored_packages":
 	[

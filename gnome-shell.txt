@@ -7,14 +7,17 @@ Go to: https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapm
 
 ### Extensions ###
 
-Alternatab
-Dash to Panel - https://extensions.gnome.org/extension/1160/dash-to-panel/
+Alternatab - https://extensions.gnome.org/extension/15/alternatetab/
 Remove Accessibility - https://extensions.gnome.org/extension/112/remove-accesibility/
 Disable Screen Shield - https://extensions.gnome.org/extension/672/disable-screen-shield/
-Custom Hot Corners - https://extensions.gnome.org/extension/1362/custom-hot-corners/
 Top Icons - https://extensions.gnome.org/extension/1031/topicons/
 Impatience - https://extensions.gnome.org/extension/277/impatience/
-#System Monitor - https://extensions.gnome.org/extension/120/system-monitor/ (causes crashes on Wayland after sleep)
+
+yay -S gnome-shell-extension-dash-to-panel-git
+
+#Dash to Panel - https://extensions.gnome.org/extension/1160/dash-to-panel/ - need to install via yay to get working version
+#Custom Hot Corners - https://extensions.gnome.org/extension/1362/custom-hot-corners/ - no longer working
+#System Monitor - https://extensions.gnome.org/extension/120/system-monitor/ - causes crashes on Wayland after sleep
 
 
 
@@ -40,7 +43,6 @@ For Qt on Wayland:
 	sudo pacman -S qt5-wayland
 	export QT_QPA_PLATFORM=wayland
 	export QT_WAYLAND_FORCE_DPI=80
-Reboot after changing config
 
 # GTK
 vim ~/.config/gtk-3.0/settings.ini # Change:

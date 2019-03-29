@@ -3,10 +3,10 @@ Appearance >
 	Workspace Theme >
 		Look and Feel > Breeze Dark
 		Desktop Theme > Breeze Dark
-		Cursor Theme > Breeze Snow, size 36 (setting the size fixes the different-sizes cursor issue)
+		Cursor Theme > Breeze Snow, size 48 (setting the size fixes the different-sizes cursor issue)
 		Splash Theme > Breeze
 	Icons > Icons > Breeze Dark
-	Font > Force dpi: 150
+	Font > Force dpi: 192
 	Application Style >
 		Widget Style >
 			Applications > Widget Style > Configure > Transparency > Menu=8 (9th notch)
@@ -26,29 +26,46 @@ Appearance >
 Workspace > 
 	Desktop Behaviour >
 		Workspace > Double-click to open files
-		Desktop Effects > Blur > enable, set blur=3 (4th notch), noise=7 (8th notch)
+		Desktop Effects > Blur > enable, set blur=4 (5th notch, default=10), noise=7 (8th notch)
 		Screen Edges > disable all
 		Screen Locking > disable
+		Virtual Desktops > Add a new desktop, "Desktop 2"
 	Window Management > Window Behaviour > Titlebar Actions >
 		Middle Button: Lower / Lower
 	Shortcuts >
-		Global Shortcuts > System Settings > 
-			Launch Konsole = Meta+T
-			Log Out = Meta+X
+		Global Shortcuts > 
+			KWin >
+				Show Desktop Grid = Ctrl+Alt+Down
+				Switch One Desktop to the Left = Ctrl+Alt+Left
+				Switch One Desktop to the Right = Ctrl+Alt+Right
+				Toggle Present Windows (Current Desktop) = Ctrl+Alt+Up
+			System Settings > 
+				Log Out = Meta+X
 		Custom Shortcuts >
-			Web Browser = Meta+W = google-chrome
+			Terminal = Meta+T = konsole
+			Web Browser = Meta+W = google-chrome-stable
 			File Manager = Meta+F = dolphin
-			Text Editor = Meta+E = subl
-			Calculator = Meta+C = speedcrunch
+			Text Editor = Meta+E = flatpak run com.sublimetext.three
+			Calculator = Meta+C = modularcalculator
+			Restart Shell = Ctrl+Alt+Del = /home/jordan/plasmarestarter/restartplasma
 	Startup and Shutdown >
+		Login Screen > Advanced >
+			Check Auto Login
+			User = jordan
+			Session = Plasma
 		Background Services > Disable KScreen 2, Bluetooth, Plasma Vault module
 		Desktop Session > Start with an empty session
 	Search > File Search > Disable file search
-Power Management > Energy Saving >
-	Screen Energy Saving = 30 min
-Hardware > Display and Monitor > Compositor >
-	Rendering backend: OpenGL 3.1
-	Uncheck "Allow applications to block compositing"
+Personalisation > Regional Settings > Language > Add "British English"
+Hardware >
+	Input Devices > Keyboard > Layouts > Add UK, remove US
+	Display and Monitor > Compositor >
+		Rendering backend: OpenGL 3.1
+		Uncheck "Allow applications to block compositing"
+		Scaling: Set to 2
+	Power Management > Energy Saving >
+		Screen Energy Saving = 30 min
+		When power button pressed = Suspend
 
 
 Application Launcher:
@@ -59,6 +76,12 @@ Application Launcher:
 Kwallet:
 	Edit: ~/.config/kwalletrc
 	Add: "Enabled=false"
+
+
+
+== Shell restarter ==
+cp -r Scripts/python/plasmarestarter ~
+Settings > Workspace > Startup and Shutdown > Autostart > Add program > /home/jordan/plasmarestarter/plasmarestarter
 
 
 
@@ -80,7 +103,7 @@ root .profile:
 
 
 
-=== GTK3 Fixes ===
+== GTK3 Fixes ==
 Edit ~/.config/gtk-3.0/settings.ini -
 	Add to bottom: gtk-decoration-layout=minimize:close
 
@@ -88,7 +111,7 @@ Edit ~/.config/gtk-3.0/settings.ini -
 
 == Flatpak Theme Fixes ==
 flatpak install flathub org.gtk.Gtk3theme.Breeze-Dark
-[ sudo apt install | sudo pacman -S ] xsettingsd
+sudo pacman -S xsettingsd
 echo 'Net/ThemeName "Breeze-Dark"' >> ~/.xsettingsd
 Settings > Workspace > Startup and Shutdown > Autostart > Add program > xsettingsd
 cd ~/.themes/
