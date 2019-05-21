@@ -1,0 +1,4 @@
+cd ~/.var/app/com.valvesoftware.Steam
+ln -snf ~/.cache cache
+ln -snf ~/.config config
+ln -snf ~/.local/share data

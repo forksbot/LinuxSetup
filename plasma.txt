@@ -6,7 +6,11 @@ Appearance >
 		Cursor Theme > Breeze Snow, size 48 (setting the size fixes the different-sizes cursor issue)
 		Splash Theme > Breeze
 	Icons > Icons > Breeze Dark
-	Font > Force dpi: 192
+	Font >
+		All fonts to Noto Sans, Medium, 10 except Fixed width: Monospace, Normal, 10
+		Sub-pixel rendering: Vertical RGB
+		Hinting: Full
+		Force dpi: 192
 	Application Style >
 		Widget Style >
 			Applications > Widget Style > Configure > Transparency > Menu=8 (9th notch)
@@ -48,6 +52,7 @@ Workspace >
 			Text Editor = Meta+E = flatpak run com.sublimetext.three
 			Calculator = Meta+C = modularcalculator
 			Restart Shell = Ctrl+Alt+Del = /home/jordan/plasmarestarter/restartplasma
+			Sleep = Meta+S = xset dpms force off
 	Startup and Shutdown >
 		Login Screen > Advanced >
 			Check Auto Login
@@ -62,20 +67,19 @@ Hardware >
 	Display and Monitor > Compositor >
 		Rendering backend: OpenGL 3.1
 		Uncheck "Allow applications to block compositing"
-		Scaling: Set to 2
 	Power Management > Energy Saving >
 		Screen Energy Saving = 30 min
 		When power button pressed = Suspend
 
 
+
+== Shell Config ==
+
 Application Launcher:
+	Uncheck switch tabs on hover
 	Show applications by name
 	Uncheck expand search
 	Sort alphabetically
-
-Kwallet:
-	Edit: ~/.config/kwalletrc
-	Add: "Enabled=false"
 
 
 
@@ -103,16 +107,57 @@ root .profile:
 
 
 
-== GTK3 Fixes ==
-Edit ~/.config/gtk-3.0/settings.ini -
-	Add to bottom: gtk-decoration-layout=minimize:close
+== Kwallet ==
+echo "Enabled=false" >> ~/.config/kwalletrc
 
 
 
-== Flatpak Theme Fixes ==
+== GTK Fixes ==
+sudo echo "GDK_SCALE=2" >> /etc/environment
+sudo echo "GDK_DPI_SCALE=0.5" >> /etc/environment
+echo "gtk-decoration-layout=minimize:close" >> ~/.config/gtk-3.0/settings.ini
+for d in ~/.local/share/flatpak/runtime/org.gnome.Platform/x86_64/* ; do cp ~/.config/gtk-3.0/settings.ini $d/active/files/etc/gtk-3.0/ ; done
+
+
+
+== Flatpak Theme ==
 flatpak install flathub org.gtk.Gtk3theme.Breeze-Dark
 sudo pacman -S xsettingsd
 echo 'Net/ThemeName "Breeze-Dark"' >> ~/.xsettingsd
 Settings > Workspace > Startup and Shutdown > Autostart > Add program > xsettingsd
-cd ~/.themes/
-ln -s Breeze-dark-gtk Breeze-Dark # Required if the GTK theme has a different name to "Breeze-Dark"
+
+# To fix Libreoffice Flatpak scaling under Plasma-Wayland
+flatpak override --user --env=GDK_DPI_SCALE=2 org.libreoffice.LibreOffice
+
+
+
+== Wayland Issues ==
+
+* Problem
+- Fix
+. Fix on the way
+@ Partial fix to cope
+
+ISSUES
+* Screen Power Saving - kwin-wayland crashes on resume
+		https://bugs.kde.org/show_bug.cgi?id=402827
+	@ Just using suspend
+		* Auto-suspend after 60 mins not working
+* XWayland apps - scroll wheel sends two scroll events every second scroll
+	. Fix committed, coming in 5.17.0 - 
+		https://bugs.kde.org/show_bug.cgi?id=404152
+		https://phabricator.kde.org/D18933
+* Clipboard pasting with Qt5 apps sometimes stops working
+* Middle click paste for native Wayland Qt apps missing
+	. Fix committed to Qt: https://bugreports.qt.io/browse/QTBUG-66008
+	@ For now ctrl+c/v works
+
+NON-ISSUES
+* Task-Manager - no tooltip preview 
+	@ just disabled tooltips
+* Blur effect unreliable
+	- Fixed: https://bugs.kde.org/show_bug.cgi?id=398899
+* LibreOffice (Flatpak) - Font isn't anti-aliased
+	- Using version from repo
+* Panel sometimes crashes
+	@ Can restart with plasmashell --replace &

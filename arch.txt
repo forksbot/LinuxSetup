@@ -131,8 +131,8 @@ reboot
 
 Plasma:
 	pacman -S xorg xorg-server xf86-video-amdgpu
-	pacman -S plasma konsole dolphin kio-extras packagekit-qt5
-	pacman -S gsfonts ttf-dejavu #ttf-bitstream-vera
+	pacman -S plasma plasma-wayland-session konsole dolphin kio-extras packagekit-qt5
+	pacman -S gsfonts ttf-dejavu
 	systemctl enable sddm.service
 Gnome:
 	pacman -S gnome gnome-tweaks ttf-dejavu
@@ -151,14 +151,15 @@ makepkg -si
 
 ### Software ###
 
-# Chrome, INXI, Core MS Fonts (for KSP) Libreoffice, MPV player, GlxInfo (for INXI), SSH, Okular PDF viewer, Sublime, GIMP, Steam
-yay -S google-chrome aur/inxi ttf-ms-fonts
-sudo pacman -S flatpak mpv mesa-demos core/openssh
+yay -S google-chrome aur/inxi ttf-ms-fonts tor-browser
+sudo pacman -S flatpak mesa-demos openssh screen mpv intel-ucode
 flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak --user install flathub com.sublimetext.three org.gimp.GIMP org.libreoffice.LibreOffice org.kde.okular com.valvesoftware.Steam
-flatpak --user override com.valvesoftware.Steam --filesystem=$HOME
-#ln -s ~/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/ ~/SteamApps
-ln -s .local/share/Steam/steamapps/ SteamApps
+flatpak --user install flathub com.sublimetext.three org.gimp.GIMP org.kde.okular com.valvesoftware.Steam com.mojang.Minecraft org.gnome.Shotwell org.libreoffice.LibreOffice
+flatpak --user override org.gnome.Shotwell --filesystem=host
+#flatpak --user override com.valvesoftware.Steam --filesystem=$HOME (this isn't supported)
+#ln -s .local/share/Steam/steamapps/ ~/SteamApps (this needs updating for when not allowing home dir access)
+ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/Minecraft
+systemctl enable sshd.service
 
 # Timeshift
 yay -S timeshift
@@ -170,6 +171,10 @@ sudo ln -s /home/jordan/Scripts/python/softwareinstaller/softwareinstaller /usr/
 # Modular calculator
 sudo pacman -S extra/python-pyqt5
 sudo ln -s /home/jordan/Scripts/python/modularcalculator/run /usr/bin/modularcalculator
+
+# Tor
+sudo pacman -S tor
+yay -S tor-browser
 
 
 
