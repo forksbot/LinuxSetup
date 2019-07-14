@@ -131,7 +131,7 @@ reboot
 
 Plasma:
 	pacman -S xorg xorg-server xf86-video-amdgpu
-	pacman -S plasma plasma-wayland-session konsole dolphin kio-extras packagekit-qt5
+	pacman -S plasma plasma-wayland-session konsole dolphin gwenview kio-extras packagekit-qt5
 	pacman -S gsfonts ttf-dejavu
 	systemctl enable sddm.service
 Gnome:
@@ -154,8 +154,7 @@ makepkg -si
 yay -S google-chrome aur/inxi ttf-ms-fonts tor-browser
 sudo pacman -S flatpak mesa-demos openssh screen mpv intel-ucode
 flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak --user install flathub com.sublimetext.three org.gimp.GIMP org.kde.okular com.valvesoftware.Steam com.mojang.Minecraft org.gnome.Shotwell org.libreoffice.LibreOffice
-flatpak --user override org.gnome.Shotwell --filesystem=host
+flatpak --user install flathub com.sublimetext.three org.gimp.GIMP org.kde.okular com.valvesoftware.Steam com.mojang.Minecraft org.libreoffice.LibreOffice
 #flatpak --user override com.valvesoftware.Steam --filesystem=$HOME (this isn't supported)
 #ln -s .local/share/Steam/steamapps/ ~/SteamApps (this needs updating for when not allowing home dir access)
 ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/Minecraft
@@ -164,6 +163,7 @@ systemctl enable sshd.service
 # Timeshift
 yay -S timeshift
 sudo systemctl enable cronie.service
+sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-backup /etc/cron.d/
 
 # Software Installer
 sudo ln -s /home/jordan/Scripts/python/softwareinstaller/softwareinstaller /usr/bin/si

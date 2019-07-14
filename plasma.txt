@@ -30,8 +30,14 @@ Appearance >
 Workspace > 
 	Desktop Behaviour >
 		Workspace > Double-click to open files
-		Desktop Effects > Blur > enable, set blur=4 (5th notch, default=10), noise=7 (8th notch)
-		Screen Edges > disable all
+		Desktop Effects > 
+			Blur > enable, set blur=4 (5th notch, default=10), noise=7 (8th notch)
+			Translucency > Disable
+		Screen Edges >
+			Disable all
+			Bottom left = Present Windows - Current Desktop
+			Activation delay = 300 ms
+			Reactivation delay = 350 ms
 		Screen Locking > disable
 		Virtual Desktops > Add a new desktop, "Desktop 2"
 	Window Management > Window Behaviour > Titlebar Actions >
@@ -117,6 +123,7 @@ sudo echo "GDK_SCALE=2" >> /etc/environment
 sudo echo "GDK_DPI_SCALE=0.5" >> /etc/environment
 echo "gtk-decoration-layout=minimize:close" >> ~/.config/gtk-3.0/settings.ini
 for d in ~/.local/share/flatpak/runtime/org.gnome.Platform/x86_64/* ; do cp ~/.config/gtk-3.0/settings.ini $d/active/files/etc/gtk-3.0/ ; done
+for d in /var/lib/flatpak/runtime/org.gnome.Platform/x86_64/* ; do sudo cp ~/.config/gtk-3.0/settings.ini $d/active/files/etc/gtk-3.0/ ; done
 
 
 
@@ -134,30 +141,28 @@ flatpak override --user --env=GDK_DPI_SCALE=2 org.libreoffice.LibreOffice
 == Wayland Issues ==
 
 * Problem
-- Fix
-. Fix on the way
+- Fixed (not tested)
+~ Progress made
 @ Partial fix to cope
 
-ISSUES
+BLOCKING ISSUES
 * Screen Power Saving - kwin-wayland crashes on resume
 		https://bugs.kde.org/show_bug.cgi?id=402827
 	@ Just using suspend
 		* Auto-suspend after 60 mins not working
-* XWayland apps - scroll wheel sends two scroll events every second scroll
-	. Fix committed, coming in 5.17.0 - 
-		https://bugs.kde.org/show_bug.cgi?id=404152
-		https://phabricator.kde.org/D18933
+* XWayland apps - scroll wheel sends two scroll events every second scroll - https://bugs.kde.org/show_bug.cgi?id=404152 https://phabricator.kde.org/D18933
+	- Fixed (5.17.0)
 * Clipboard pasting with Qt5 apps sometimes stops working
-* Middle click paste for native Wayland Qt apps missing
-	. Fix committed to Qt: https://bugreports.qt.io/browse/QTBUG-66008
+* Middle click paste for native Wayland Qt apps missing - https://bugs.kde.org/show_bug.cgi?id=373907
+	~ Fix committed to Qt (5.14 alpha): https://bugreports.qt.io/browse/QTBUG-66008
 	@ For now ctrl+c/v works
 
-NON-ISSUES
+NON-BLOCKING ISSUES
+* Panel sometimes crashes
+	@ Can restart with plasmashell --replace &
 * Task-Manager - no tooltip preview 
 	@ just disabled tooltips
 * Blur effect unreliable
-	- Fixed: https://bugs.kde.org/show_bug.cgi?id=398899
+	- Fixed (5.16.0): https://bugs.kde.org/show_bug.cgi?id=398899
 * LibreOffice (Flatpak) - Font isn't anti-aliased
-	- Using version from repo
-* Panel sometimes crashes
-	@ Can restart with plasmashell --replace &
+	@ Using version from repo
