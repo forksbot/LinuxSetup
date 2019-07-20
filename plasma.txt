@@ -1,9 +1,11 @@
 == Plasma ==
+cp -r ./breeze_dark_transparent ~/.local/share/plasma/desktoptheme/
+
 Appearance > 
+	Look and Feel > Breeze Dark
 	Workspace Theme >
-		Look and Feel > Breeze Dark
-		Desktop Theme > Breeze Dark
-		Cursor Theme > Breeze Snow, size 48 (setting the size fixes the different-sizes cursor issue)
+		Plasma Theme > Breeze Dark Transparent
+		Cursor Theme > Breeze Light, size 48 (setting the size fixes the different-sizes cursor issue)
 		Splash Theme > Breeze
 	Icons > Icons > Breeze Dark
 	Font >
@@ -13,7 +15,7 @@ Appearance >
 		Force dpi: 192
 	Application Style >
 		Widget Style >
-			Applications > Widget Style > Configure > Transparency > Menu=8 (9th notch)
+			Applications > Widget Style > Configure > Transparency > Menu=6 (7th notch)
 		Window Decorations > 
 			Buttons tab > set up buttons
 			Border size: No borders
@@ -31,7 +33,7 @@ Workspace >
 	Desktop Behaviour >
 		Workspace > Double-click to open files
 		Desktop Effects > 
-			Blur > enable, set blur=4 (5th notch, default=10), noise=7 (8th notch)
+			Blur > enable, set blur=6 (7th notch, default=10), noise=0 (1st notch)
 			Translucency > Disable
 		Screen Edges >
 			Disable all

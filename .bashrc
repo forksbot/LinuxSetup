@@ -9,7 +9,8 @@ alias ls='ls --color=auto'
 alias ll="ls -l"
 alias la="ls -la"
 
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+PS1='\n${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;30m\] [$(date +%H:%M:%S)]\[\033[00m\]\n\$ '
 which git >/dev/null 2>&1
 if [[ $? = 0 ]]
 then
