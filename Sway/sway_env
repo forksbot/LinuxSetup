@@ -1,0 +1,22 @@
+#!/usr/bin/sh
+
+
+# QT5
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export QT_SCALE_FACTOR=2
+export QT_FONT_DPI=96
+export QT_QPA_PLATFORM=xcb
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+# GTK3
+export GDK_SCALE=2
+export GDK_DPI_SCALE=1
+gsettings set org.gnome.desktop.interface scaling-factor 0
+gsettings set org.gnome.desktop.interface text-scaling-factor 2
+
+# Cursor
+export XCURSOR_THEME=Breeze_Snow
+export XCURSOR_SIZE=48
+
+
+/usr/bin/sway

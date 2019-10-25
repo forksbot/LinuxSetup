@@ -78,6 +78,18 @@ Settings:
 	"scroll_speed": 0
 }
 
+{
+	"update_check": false,
+	"ui_scale": 2.0,
+	"font_size": 10,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"folder_exclude_patterns": ["__pycache__"],
+	"scroll_speed": 0
+}
+
 Python-specific settings:
 {
 	"translate_tabs_to_spaces": true

@@ -1,0 +1,9 @@
+pacman -S sway xorg-server-xwayland i3status bemenu pulseaudio pamixer pavucontrol breeze breeze-gtk lxappearance qt5ct gsfonts ttf-dejavu
+yay -S redshift-wlr-gamma-control j4-dmenu-desktop 
+
+Add to /etc/systemd/logind.conf -
+HandlePowerKey=suspend
+
+Edit /etc/sddm.conf - 
+CursorTheme=Breeze_Snow
+

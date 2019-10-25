@@ -1,0 +1,73 @@
+loadkeys uk
+timedatectl set-ntp true
+
+wifi-menu wlp3s0
+
+cfdisk /dev/mmcblk0
+/dev/mmcblk0p1 - EFI System - 512 MiB
+/dev/mmcblk0p2 - Linux swap - 4GiB
+/dev/mmcblk0p3 - Linux root (X86-64)
+
+mkfs.fat -F32 /dev/mmcblk0p1
+mkswap /dev/mmcblk0p2 
+swapon /dev/mmcblk0p2
+mkfs.ext4 /dev/mmcblk0p3
+
+mount /dev/mmcblk0p3 /mnt
+mkdir /mnt/efi
+mount /dev/mmcblk0p1 /mnt/efi
+
+pacstrap /mnt base base-devel linux linux-firmware
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+
+pacman -S grub efibootmgr vim ntp networkmanager cifs-utils git
+
+ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
+hwclock --systohc
+echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen
+locale-gen
+echo "LANG=en_GB.UTF-8" > /etc/locale.conf
+echo "KEYMAP=uk" > /etc/vconsole.conf
+
+echo "wilfred" > /etc/hostname
+echo "127.0.0.1       localhost
+	127.0.1.1       wilfred
+	::1     localhost ip6-localhost ip6-loopback
+	192.168.0.24    humphrey" > /etc/hosts
+
+passwd
+useradd -m -g wheel jordan
+passwd jordan
+chmod 0640 /etc/sudoers
+vi /etc/sudoers # Uncomment "%wheel ALL=(ALL) ALL"
+
+grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
+vim /etc/default/grub #remove quiet
+grub-mkconfig -o /boot/grub/grub.cfg
+
+systemctl enable dhcpcd.service
+systemctl enable NetworkManager.service
+systemctl enable ntpd.service
+
+exit
+reboot
+
+nmcli r wifi on
+nmcli d wifi list
+nmcli d wifi connect <point> password <password>
+
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
+pacman -S sway xorg-server-xwayland i3status dmenu termite pulseaudio pavucontrol brightnessctl thunar tumbler ristretto breeze breeze-gtk lxappearance qt5ct gsfonts ttf-dejavu
+su - jordan
+yay -S redshift-wlr-gamma-control
+git clone git@github.com:JordanL2/Wilfred.git ~/.config
+
+qt5ct
+lxappearance
+cd /usr/share/icons
+mv Adwaita .Adwaita
+ln -snf breeze-dark Adwaita

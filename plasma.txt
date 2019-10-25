@@ -7,12 +7,12 @@ Appearance >
 		Plasma Theme > Breeze Dark Transparent
 		Cursor Theme > Breeze Light, size 48 (setting the size fixes the different-sizes cursor issue)
 		Splash Theme > Breeze
-	Icons > Icons > Breeze Dark
+	Icons > Icons >
+		Breeze Dark
 	Font >
 		All fonts to Noto Sans, Medium, 10 except Fixed width: Monospace, Normal, 10
 		Sub-pixel rendering: Vertical RGB
 		Hinting: Full
-		Force dpi: 192
 	Application Style >
 		Widget Style >
 			Applications > Widget Style > Configure > Transparency > Menu=6 (7th notch)
@@ -33,7 +33,7 @@ Workspace >
 	Desktop Behaviour >
 		Workspace > Double-click to open files
 		Desktop Effects > 
-			Blur > enable, set blur=6 (7th notch, default=10), noise=0 (1st notch)
+			Blur > enable, set blur=3 (4th notch, default=10), noise=0 (1st notch)
 			Translucency > Disable
 		Screen Edges >
 			Disable all
@@ -51,6 +51,7 @@ Workspace >
 				Switch One Desktop to the Left = Ctrl+Alt+Left
 				Switch One Desktop to the Right = Ctrl+Alt+Right
 				Toggle Present Windows (Current Desktop) = Ctrl+Alt+Up
+				Make Window Fullscreen = Meta+#
 			System Settings > 
 				Log Out = Meta+X
 		Custom Shortcuts >
@@ -60,7 +61,7 @@ Workspace >
 			Text Editor = Meta+E = flatpak run com.sublimetext.three
 			Calculator = Meta+C = modularcalculator
 			Restart Shell = Ctrl+Alt+Del = /home/jordan/plasmarestarter/restartplasma
-			Sleep = Meta+S = xset dpms force off
+			Sleep = Meta+S = /home/jordan/sleep
 	Startup and Shutdown >
 		Login Screen > Advanced >
 			Check Auto Login
@@ -72,9 +73,12 @@ Workspace >
 Personalisation > Regional Settings > Language > Add "British English"
 Hardware >
 	Input Devices > Keyboard > Layouts > Add UK, remove US
-	Display and Monitor > Compositor >
-		Rendering backend: OpenGL 3.1
-		Uncheck "Allow applications to block compositing"
+	Display and Monitor > 
+		Displays >
+			Set Scale Display to 2
+		Compositor >
+			Rendering backend: OpenGL 3.1
+			Uncheck "Allow applications to block compositing"
 	Power Management > Energy Saving >
 		Screen Energy Saving = 30 min
 		When power button pressed = Suspend
@@ -149,9 +153,7 @@ flatpak override --user --env=GDK_DPI_SCALE=2 org.libreoffice.LibreOffice
 
 BLOCKING ISSUES
 * Screen Power Saving - kwin-wayland crashes on resume
-		https://bugs.kde.org/show_bug.cgi?id=402827
-	@ Just using suspend
-		* Auto-suspend after 60 mins not working
+	https://bugs.kde.org/show_bug.cgi?id=402827
 * XWayland apps - scroll wheel sends two scroll events every second scroll - https://bugs.kde.org/show_bug.cgi?id=404152 https://phabricator.kde.org/D18933
 	- Fixed (5.17.0)
 * Clipboard pasting with Qt5 apps sometimes stops working
