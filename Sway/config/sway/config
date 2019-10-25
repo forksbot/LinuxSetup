@@ -1,0 +1,248 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+#exec_always {
+#    gsettings set org.gnome.desktop.interface cursor-size 48
+#}
+set $my_cursor Breeze_Snow
+set $my_cursor_size 48
+
+seat seat0 xcursor_theme $my_cursor $my_cursor_size
+exec_always {
+    gsettings set org.gnome.desktop.interface cursor-theme $my_cursor
+    gsettings set org.gnome.desktop.interface cursor-size $my_cursor_size
+}
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+
+set $term konsole
+#set $menu dmenu_path | dmenu -m DP-1 | xargs swaymsg exec --
+#set $menu rofi -show drun
+set $menu j4-dmenu-desktop --dmenu='bemenu -i --tb "#000000" --tf "#2980b9" --fb "#000000" --ff "#ffffff" --hb "#000000" --hf "#2980b9" --nb "#000000" --nf "#ffffff" --fn "noto:NotoSansMono-Bold 20"' --term='konsole'
+set $run bemenu-run --tb "#000000" --tf "#2980b9" --fb "#000000" --ff "#ffffff" --hb "#000000" --hf "#2980b9" --nb "#000000" --nf "#ffffff" --fn 'noto:NotoSansMono-Bold 20'
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+#output * bg /home/jordan/background.jpg fill
+output * bg #000000 solid_color
+
+font noto:NotoSansMono-Bold 20
+
+workspace_layout tabbed
+
+title_align center
+
+default_border normal 1
+hide_edge_borders both
+
+client.focused #2980b9 #2980b9 #ffffff #2980b9 #2980b9
+client.focused_inactive #234257 #234257 #ffffff #234257 #234257
+client.unfocused #234257 #000000 #2980b9 #234257 #234257
+client.urgent #ff0000 #ff0000 #ffffff #ff0000 #ff0000
+
+
+#output DP-1 resolution 3840x2160 position 0,0 scale 2
+#output DP-2 resolution 3840x2160 position 1920,0 scale 2
+output DP-1 resolution 3840x2160 position 0,0
+output DP-2 resolution 3840x2160 position 3840,0
+
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+### Idle configuration
+#
+# Example configuration:
+#
+exec swayidle timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' 
+#
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+### Input configuration
+#
+# Example configuration:
+#
+#   input "2:14:SynPS/2_Synaptics_TouchPad" {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+input * xkb_layout "gb"
+
+### Key bindings
+#
+# Basics:
+#
+# Start a terminal
+bindsym $mod+Return exec $term
+
+# Browser
+#bindsym $mod+w exec firefox
+#bindsym $mod+w exec MOZ_ENABLE_WAYLAND=1 firefox
+bindsym $mod+w exec google-chrome-stable
+
+# File manager
+bindsym $mod+f exec dolphin
+
+# Text Editor
+#bindsym $mod+e exec flatpak run com.sublimetext.three
+bindsym $mod+e exec subl
+
+# Calculator
+bindsym $mod+c exec modularcalculator
+
+# Kill focused window
+bindsym $mod+q kill
+
+# Start your launcher
+#bindsym $mod+space exec $menu
+bindsym --release Super_L exec $menu
+bindsym $mod+r exec $runner
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Exit sway (logs you out of your Wayland session)
+#    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+bindsym Control+$mod+Backspace exec swaymsg exit
+
+# Suspend
+bindsym $mod+x exec systemctl suspend
+
+#
+# Moving around:
+#
+# use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+#
+# Workspaces:
+#
+# Switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+# Note: workspaces can have any name you want, not just numbers.
+# We just use 1-10 as the default.
+
+bindsym $mod+Control+Left workspace prev
+bindsym $mod+Control+Right workspace next
+#
+# Layout stuff:
+#
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+h splith
+bindsym $mod+v splitv
+
+# Switch the current container between different layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+y layout toggle split
+
+# Make the current focus fullscreen
+bindsym $mod+numbersign fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+Control+space focus mode_toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+#
+# Resizing containers:
+#
+bindsym $mod+minus resize shrink width 10px
+bindsym $mod+equal resize grow width 10px
+bindsym $mod+Shift+minus resize shrink height 10px
+bindsym $mod+Shift+equal resize grow height 10px
+
+# Multimedia keys
+bindsym $mod+Mod1+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
+bindsym $mod+Mod1+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
+bindsym $mod+Mod1+m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
+#bindsym XF86MonBrightnessUp exec sudo brightnessctl s +10% # increase screen brightness
+#bindsym XF86MonBrightnessDown exec sudo brightnessctl s 10%- # decrease screen brightness
+
+
+# MOUSE BINDINGS
+bindsym button2 kill
+
+
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    position bottom
+
+	#status_command i3status
+	status_command /home/jordan/.config/i3status/status
+
+    colors {
+        statusline #2980b9
+        background #000000
+        inactive_workspace #234257 #000000 #2980b9
+        focused_workspace #2980b9 #2980b9 #ffffff
+        active_workspace #234257 #234257 #ffffff
+    }
+}
+
+include /etc/sway/config.d/*
+
+exec /home/jordan/.config/sway/redshift
