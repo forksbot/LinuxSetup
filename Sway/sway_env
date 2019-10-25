@@ -9,10 +9,11 @@ export QT_QPA_PLATFORM=xcb
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 # GTK3
+export GDK_BACKEND=x11
 export GDK_SCALE=2
 export GDK_DPI_SCALE=1
 gsettings set org.gnome.desktop.interface scaling-factor 0
-gsettings set org.gnome.desktop.interface text-scaling-factor 2
+gsettings set org.gnome.desktop.interface text-scaling-factor 1
 
 # Cursor
 export XCURSOR_THEME=Breeze_Snow
