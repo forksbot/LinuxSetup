@@ -1,6 +1,17 @@
 pacman -S sway xorg-server-xwayland i3status bemenu pulseaudio pamixer pavucontrol breeze breeze-gtk lxappearance qt5ct gsfonts ttf-dejavu
 yay -S redshift-wlr-gamma-control j4-dmenu-desktop 
 
+sudo cp /home/jordan/Scripts/LinuxSetup/Sway/sway_env /usr/bin/sway_env
+chmod 0755 /usr/bin/sway_env
+chown root:root /usr/bin/sway_env
+
+sudo cp /home/jordan/Scripts/LinuxSetup/Sway/sway.desktop /usr/share/wayland-sessions/sway.desktop
+chmod 0644 /usr/share/wayland-sessions/sway.desktop
+chown root:root /usr/share/wayland-sessions/sway.desktop
+
+cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
+cp -r /home/jordan/Scripts/LinuxSetup/Sway/icons /home/jordan/.icons
+
 Add to /etc/systemd/logind.conf -
 HandlePowerKey=suspend
 
