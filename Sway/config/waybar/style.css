@@ -33,6 +33,26 @@ window#waybar {
     border: 1px solid #234257;
 }
 
+#memory.warning {
+    color: orange;
+    background: #191000;
+}
+
+#memory.critical {
+    color: red;
+    background: #190000;
+}
+
+#cpu.warning {
+    color: orange;
+    background: #191000;
+}
+
+#cpu.critical {
+    color: red;
+    background: #190000;
+}
+
 #tray {
     margin: 0 10px;
 }
