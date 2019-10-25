@@ -4,9 +4,6 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-#exec_always {
-#    gsettings set org.gnome.desktop.interface cursor-size 48
-#}
 set $my_cursor Breeze_Snow
 set $my_cursor_size 48
 
@@ -137,12 +134,16 @@ bindsym $mod+x exec systemctl suspend
 # Moving around:
 #
 # use $mod+[up|down|left|right]
+bindsym $mod+Prior focus left
+bindsym $mod+Next focus right
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # Move the focused window with the same, but add Shift
+bindsym $mod+Shift+Prior move left
+bindsym $mod+Shift+Next move right
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -229,18 +230,20 @@ bindsym button2 kill
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position bottom
+#    position bottom
 
 	#status_command i3status
-	status_command /home/jordan/.config/i3status/status
+	#status_command /home/jordan/.config/i3status/status
 
-    colors {
-        statusline #2980b9
-        background #000000
-        inactive_workspace #234257 #000000 #2980b9
-        focused_workspace #2980b9 #2980b9 #ffffff
-        active_workspace #234257 #234257 #ffffff
-    }
+    #colors {
+    #    statusline #2980b9
+    #    background #000000
+    #    inactive_workspace #234257 #000000 #2980b9
+    #    focused_workspace #2980b9 #2980b9 #ffffff
+    #    active_workspace #234257 #234257 #ffffff
+    #}
+
+    swaybar_command /home/jordan/.config/waybar/waybar
 }
 
 include /etc/sway/config.d/*

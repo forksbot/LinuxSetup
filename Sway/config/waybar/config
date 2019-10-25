@@ -1,0 +1,46 @@
+{
+    "layer": "bottom",
+    "position": "bottom",
+    
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-right": ["tray", "custom/disk", "cpu", "memory", "network", "pulseaudio", "clock"],
+
+    "memory": {
+        "interval": 1,
+        "format": " Memory:{percentage:3}% "
+    },
+
+    "cpu": {
+        "interval": 1,
+        "format": " CPU:{usage:3}% "
+    },
+
+    "tray": {
+        "icon-size": 36,
+        "spacing": 10
+    },
+
+    "network": {
+        "format-ethernet": " E: {ipaddr:15} ",
+        "format-disconnected": "    DISCONNECTED    "
+    },
+
+    "pulseaudio": {
+        "format": " Volume:{volume:3}% ",
+        "format-muted": "    Muted    ",
+        "on-click": "GDK_BACKEND=x11 pavucontrol",
+        "scroll-step": 5
+    },
+
+    "clock": {
+        "format": " {:%a, %d %b %H:%M:%S} ",
+        "interval": 1,
+        "on-click": "GDK_BACKEND=x11 gsimplecal"
+    },
+
+    "custom/disk": {
+        "interval": 30,
+        "exec": "/home/jordan/.config/waybar/disk",
+        "format": " {} "
+    }
+}
