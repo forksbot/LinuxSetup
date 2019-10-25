@@ -33,7 +33,7 @@
     },
 
     "clock": {
-        "format": " {:%a, %d %b %H:%M:%S} ",
+        "format": " {:%a, %2d %b %H:%M:%S} ",
         "interval": 1,
         "on-click": "GDK_BACKEND=x11 gsimplecal"
     },
