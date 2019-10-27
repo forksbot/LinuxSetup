@@ -1,0 +1,19 @@
+PLASMA PROs
+
+GTK2 apps scaled correctly (GIMP is only one I really care about)
+KDE connect - can easily pause/unpause video with phone
+Graphical CPU usage on taskbar
+Okular flatpak themed correctly
+Can configure more easily, less restarting
+
+
+SWAY PROs
+
+Very light, simple, minimalist
+Don't need a script to restart shell on wakeup
+Windows don't get moved to different monitor on wakeup
+Can play Minecraft on left monitor
+Config in easily copyable files, fresh setup much easier
+Easily add script output to taskbar
+Moving a window has less lag
+

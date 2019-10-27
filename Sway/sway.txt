@@ -1,4 +1,4 @@
-pacman -S sway xorg-server-xwayland i3status bemenu pulseaudio pamixer pavucontrol breeze breeze-gtk lxappearance qt5ct gsfonts ttf-dejavu
+pacman -S sway xorg-server-xwayland i3status bemenu pulseaudio pamixer pavucontrol breeze breeze-gtk lxappearance qt5ct gsfonts ttf-dejavu gsimplecal xsettingsd
 yay -S redshift-wlr-gamma-control j4-dmenu-desktop 
 
 sudo cp /home/jordan/Scripts/LinuxSetup/Sway/sway_env /usr/bin/sway_env

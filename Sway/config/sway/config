@@ -100,7 +100,8 @@ bindsym $mod+f exec dolphin
 
 # Text Editor
 #bindsym $mod+e exec flatpak run com.sublimetext.three
-bindsym $mod+e exec subl
+bindsym $mod+e exec flatpak run --nosocket=fallback-x11 --socket=x11 com.sublimetext.three
+#bindsym $mod+e exec subl
 
 # Calculator
 bindsym $mod+c exec modularcalculator
@@ -246,6 +247,7 @@ bar {
     swaybar_command /home/jordan/.config/waybar/waybar
 }
 
-include /etc/sway/config.d/*
+exec /home/jordan/.config/sway/xsettingsd
+#exec /home/jordan/.config/sway/redshift
 
-exec /home/jordan/.config/sway/redshift
+include /etc/sway/config.d/*
