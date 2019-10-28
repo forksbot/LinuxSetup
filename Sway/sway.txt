@@ -17,4 +17,3 @@ HandlePowerKey=suspend
 
 Edit /etc/sddm.conf - 
 CursorTheme=Breeze_Snow
-

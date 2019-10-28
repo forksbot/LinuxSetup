@@ -1,9 +1,8 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    font-family: NotoSansMono, Bold;
-    font-size: 30px;
+    font-family: Noto Sans Mono, Bold;
+    font-size: 28px;
     min-height: 0;
 }
 
