@@ -1,9 +1,15 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
+# Output configuration
+output DP-1 resolution 3840x2160 position 0,0
+output DP-2 resolution 3840x2160 position 3840,0
+output * bg #000000 solid_color
 
+# Monitor power saving
+exec swayidle timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' 
+
+# Keyboard input
+input * xkb_layout "gb"
+
+# Theme
 set $my_cursor Breeze_Snow
 set $my_cursor_size 48
 
@@ -13,46 +19,32 @@ exec_always {
     gsettings set org.gnome.desktop.interface cursor-size $my_cursor_size
 }
 
-### Variables
-#
-# Logo key. Use Mod1 for Alt.
-set $mod Mod4
-
-set $term konsole
-#set $menu dmenu_path | dmenu -m DP-1 | xargs swaymsg exec --
-#set $menu rofi -show drun
-set $menu j4-dmenu-desktop --dmenu='bemenu -i --tb "#000000" --tf "#2980b9" --fb "#000000" --ff "#ffffff" --hb "#000000" --hf "#2980b9" --nb "#000000" --nf "#ffffff" --fn "noto:NotoSansMono-Bold 20"' --term='$term'
-set $runner bemenu-run --tb "#000000" --tf "#2980b9" --fb "#000000" --ff "#ffffff" --hb "#000000" --hf "#2980b9" --nb "#000000" --nf "#ffffff" --fn "noto:NotoSansMono-Bold 20"
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#output * bg /home/jordan/background.jpg fill
-output * bg #000000 solid_color
+set $c_high #2980b9
+set $c_low #234257
+set $c_fore #ffffff
+set $c_back #000000
+set $c_urgent #ff0000
 
 font noto:NotoSansMono-Bold 20
-
-workspace_layout tabbed
-
 title_align center
-
 default_border normal 1
 hide_edge_borders both
 
-client.focused #2980b9 #2980b9 #ffffff #2980b9 #2980b9
-client.focused_inactive #234257 #234257 #ffffff #234257 #234257
-client.unfocused #234257 #000000 #2980b9 #234257 #234257
-client.urgent #ff0000 #ff0000 #ffffff #ff0000 #ff0000
+client.focused $c_high $c_high $c_fore $c_high $c_high
+client.focused_inactive $c_low $c_low $c_fore $c_low $c_low
+client.unfocused $c_low $c_back $c_high $c_low $c_low
+client.urgent $c_urgent $c_urgent $c_fore $c_urgent $c_urgent
 
-# Output configuration
-output DP-1 resolution 3840x2160 position 0,0
-output DP-2 resolution 3840x2160 position 3840,0
+# Mod key
+set $mod Mod4
 
-# Monitor power saving
-exec swayidle timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' 
+# Apps
+set $term konsole
+set $menu j4-dmenu-desktop --dmenu='bemenu -i --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 20"' --term='$term'
+set $runner bemenu-run --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 20"
 
-# Keyboard input
-input * xkb_layout "gb"
+# Default Layout
+workspace_layout tabbed
 
 ### Key bindings
 #
@@ -92,7 +84,6 @@ floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
 # Exit sway (logs you out of your Wayland session)
-#    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 bindsym Control+$mod+Backspace exec swaymsg exit
 
 # Suspend
@@ -200,7 +191,8 @@ bar {
     swaybar_command /home/jordan/.config/waybar/waybar
 }
 
+# Auto-start Services
 exec /home/jordan/.config/sway/xsettingsd
-#exec /home/jordan/.config/sway/redshift
+exec /home/jordan/.config/sway/redshift
 
 include /etc/sway/config.d/*
