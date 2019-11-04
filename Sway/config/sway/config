@@ -92,6 +92,9 @@ bindsym Control+$mod+s exec systemctl poweroff
 # Restart
 bindsym Control+$mod+r exec systemctl reboot
 
+# Suspend
+bindsym Control+$mod+l exec systemctl suspend
+
 #
 # Moving around
 #
