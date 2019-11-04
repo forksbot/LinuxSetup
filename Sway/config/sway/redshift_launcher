@@ -1,0 +1,13 @@
+#!/usr/bin/sh
+
+pid=`pidof redshift`
+if [[ ! -z "$pid" ]]
+then
+	if ps -p $pid > /dev/null
+	then
+		killall redshift
+		sleep 10
+	fi
+fi
+
+redshift -l -51:0 -t 6500:4500 &

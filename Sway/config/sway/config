@@ -4,7 +4,9 @@ output DP-2 resolution 3840x2160 position 3840,0
 output * bg #000000 solid_color
 
 # Monitor power saving
-exec swayidle timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' 
+exec_always {
+	killall swayidle ; swayidle timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' 
+}
 
 # Keyboard input
 input * xkb_layout "gb"
@@ -201,7 +203,7 @@ bar {
 # Auto-start Services
 exec /home/jordan/.config/sway/xsettingsd
 exec_always {
-	killall redshift ; /home/jordan/.config/sway/redshift
+	/home/jordan/.config/sway/redshift_launcher
 }
 
 include /etc/sway/config.d/*
