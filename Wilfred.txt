@@ -67,13 +67,9 @@ su - jordan
 yay -S redshift-wlr-gamma-control j4-dmenu-desktop 
 git clone git@github.com:JordanL2/Wilfred.git ~/.config
 
-cd /usr/share/icons
-mv Adwaita .Adwaita
-ln -snf breeze-dark Adwaita
+#cd /usr/share/icons
+#mv Adwaita .Adwaita
+#ln -snf breeze-dark Adwaita
 
-Add to bottom of /etc/profile:
-export GTK_THEME=Breeze-Dark
-export GTK2_RC_FILES=/usr/share/themes/Breeze-Dark/gtk-2.0/gtkrc
-export GDK_BACKEND=x11
-export QT_QPA_PLATFORM=xcb
-export XDG_CURRENT_DESKTOP=KDE
+cp /home/jordan/Scripts/LinuxSetup/Sway/wilfred-sway\@.service /etc/systemd/system/sway\@.service
+systemctl enable sway@1

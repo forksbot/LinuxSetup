@@ -48,8 +48,14 @@ workspace_layout tabbed
 
 ### Key bindings
 #
-# Basics:
+# Launching Apps
 #
+
+# Start your launcher
+#bindsym $mod+space exec $menu
+bindsym --release Super_L exec $menu
+bindsym $mod+r exec $runner
+
 # Start a terminal
 bindsym $mod+Return exec $term
 
@@ -65,32 +71,27 @@ bindsym $mod+e exec flatpak run --nosocket=fallback-x11 --socket=x11 com.sublime
 # Calculator
 bindsym $mod+c exec modularcalculator
 
+#
+# Quitting and restarting
+#
+
 # Kill focused window
 bindsym $mod+q kill
-
-# Start your launcher
-#bindsym $mod+space exec $menu
-bindsym --release Super_L exec $menu
-bindsym $mod+r exec $runner
-
-# Drag floating windows by holding down $mod and left mouse button.
-# Resize them with right mouse button + $mod.
-# Despite the name, also works for non-floating windows.
-# Change normal to inverse to use left mouse button for resizing and right
-# mouse button for dragging.
-floating_modifier $mod normal
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 
 # Exit sway (logs you out of your Wayland session)
-bindsym Control+$mod+Backspace exec swaymsg exit
+bindsym Control+$mod+x exec swaymsg exit
 
-# Suspend
-bindsym $mod+x exec systemctl suspend
+# Shut down
+bindsym Control+$mod+s exec systemctl poweroff
+
+# Restart
+bindsym Control+$mod+r exec systemctl reboot
 
 #
-# Moving around:
+# Moving around
 #
 # use $mod+[up|down|left|right]
 bindsym $mod+Prior focus left
@@ -109,7 +110,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 #
-# Workspaces:
+# Workspaces
 #
 # Switch to workspace
 bindsym $mod+1 workspace 1
@@ -140,7 +141,7 @@ bindsym $mod+Control+Left workspace prev
 bindsym $mod+Control+Right workspace next
 
 #
-# Layout stuff:
+# Layout stuff
 #
 # You can "split" the current object of your focus with
 # $mod+b or $mod+v, for horizontal and vertical splits
@@ -162,11 +163,18 @@ bindsym $mod+Shift+space floating toggle
 # Swap focus between the tiling area and the floating area
 bindsym $mod+Control+space focus mode_toggle
 
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
 # Move focus to the parent container
 bindsym $mod+a focus parent
 
 #
-# Resizing containers:
+# Resizing containers
 #
 bindsym $mod+minus resize shrink width 10px
 bindsym $mod+equal resize grow width 10px
@@ -180,19 +188,20 @@ bindsym $mod+Mod1+m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ togg
 
 
 # MOUSE BINDINGS
-bindsym button2 kill
+#bindsym button2 kill
 
 
 #
-# Status Bar:
+# Status Bar
 #
-# Read `man 5 sway-bar` for more information about this section.
 bar {
     swaybar_command /home/jordan/.config/waybar/waybar
 }
 
 # Auto-start Services
 exec /home/jordan/.config/sway/xsettingsd
-exec /home/jordan/.config/sway/redshift
+exec_always {
+	killall redshift ; /home/jordan/.config/sway/redshift
+}
 
 include /etc/sway/config.d/*
