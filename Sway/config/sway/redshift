@@ -1,0 +1,2 @@
+#!/usr/bin/sh
+redshift -l -51:0 -t 6500:3500 &

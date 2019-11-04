@@ -61,13 +61,19 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
-pacman -S sway xorg-server-xwayland i3status dmenu termite pulseaudio pavucontrol brightnessctl thunar tumbler ristretto breeze breeze-gtk lxappearance qt5ct gsfonts ttf-dejavu
+pacman -S sway i3status bemenu xorg-server-xwayland pulseaudio pamixer pavucontrol brightnessctl gsfonts ttf-dejavu gsimplecal xsettingsd breeze breeze-gtk plasma-integration
+pacman -S termite thunar tumbler ristretto
 su - jordan
-yay -S redshift-wlr-gamma-control
+yay -S redshift-wlr-gamma-control j4-dmenu-desktop 
 git clone git@github.com:JordanL2/Wilfred.git ~/.config
 
-qt5ct
-lxappearance
 cd /usr/share/icons
 mv Adwaita .Adwaita
 ln -snf breeze-dark Adwaita
+
+Add to bottom of /etc/profile:
+export GTK_THEME=Breeze-Dark
+export GTK2_RC_FILES=/usr/share/themes/Breeze-Dark/gtk-2.0/gtkrc
+export GDK_BACKEND=x11
+export QT_QPA_PLATFORM=xcb
+export XDG_CURRENT_DESKTOP=KDE

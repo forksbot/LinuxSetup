@@ -1,10 +1,9 @@
-pacman -S sway xorg-server-xwayland bemenu pulseaudio pamixer pavucontrol breeze breeze-gtk gsfonts ttf-dejavu gsimplecal xsettingsd plasma-integration
-yay -S redshift-wlr-gamma-control j4-dmenu-desktop waybar
+pacman -S sway bemenu xorg-server-xwayland pulseaudio pamixer pavucontrol gsimplecal gsfonts ttf-dejavu breeze breeze-gtk xsettingsd plasma-integration
+yay -S j4-dmenu-desktop waybar redshift-wlr-gamma-control
 
 sudo cp /home/jordan/Scripts/LinuxSetup/Sway/sway_env /usr/bin/sway_env
 chmod 0755 /usr/bin/sway_env
 chown root:root /usr/bin/sway_env
-
 sudo cp /home/jordan/Scripts/LinuxSetup/Sway/sway.desktop /usr/share/wayland-sessions/sway.desktop
 chmod 0644 /usr/share/wayland-sessions/sway.desktop
 chown root:root /usr/share/wayland-sessions/sway.desktop
