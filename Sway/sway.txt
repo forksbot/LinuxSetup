@@ -1,9 +1,5 @@
-pacman -S sway xorg-server-xwayland bemenu pulseaudio pamixer pavucontrol breeze breeze-gtk gsfonts ttf-dejavu gsimplecal xsettingsd
+pacman -S sway xorg-server-xwayland bemenu pulseaudio pamixer pavucontrol breeze breeze-gtk gsfonts ttf-dejavu gsimplecal xsettingsd plasma-integration
 yay -S redshift-wlr-gamma-control j4-dmenu-desktop waybar
-# To configure, either:
-pacman -S lxappearance qt5ct
-# Or:
-pacman -S systemsettings kde-gtk-config
 
 sudo cp /home/jordan/Scripts/LinuxSetup/Sway/sway_env /usr/bin/sway_env
 chmod 0755 /usr/bin/sway_env
@@ -15,9 +11,12 @@ chown root:root /usr/share/wayland-sessions/sway.desktop
 
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/icons /home/jordan/.icons
+cp /home/jordan/Scripts/LinuxSetup/Sway/_.gtkrc-2.0 /home/jordan/.gtkrc-2.0
+cp /home/jordan/Scripts/LinuxSetup/Sway/_.xsettingsd /home/jordan/.xsettingsd
 
 Add to /etc/systemd/logind.conf -
 HandlePowerKey=suspend
 
+# If using SDDM:
 #Edit /etc/sddm.conf - 
 #CursorTheme=Breeze_Snow
