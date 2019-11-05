@@ -11,6 +11,8 @@ TTYVTDisallocate=yes
 PAMName=login
 User=jordan
 WorkingDirectory=/home/jordan
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/home/jordan/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+Environment=SHLVL=2
 Environment=QT_AUTO_SCREEN_SCALE_FACTOR=0
 Environment=QT_SCALE_FACTOR=1
 Environment=QT_FONT_DPI=96
@@ -22,8 +24,8 @@ Environment=GDK_DPI_SCALE=1
 Environment=XCURSOR_THEME=Breeze_Snow
 Environment=XCURSOR_SIZE=24
 Environment=XDG_RUNTIME_DIR=/run/user/1000
-Environment=XDG_DATA_DIRS=/var/lib/flatpak/exports/share:/home/jordan/.local/share/flatpak/exports/share
-Restart=always
+Environment=XDG_DATA_DIRS=/home/jordan/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+Restart=on-failure
 RestartSec=2
 StandardInput=tty
 StandardError=journal
