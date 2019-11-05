@@ -22,6 +22,7 @@ Environment=GDK_DPI_SCALE=1
 Environment=XCURSOR_THEME=Breeze_Snow
 Environment=XCURSOR_SIZE=24
 Environment=XDG_RUNTIME_DIR=/run/user/1000
+Environment=XDG_DATA_DIRS=/var/lib/flatpak/exports/share:/home/jordan/.local/share/flatpak/exports/share
 Restart=always
 RestartSec=2
 StandardInput=tty

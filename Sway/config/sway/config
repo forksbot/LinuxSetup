@@ -68,7 +68,7 @@ bindsym $mod+w exec google-chrome-stable
 bindsym $mod+f exec dolphin
 
 # Text Editor
-bindsym $mod+e exec flatpak run --nosocket=fallback-x11 --socket=x11 com.sublimetext.three
+bindsym $mod+e exec flatpak run com.sublimetext.three
 
 # Calculator
 bindsym $mod+c exec modularcalculator

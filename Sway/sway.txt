@@ -24,3 +24,8 @@ If using SDDM:
 	cp /home/jordan/Scripts/LinuxSetup/Sway/sway.desktop /usr/share/wayland-sessions/sway.desktop
 	chmod 0644 /usr/share/wayland-sessions/sway.desktop
 	chown root:root /usr/share/wayland-sessions/sway.desktop
+
+
+# APPS
+# to fix sublime:
+flatpak --user override --nosocket=fallback-x11 --socket=x11 com.sublimetext.three
