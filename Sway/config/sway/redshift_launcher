@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 
-pid=`pidof redshift`
+pid=`pidof /usr/bin/redshift`
 if [[ ! -z "$pid" ]]
 then
 	if ps -p $pid > /dev/null

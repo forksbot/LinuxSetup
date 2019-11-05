@@ -3,11 +3,6 @@ output DP-1 resolution 3840x2160 position 0,0
 output DP-2 resolution 3840x2160 position 3840,0
 output * bg #000000 solid_color
 
-# Monitor power saving
-exec_always {
-	killall swayidle || true ; swayidle timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' 
-}
-
 # Keyboard input
 input * xkb_layout "gb"
 
@@ -48,7 +43,12 @@ set $runner bemenu-run --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_for
 # Default Layout
 workspace_layout tabbed
 
-### Key bindings
+
+
+####################
+### Key bindings ###
+####################
+
 #
 # Launching Apps
 #
@@ -73,6 +73,7 @@ bindsym $mod+e exec flatpak run com.sublimetext.three
 # Calculator
 bindsym $mod+c exec modularcalculator
 
+
 #
 # Quitting and restarting
 #
@@ -83,21 +84,24 @@ bindsym $mod+q kill
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 
-# Exit sway (logs you out of your Wayland session)
-bindsym Control+$mod+x exec swaymsg exit
+set $mode_quit Exit: [x] Exit Sway | [p] Power Off | [r] Reboot | [s] Suspend
+bindsym $mod+x mode "$mode_quit"
 
-# Shut down
-bindsym Control+$mod+s exec systemctl poweroff
+mode "$mode_quit" {
+    bindsym x exec swaymsg exit
+    bindsym p exec systemctl poweroff
+    bindsym r exec systemctl reboot
+    bindsym s exec systemctl suspend
 
-# Restart
-bindsym Control+$mod+r exec systemctl reboot
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
 
-# Suspend
-bindsym Control+$mod+l exec systemctl suspend
 
 #
 # Moving around
 #
+
 # use $mod+[up|down|left|right]
 bindsym $mod+Prior focus left
 bindsym $mod+Next focus right
@@ -114,9 +118,11 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+
 #
 # Workspaces
 #
+
 # Switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -145,9 +151,11 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Control+Left workspace prev
 bindsym $mod+Control+Right workspace next
 
+
 #
 # Layout stuff
 #
+
 # You can "split" the current object of your focus with
 # $mod+b or $mod+v, for horizontal and vertical splits
 # respectively.
@@ -178,9 +186,11 @@ floating_modifier $mod normal
 # Move focus to the parent container
 bindsym $mod+a focus parent
 
+
 #
 # Resizing containers
 #
+
 bindsym $mod+minus resize shrink width 10px
 bindsym $mod+equal resize grow width 10px
 bindsym $mod+Shift+minus resize shrink height 10px
@@ -193,20 +203,35 @@ bindsym $mod+Mod1+m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ togg
 
 
 # MOUSE BINDINGS
+# This currently isn't working reliably
 #bindsym button2 kill
 
 
-#
-# Status Bar
-#
+
+##############
+# Status Bar #
+##############
+
 bar {
     swaybar_command /home/jordan/.config/waybar/waybar
 }
 
-# Auto-start Services
+
+
+#######################
+# Auto-start Services #
+#######################
+
 exec /home/jordan/.config/sway/xsettingsd
+
+# Reshift
 exec_always {
 	/home/jordan/.config/sway/redshift_launcher
+}
+
+# Monitor power saving
+exec_always {
+	killall swayidle || true ; swayidle timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' 
 }
 
 include /etc/sway/config.d/*

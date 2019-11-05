@@ -6,10 +6,10 @@ Can configure more easily, less restarting
 
 PLASMA ISSUES
 
-Need a script to restart shell on monitor wakeup
-Windows sometimes moved to different monitor on wakeup
 Can't play Minecraft on left monitor
+Windows sometimes moved to different monitor on wakeup
 Binding for menu sometimes stops working
+Need a script to restart shell on monitor wakeup
 
 
 SWAY PROs
