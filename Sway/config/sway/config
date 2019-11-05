@@ -84,6 +84,7 @@ bindsym $mod+c exec modularcalculator
 
 # Kill focused window
 bindsym $mod+q kill
+bindsym --whole-window --border $mod+button2 kill
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
@@ -115,6 +116,8 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+bindsym --whole-window --border $mod+button4 focus left
+bindsym --whole-window --border $mod+button5 focus right
 
 # Move the focused window with the same, but add Shift
 bindsym $mod+Shift+Prior move left
@@ -123,14 +126,8 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-
-# Mouse wheel
-bindsym --whole-window --border $mod+button4 focus left
-bindsym --whole-window --border $mod+button5 focus right
 bindsym --whole-window --border $mod+shift+button4 move left
 bindsym --whole-window --border $mod+shift+button5 move right
-bindsym --whole-window --border $mod+Control+button4 workspace prev
-bindsym --whole-window --border $mod+Control+button5 workspace next
 
 
 #
@@ -164,6 +161,8 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 bindsym $mod+Control+Left workspace prev
 bindsym $mod+Control+Right workspace next
+bindsym --whole-window --border $mod+Control+button4 workspace prev
+bindsym --whole-window --border $mod+Control+button5 workspace next
 
 
 #
@@ -210,10 +209,18 @@ bindsym $mod+equal resize grow width 10px
 bindsym $mod+Shift+minus resize shrink height 10px
 bindsym $mod+Shift+equal resize grow height 10px
 
-# Multimedia keys
+
+#
+# Multimedia
+#
+
+# Volume
 bindsym $mod+Mod1+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
 bindsym $mod+Mod1+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
 bindsym $mod+Mod1+m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
+bindsym --whole-window --border $mod+Mod1+button4 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym --whole-window --border $mod+Mod1+button5 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym --whole-window --border $mod+Mod1+button2 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 
 
 # MOUSE BINDINGS

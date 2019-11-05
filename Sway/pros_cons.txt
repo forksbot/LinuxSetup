@@ -1,7 +1,6 @@
 PLASMA PROs
 
 Graphical CPU usage on taskbar
-Can configure more easily, less restarting
 
 
 PLASMA ISSUES
@@ -18,6 +17,8 @@ Very light, simple, minimalist
 Config in easily copyable files, fresh setup much easier
 Easily add script output to taskbar
 Moving a window has less lag
+All windows default to maximised
+Easy to configure keyboard+mouse bindings to make operation faster
 
 
 SWAY ISSUES
