@@ -223,11 +223,6 @@ bindsym --whole-window --border $mod+Mod1+button5 exec --no-startup-id pactl set
 bindsym --whole-window --border $mod+Mod1+button2 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 
 
-# MOUSE BINDINGS
-# This currently isn't working reliably
-#bindsym button2 kill
-
-
 
 ##############
 # Status Bar #
