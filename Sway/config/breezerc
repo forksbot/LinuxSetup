@@ -1,0 +1,7 @@
+[Common]
+ShadowColor=0,0,0
+ShadowSize=ShadowVeryLarge
+ShadowStrength=128
+
+[Style]
+MenuOpacity=100
