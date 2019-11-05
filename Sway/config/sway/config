@@ -1,3 +1,7 @@
+###########
+# General #
+###########
+
 # Output configuration
 output DP-1 resolution 3840x2160 position 0,0
 output DP-2 resolution 3840x2160 position 3840,0
@@ -45,9 +49,9 @@ workspace_layout tabbed
 
 
 
-####################
-### Key bindings ###
-####################
+################
+# Key Bindings #
+################
 
 #
 # Launching Apps
@@ -84,7 +88,7 @@ bindsym $mod+q kill
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 
-set $mode_quit Exit: [x] Exit Sway | [p] Power Off | [r] Reboot | [s] Suspend
+set $mode_quit Exit: [x] Exit Sway - [p] Power Off - [r] Reboot - [s] Suspend
 bindsym $mod+x mode "$mode_quit"
 
 mode "$mode_quit" {
@@ -224,6 +228,7 @@ bar {
 # Auto-start Services #
 #######################
 
+# Xsettingsd - For Flatpak themes to work
 exec /home/jordan/.config/sway/xsettingsd
 
 # Reshift
