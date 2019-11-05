@@ -5,9 +5,15 @@
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-right": ["tray", "custom/disk", "cpu", "memory", "network", "pulseaudio", "clock"],
 
+    "sway/mode": {
+        "format": " {}",
+        "tooltip": false
+    },
+
     "memory": {
         "interval": 1,
         "format": " Memory:{percentage:3}% ",
+        "tooltip": false,
         "states": {
             "warning": 70,
             "critical": 90
@@ -24,11 +30,13 @@
     },
 
     "tray": {
+        "tooltip": false,
         "icon-size": 36,
         "spacing": 10
     },
 
     "network": {
+        "tooltip": false,
         "format-ethernet": " E: {ipaddr:15} ",
         "format-disconnected": "    DISCONNECTED    "
     },
@@ -43,12 +51,14 @@
     "clock": {
         "format": " {:%a, %2d %b %H:%M:%S} ",
         "interval": 1,
+        "tooltip": false,
         "on-click": "GDK_BACKEND=x11 gsimplecal"
     },
 
     "custom/disk": {
         "interval": 30,
         "exec": "/home/jordan/.config/waybar/disk",
+        "tooltip": false,
         "format": " {} "
     }
 }
