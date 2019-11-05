@@ -58,8 +58,8 @@ workspace_layout tabbed
 #
 
 # Start your launcher
-#bindsym $mod+space exec $menu
-bindsym --release Super_L exec $menu
+bindsym $mod+space exec $menu
+#bindsym --release Super_L exec $menu # is triggered when using $mod+mouse buttons
 bindsym $mod+r exec $runner
 
 # Start a terminal
@@ -123,6 +123,14 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+# Mouse wheel
+bindsym --whole-window --border $mod+button4 focus left
+bindsym --whole-window --border $mod+button5 focus right
+bindsym --whole-window --border $mod+shift+button4 move left
+bindsym --whole-window --border $mod+shift+button5 move right
+bindsym --whole-window --border $mod+Control+button4 workspace prev
+bindsym --whole-window --border $mod+Control+button5 workspace next
 
 
 #
