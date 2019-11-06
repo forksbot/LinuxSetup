@@ -10,42 +10,47 @@ output * bg #000000 solid_color
 # Keyboard input
 input * xkb_layout "gb"
 
-# Theme
-set $my_cursor Breeze_Snow
-set $my_cursor_size 48
-
-seat seat0 xcursor_theme $my_cursor $my_cursor_size
+# Cursor theme and size
+set $cursor_theme Breeze_Snow
+set $cursor_size 48
+seat seat0 xcursor_theme $cursor_theme $cursor_size
 exec_always {
-    gsettings set org.gnome.desktop.interface cursor-theme $my_cursor
-    gsettings set org.gnome.desktop.interface cursor-size $my_cursor_size
+    gsettings set org.gnome.desktop.interface cursor-theme $cursor_theme
+    gsettings set org.gnome.desktop.interface cursor-size $cursor_size
 }
 
+# Colour scheme
 set $c_high #2980b9
 set $c_low #234257
 set $c_fore #ffffff
 set $c_back #000000
 set $c_urgent #ff0000
 
-font noto:NotoSansMono-Bold 20
-title_align center
-default_border normal 1
-hide_edge_borders both
-
 client.focused $c_high $c_high $c_fore $c_high $c_high
 client.focused_inactive $c_low $c_low $c_fore $c_low $c_low
 client.unfocused $c_low $c_back $c_high $c_low $c_low
 client.urgent $c_urgent $c_urgent $c_fore $c_urgent $c_urgent
 
+# Font
+font noto:NotoSansMono-Bold 20
+
+# Titles
+title_align center
+
+# Borders
+default_border normal 1
+hide_edge_borders both
+
 # Mod key
 set $mod Mod4
+
+# Default Layout
+workspace_layout tabbed
 
 # Apps
 set $term konsole
 set $menu j4-dmenu-desktop --dmenu='bemenu -i --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 20"' --term='$term'
 set $runner bemenu-run --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 20"
-
-# Default Layout
-workspace_layout tabbed
 
 
 
@@ -57,12 +62,12 @@ workspace_layout tabbed
 # Launching Apps
 #
 
-# Start your launcher
+# Launcher
 bindsym $mod+space exec $menu
 #bindsym --release Super_L exec $menu # is triggered when using $mod+mouse buttons
 bindsym $mod+r exec $runner
 
-# Start a terminal
+# Terminal
 bindsym $mod+Return exec $term
 
 # Browser
@@ -73,7 +78,7 @@ bindsym $mod+w exec /home/jordan/.config/sway/firefox
 # File manager
 bindsym $mod+f exec dolphin
 
-# Text Editor
+# Text editor
 bindsym $mod+e exec flatpak run com.sublimetext.three
 
 # Calculator
@@ -88,12 +93,9 @@ bindsym $mod+c exec modularcalculator
 bindsym $mod+q kill
 bindsym --whole-window --border $mod+button2 kill
 
-# Reload the configuration file
-bindsym $mod+Shift+c reload
-
+# Exit / Power off etc menu
 set $mode_quit Exit: [x] Exit Sway - [p] Power Off - [r] Reboot - [s] Suspend
 bindsym $mod+x mode "$mode_quit"
-
 mode "$mode_quit" {
     bindsym x exec swaymsg exit
     bindsym p exec systemctl poweroff
@@ -104,14 +106,18 @@ mode "$mode_quit" {
     bindsym Return mode "default"
 }
 
+# Send monitors to sleep
 bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill -nx swayidle'
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
 
 
 #
 # Moving around
 #
 
-# use $mod+[up|down|left|right]
+# Switch to window
 bindsym $mod+Prior focus left
 bindsym $mod+Next focus right
 bindsym $mod+Left focus left
@@ -147,6 +153,15 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+
+# Switch to previous / next workspace
+bindsym $mod+Control+Prior workspace prev
+bindsym $mod+Control+Next workspace next
+bindsym $mod+Control+Left workspace prev
+bindsym $mod+Control+Right workspace next
+bindsym --whole-window --border $mod+Control+button4 workspace prev
+bindsym --whole-window --border $mod+Control+button5 workspace next
+
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
@@ -158,24 +173,14 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
-# Note: workspaces can have any name you want, not just numbers.
-# We just use 1-10 as the default.
 
-bindsym $mod+Control+Prior workspace prev
-bindsym $mod+Control+Next workspace next
-bindsym $mod+Control+Left workspace prev
-bindsym $mod+Control+Right workspace next
-bindsym --whole-window --border $mod+Control+button4 workspace prev
-bindsym --whole-window --border $mod+Control+button5 workspace next
 
 
 #
 # Layout stuff
 #
 
-# You can "split" the current object of your focus with
-# $mod+b or $mod+v, for horizontal and vertical splits
-# respectively.
+# Split
 bindsym $mod+h splith
 bindsym $mod+v splitv
 
