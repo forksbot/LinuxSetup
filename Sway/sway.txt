@@ -27,5 +27,14 @@ If using SDDM:
 
 
 # APPS
-# to fix sublime:
+
+# Sublime
 flatpak --user override --nosocket=fallback-x11 --socket=x11 com.sublimetext.three
+
+# Firefox
+about:config >
+	layers.acceleration.force-enabled = true
+	general.smoothScroll.mouseWheel.durationMinMS = 100
+	general.smoothScroll.mouseWheel.durationMaxMS = 200
+	browser.urlbar.clickSelectsAll = true
+Customise > enable Title Bar

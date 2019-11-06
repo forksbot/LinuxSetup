@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+export GDK_DPI_SCALE=2
+export GDK_BACKEND=wayland
+firefox

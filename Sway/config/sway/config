@@ -66,7 +66,9 @@ bindsym $mod+r exec $runner
 bindsym $mod+Return exec $term
 
 # Browser
-bindsym $mod+w exec google-chrome-stable
+#bindsym $mod+w exec google-chrome-stable
+#bindsym $mod+w exec firefox
+bindsym $mod+w exec /home/jordan/.config/sway/firefox
 
 # File manager
 bindsym $mod+f exec dolphin
@@ -96,7 +98,7 @@ mode "$mode_quit" {
     bindsym x exec swaymsg exit
     bindsym p exec systemctl poweroff
     bindsym r exec systemctl reboot
-    bindsym s exec systemctl suspend
+    bindsym s mode "default" ; exec systemctl suspend
 
     bindsym Escape mode "default"
     bindsym Return mode "default"
@@ -159,6 +161,8 @@ bindsym $mod+Shift+0 move container to workspace 10
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
 
+bindsym $mod+Control+Prior workspace prev
+bindsym $mod+Control+Next workspace next
 bindsym $mod+Control+Left workspace prev
 bindsym $mod+Control+Right workspace next
 bindsym --whole-window --border $mod+Control+button4 workspace prev
