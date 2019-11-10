@@ -175,6 +175,14 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+# Move focused container to previous / next workspace
+bindsym $mod+Shift+Control+Prior move container to workspace  prev
+bindsym $mod+Shift+Control+Next move container to workspace  next
+bindsym $mod+Shift+Control+Left move container to workspace  prev
+bindsym $mod+Shift+Control+Right move container to workspace  next
+bindsym --whole-window --border $mod+Shift+Control+button4 move container to workspace  prev
+bindsym --whole-window --border $mod+Shift+Control+button5 move container to workspace  next
+
 
 
 #
