@@ -91,6 +91,7 @@ bindsym $mod+c exec modularcalculator
 
 # Kill focused window
 bindsym $mod+q kill
+bindsym button2 kill
 bindsym --whole-window --border $mod+button2 kill
 
 # Exit / Power off etc menu
