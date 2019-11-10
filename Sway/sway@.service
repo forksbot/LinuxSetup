@@ -3,7 +3,7 @@ Description=Sway compositor
 
 [Service]
 ExecStartPre=/usr/bin/chvt %I
-ExecStart=/usr/bin/dbus-launch --exit-with-session /usr/bin/sway
+ExecStart=/usr/bin/dbus-launch --exit-with-session /home/jordan/.config/sway/sway_debug
 TTYPath=/dev/tty%I
 TTYReset=yes
 TTYVHangup=yes
