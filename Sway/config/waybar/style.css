@@ -8,32 +8,32 @@
 
 window#waybar {
     background: rgba(0, 0, 0, 0.5);
-    color: #2980b9;
+    color: #3daee9;
 }
 
 #workspaces button {
     padding: 0 5px;
-    color: #2980b9;
-    border: 1px solid #234257;
+    color: #3daee9;
+    border: 1px solid #2980b9;
 }
 
 #workspaces button.visible {
     color: white;
-    background: #234257;
+    background: #2980b9;
 }
 
 #workspaces button.focused {
     color: white;
-    background: #2980b9;
+    background: #3daee9;
 }
 
 #mode {
-    color: #2980b9;
+    color: #3daee9;
 }
 
 #cpu, #memory, #network, #pulseaudio, #clock, #custom-disk {
-    color: #2980b9;
-    border: 1px solid #234257;
+    color: #3daee9;
+    border: 1px solid #2980b9;
 }
 
 #memory.warning {

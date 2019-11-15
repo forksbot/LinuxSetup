@@ -20,8 +20,8 @@ exec_always {
 }
 
 # Colour scheme
-set $c_high #2980b9
-set $c_low #234257
+set $c_high #3daee9
+set $c_low #2980b9
 set $c_fore #ffffff
 set $c_back #000000
 set $c_urgent #ff0000
@@ -112,7 +112,7 @@ mode "$mode_quit" {
 bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill -nx swayidle'
 
 # Reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+c exec cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* .config/ ; reload
 
 
 #
