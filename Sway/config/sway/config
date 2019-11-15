@@ -240,6 +240,9 @@ bindsym --whole-window --border $mod+Mod1+button4 exec --no-startup-id pactl set
 bindsym --whole-window --border $mod+Mod1+button5 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym --whole-window --border $mod+Mod1+button2 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 
+# Screenshot
+bindsym Print exec grim ~/output-`date +%Y-%m-%dT%T`.png
+
 
 
 ##############

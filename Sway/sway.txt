@@ -1,4 +1,4 @@
-pacman -S sway swayidle bemenu xorg-server-xwayland pulseaudio pamixer pavucontrol gsimplecal gsfonts ttf-dejavu breeze breeze-gtk xsettingsd plasma-integration
+pacman -S sway swayidle bemenu grim xorg-server-xwayland pulseaudio pamixer pavucontrol gsimplecal gsfonts ttf-dejavu breeze breeze-gtk xsettingsd plasma-integration
 yay -S j4-dmenu-desktop waybar redshift-wlr-gamma-control
 
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
@@ -11,6 +11,7 @@ HandlePowerKey=suspend
 
 If using autostarting systemd unit:
 	cp /home/jordan/Scripts/LinuxSetup/Sway/sway@.service /etc/systemd/system/
+	cp /home/jordan/Scripts/LinuxSetup/Sway/sway-debug@.service /etc/systemd/system/
 	systemctl enable sway@1
 
 If using SDDM:
@@ -27,6 +28,8 @@ If using SDDM:
 
 
 # APPS
+
+pacman -S konsole dolphin gwenview firefox flatpak
 
 # Sublime
 flatpak --user override --nosocket=fallback-x11 --socket=x11 com.sublimetext.three
