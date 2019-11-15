@@ -21,7 +21,7 @@ exec_always {
 
 # Colour scheme
 set $c_high #3daee9
-set $c_low #2980b9
+set $c_low #0f5f8a
 set $c_fore #ffffff
 set $c_back #000000
 set $c_urgent #ff0000

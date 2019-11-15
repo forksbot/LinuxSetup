@@ -14,12 +14,12 @@ window#waybar {
 #workspaces button {
     padding: 0 5px;
     color: #3daee9;
-    border: 1px solid #2980b9;
+    border: 1px solid #0f5f8a;
 }
 
 #workspaces button.visible {
     color: white;
-    background: #2980b9;
+    background: #0f5f8a;
 }
 
 #workspaces button.focused {
@@ -33,7 +33,7 @@ window#waybar {
 
 #cpu, #memory, #network, #pulseaudio, #clock, #custom-disk {
     color: #3daee9;
-    border: 1px solid #2980b9;
+    border: 1px solid #0f5f8a;
 }
 
 #memory.warning {
