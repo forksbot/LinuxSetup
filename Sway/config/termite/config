@@ -1,0 +1,28 @@
+[options]
+font = Monospace 11
+
+[colors]
+foreground = #ffffff
+background = #000000
+
+color1  = #ef2929
+color9  = #ef2929
+
+color2  = #8ae234
+color10 = #8ae234
+
+color3  = #fce94f
+color11 = #fce94f
+
+color4  = #729fcf
+color12 = #729fcf
+
+color5  = #ad7fa8
+color13 = #ad7fa8
+
+color6  = #34e2e2
+color14 = #34e2e2
+
+color7  = #eeeeec
+color15 = #eeeeec
+

@@ -48,7 +48,7 @@ set $mod Mod4
 workspace_layout tabbed
 
 # Apps
-set $term konsole
+set $term termite
 set $menu j4-dmenu-desktop --dmenu='bemenu -i --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 20"' --term='$term'
 set $runner bemenu-run --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 20"
 set $filemanager thunar

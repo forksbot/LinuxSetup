@@ -29,7 +29,7 @@ If using SDDM:
 
 # APPS
 
-pacman -S konsole thunar gwenview firefox flatpak
+pacman -S termite thunar thunar-archive-plugin tumbler ristretto firefox flatpak
 
 # Sublime
 flatpak --user override --nosocket=fallback-x11 --socket=x11 com.sublimetext.three
