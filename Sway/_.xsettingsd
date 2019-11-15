@@ -1,1 +1,5 @@
 Net/ThemeName "Breeze-Dark"
+Xft/Hinting 1
+Xft/HintStyle "hintslight"
+Xft/Antialias 1
+Xft/RGBA "rgb"

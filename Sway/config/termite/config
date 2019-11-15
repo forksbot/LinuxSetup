@@ -1,5 +1,5 @@
 [options]
-font = Monospace 11
+font = Monospace Medium 23
 
 [colors]
 foreground = #ffffff
@@ -25,4 +25,3 @@ color14 = #34e2e2
 
 color7  = #eeeeec
 color15 = #eeeeec
-
