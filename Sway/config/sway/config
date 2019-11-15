@@ -51,6 +51,9 @@ workspace_layout tabbed
 set $term konsole
 set $menu j4-dmenu-desktop --dmenu='bemenu -i --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 20"' --term='$term'
 set $runner bemenu-run --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 20"
+set $filemanager thunar
+set $webbrowser /home/jordan/.config/sway/firefox
+set $texteditor flatpak run com.sublimetext.three
 
 
 
@@ -71,15 +74,13 @@ bindsym $mod+r exec $runner
 bindsym $mod+Return exec $term
 
 # Browser
-#bindsym $mod+w exec google-chrome-stable
-#bindsym $mod+w exec firefox
-bindsym $mod+w exec /home/jordan/.config/sway/firefox
+bindsym $mod+w exec $webbrowser
 
 # File manager
-bindsym $mod+f exec dolphin
+bindsym $mod+f exec $filemanager
 
 # Text editor
-bindsym $mod+e exec flatpak run com.sublimetext.three
+bindsym $mod+e exec $texteditor
 
 # Calculator
 bindsym $mod+c exec modularcalculator
