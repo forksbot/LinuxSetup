@@ -5,6 +5,9 @@ font = Monospace Medium 23
 foreground = #ffffff
 background = #000000
 
+color0  = #555753
+color8  = #555753
+
 color1  = #ef2929
 color9  = #ef2929
 
