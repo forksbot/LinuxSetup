@@ -1,8 +1,8 @@
 #!/usr/bin/sh
 
-d=$1
-c=$2
+dir=$1
+width=$2
 
-size=`df -h --output=avail $d | tail -n+2 | sed -e"s/\s\+//g"`
+size=`df -h --output=avail $dir | tail -n+2`
 
-echo "$d:`printf %${c}s $size`"
+echo "$dir:`printf %${width}s $size`"
