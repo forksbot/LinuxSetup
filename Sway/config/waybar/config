@@ -3,7 +3,7 @@
     "position": "bottom",
     
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["tray", "custom/disk#root", "custom/disk#home", "cpu", "memory", "network", "pulseaudio", "clock"],
+    "modules-right": ["tray", "custom/disk#root", "custom/disk#home", "custom/disk#jordan", "cpu", "memory", "network", "pulseaudio", "clock"],
 
     "sway/mode": {
         "format": " {}",
@@ -57,14 +57,21 @@
 
     "custom/disk#root": {
         "interval": 30,
-        "exec": "/home/jordan/.config/waybar/disk / 4",
+        "exec": "/home/jordan/.config/waybar/disk / 5",
         "tooltip": false,
         "format": " {} "
     },
 
     "custom/disk#home": {
         "interval": 30,
-        "exec": "/home/jordan/.config/waybar/disk /home 4",
+        "exec": "/home/jordan/.config/waybar/disk /home 5",
+        "tooltip": false,
+        "format": " {} "
+    },
+
+    "custom/disk#jordan": {
+        "interval": 30,
+        "exec": "/home/jordan/.config/waybar/disk /mnt/jordan 5",
         "tooltip": false,
         "format": " {} "
     }
