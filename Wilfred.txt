@@ -61,7 +61,7 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
-pacman -S sway swayidle i3status bemenu xorg-server-xwayland pulseaudio pamixer pavucontrol brightnessctl gsfonts ttf-dejavu gsimplecal xsettingsd breeze breeze-gtk plasma-integration
+pacman -S sway swayidle i3status bemenu xorg-server-xwayland qt5-wayland pulseaudio pamixer pavucontrol brightnessctl gsfonts ttf-dejavu gsimplecal xsettingsd breeze breeze-gtk plasma-integration
 pacman -S termite thunar tumbler ristretto
 su - jordan
 yay -S redshift-wlr-gamma-control j4-dmenu-desktop 

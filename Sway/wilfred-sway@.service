@@ -16,9 +16,9 @@ Environment=SHLVL=2
 Environment=QT_AUTO_SCREEN_SCALE_FACTOR=0
 Environment=QT_SCALE_FACTOR=1
 Environment=QT_FONT_DPI=96
-Environment=QT_QPA_PLATFORM=xcb
+Environment=QT_QPA_PLATFORM=wayland
 Environment=XDG_CURRENT_DESKTOP=KDE
-Environment=GDK_BACKEND=x11
+Environment=GDK_BACKEND=wayland
 Environment=GDK_SCALE=1
 Environment=GDK_DPI_SCALE=1
 Environment=XCURSOR_THEME=Breeze_Snow
