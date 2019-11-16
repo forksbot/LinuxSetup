@@ -34,7 +34,7 @@ client.unfocused $c_low $c_back $c_high $c_low $c_low
 client.urgent $c_urgent $c_urgent $c_fore $c_urgent $c_urgent
 
 # Font
-font noto:NotoSansMono-Bold 20
+font Noto Sans Bold 20
 
 # Titles
 title_align center
