@@ -3,7 +3,7 @@
     "position": "bottom",
     
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["tray", "custom/disk", "cpu", "memory", "network", "pulseaudio", "clock"],
+    "modules-right": ["tray", "custom/disk#root", "custom/disk#home", "cpu", "memory", "network", "pulseaudio", "clock"],
 
     "sway/mode": {
         "format": " {}",
@@ -55,9 +55,16 @@
         "on-click": "GDK_BACKEND=x11 gsimplecal"
     },
 
-    "custom/disk": {
+    "custom/disk#root": {
         "interval": 30,
-        "exec": "/home/jordan/.config/waybar/disk",
+        "exec": "/home/jordan/.config/waybar/disk / 4",
+        "tooltip": false,
+        "format": " {} "
+    },
+
+    "custom/disk#home": {
+        "interval": 30,
+        "exec": "/home/jordan/.config/waybar/disk /home 4",
         "tooltip": false,
         "format": " {} "
     }
