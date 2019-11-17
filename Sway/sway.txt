@@ -1,6 +1,5 @@
 pacman -S sway swayidle bemenu waybar grim xorg-server-xwayland pulseaudio pamixer pavucontrol gsimplecal gsfonts ttf-dejavu breeze breeze-gtk xsettingsd plasma-integration
 yay -S j4-dmenu-desktop redshift-wlr-gamma-control
-yay -S fontconfig-ubuntu cairo-ubuntu
 
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/icons /home/jordan/.icons
@@ -45,3 +44,7 @@ about:config >
 	browser.urlbar.clickSelectsAll = true
 	gfx.webrender.enabled = true
 Customise > enable Title Bar
+
+# FONTS
+gsettings set org.gnome.desktop.interface font-name "Noto Sans Regular 10"
+yay -S fontconfig-ubuntu cairo-ubuntu
