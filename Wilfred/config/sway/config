@@ -1,0 +1,268 @@
+###########
+# General #
+###########
+
+# Output configuration
+output * bg #000000 solid_color
+
+# Keyboard
+input type:keyboard {
+    xkb_layout "gb"
+}
+
+# Touchpad
+input type:touchpad {
+    tap enabled
+    middle_emulation enabled
+}
+
+# Cursor theme and size
+set $cursor_theme Breeze_Snow
+set $cursor_size 24
+seat seat0 xcursor_theme $cursor_theme $cursor_size
+exec_always {
+    gsettings set org.gnome.desktop.interface cursor-theme $cursor_theme
+    gsettings set org.gnome.desktop.interface cursor-size $cursor_size
+}
+
+# Colour scheme
+set $c_high #3daee9
+set $c_low #0f5f8a
+set $c_fore #ffffff
+set $c_back #000000
+set $c_urgent #ff0000
+
+client.focused $c_high $c_high $c_fore $c_high $c_high
+client.focused_inactive $c_low $c_low $c_fore $c_low $c_low
+client.unfocused $c_low $c_back $c_high $c_low $c_low
+client.urgent $c_urgent $c_urgent $c_fore $c_urgent $c_urgent
+
+# Font
+font Noto Sans Bold 10
+
+# Titles
+title_align center
+
+# Borders
+default_border normal 1
+hide_edge_borders both
+
+# Mod key
+set $mod Mod4
+
+# Default Layout
+workspace_layout tabbed
+
+# Apps
+set $term termite
+set $menu j4-dmenu-desktop --dmenu='bemenu -i --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 10"' --term='$term'
+set $runner bemenu-run --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 10"
+
+
+
+################
+# Key Bindings #
+################
+
+#
+# Launching Apps
+#
+
+# Launcher
+bindsym $mod+space exec $menu
+#bindsym --release Super_L exec $menu # is triggered when using $mod+mouse buttons
+bindsym $mod+r exec $runner
+
+# Terminal
+bindsym $mod+Return exec $term
+
+# Browser
+#bindsym $mod+w exec google-chrome-stable
+bindsym $mod+w exec firefox
+#bindsym $mod+w exec /home/jordan/.config/sway/firefox
+
+# File manager
+bindsym $mod+f exec thunar
+
+# Text editor
+bindsym $mod+e exec flatpak run com.sublimetext.three
+
+# Calculator
+bindsym $mod+c exec modularcalculator
+
+
+#
+# Quitting and restarting
+#
+
+# Kill focused window
+bindsym $mod+q kill
+bindsym --whole-window --border $mod+button2 kill
+
+# Exit / Power off etc menu
+set $mode_quit Exit: [x] Exit Sway - [p] Power Off - [r] Reboot - [s] Suspend
+bindsym $mod+x mode "$mode_quit"
+mode "$mode_quit" {
+    bindsym x exec swaymsg exit
+    bindsym p exec systemctl poweroff
+    bindsym r exec systemctl reboot
+    bindsym s mode "default" ; exec systemctl suspend
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+# Send monitors to sleep
+bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill -nx swayidle'
+
+# Reload the configuration file
+bindsym $mod+Shift+c exec cp -r /home/jordan/Scripts/Wilfred/Wilfred/* .config/ ; reload
+
+
+#
+# Moving around
+#
+
+# Switch to window
+bindsym $mod+Prior focus left
+bindsym $mod+Next focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym --whole-window --border $mod+button4 focus left
+bindsym --whole-window --border $mod+button5 focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+Prior move left
+bindsym $mod+Shift+Next move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+bindsym --whole-window --border $mod+shift+button4 move left
+bindsym --whole-window --border $mod+shift+button5 move right
+
+
+#
+# Workspaces
+#
+
+# Switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# Switch to previous / next workspace
+bindsym $mod+Control+Prior workspace prev
+bindsym $mod+Control+Next workspace next
+bindsym $mod+Control+Left workspace prev
+bindsym $mod+Control+Right workspace next
+bindsym --whole-window --border $mod+Control+button4 workspace prev
+bindsym --whole-window --border $mod+Control+button5 workspace next
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+
+
+#
+# Layout stuff
+#
+
+# Split
+bindsym $mod+h splith
+bindsym $mod+v splitv
+
+# Switch the current container between different layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+y layout toggle split
+
+# Make the current focus fullscreen
+bindsym $mod+numbersign fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+Control+space focus mode_toggle
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+
+#
+# Resizing containers
+#
+
+bindsym $mod+minus resize shrink width 10px
+bindsym $mod+equal resize grow width 10px
+bindsym $mod+Shift+minus resize shrink height 10px
+bindsym $mod+Shift+equal resize grow height 10px
+
+
+#
+# Multimedia
+#
+
+# Volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -@DEFAULT_SINK@% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
+bindsym XF86MonBrightnessUp exec sudo brightnessctl s +10% # increase screen brightness
+bindsym XF86MonBrightnessDown exec sudo brightnessctl s 10%- # decrease screen brightness
+
+
+
+##############
+# Status Bar #
+##############
+
+bar {
+    swaybar_command /home/jordan/.config/waybar/waybar
+}
+
+
+
+#######################
+# Auto-start Services #
+#######################
+
+# Xsettingsd - For Flatpak themes to work
+exec /home/jordan/.config/sway/xsettingsd
+
+# Reshift
+exec_always {
+    /home/jordan/.config/sway/redshift_launcher
+}
+
+# Monitor power saving
+exec_always {
+    killall swayidle || true ; swayidle timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' 
+}
+
+include /etc/sway/config.d/*

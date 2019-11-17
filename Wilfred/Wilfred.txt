@@ -73,3 +73,5 @@ git clone git@github.com:JordanL2/Wilfred.git ~/.config
 
 cp /home/jordan/Scripts/LinuxSetup/Sway/wilfred-sway\@.service /etc/systemd/system/sway\@.service
 systemctl enable sway@1
+
+yay -S fontconfig-ubuntu cairo-ubuntu

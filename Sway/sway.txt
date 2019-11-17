@@ -1,5 +1,6 @@
 pacman -S sway swayidle bemenu grim xorg-server-xwayland pulseaudio pamixer pavucontrol gsimplecal gsfonts ttf-dejavu breeze breeze-gtk xsettingsd plasma-integration
 yay -S j4-dmenu-desktop waybar redshift-wlr-gamma-control
+yay -S fontconfig-ubuntu cairo-ubuntu
 
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/icons /home/jordan/.icons
@@ -34,6 +35,7 @@ pacman -S termite thunar thunar-archive-plugin tumbler ristretto firefox flatpak
 
 # Sublime
 flatpak --user override --nosocket=fallback-x11 --socket=x11 com.sublimetext.three
+flatpak --user override --env=GDK_BACKEND=x11 com.sublimetext.three
 
 # Firefox
 about:config >
@@ -41,4 +43,5 @@ about:config >
 	general.smoothScroll.mouseWheel.durationMinMS = 100
 	general.smoothScroll.mouseWheel.durationMaxMS = 200
 	browser.urlbar.clickSelectsAll = true
+	gfx.webrender.enabled = true
 Customise > enable Title Bar

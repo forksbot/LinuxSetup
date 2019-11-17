@@ -1,0 +1,79 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: Monospace;
+    font-weight: bold;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(0, 0, 0, 0.5);
+    color: #3daee9;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    color: #3daee9;
+    border: 1px solid #0f5f8a;
+}
+
+#workspaces button.visible {
+    color: white;
+    background: #0f5f8a;
+}
+
+#workspaces button.focused {
+    color: white;
+    background: #3daee9;
+}
+
+#mode {
+    color: #3daee9;
+}
+
+#cpu, #memory, #network, #pulseaudio, #clock, #custom-disk {
+    color: #3daee9;
+    border: 1px solid #0f5f8a;
+}
+
+#memory.warning {
+    color: orange;
+    background: #191000;
+}
+
+#memory.critical {
+    color: red;
+    background: #190000;
+}
+
+#cpu.warning {
+    color: orange;
+    background: #191000;
+}
+
+#cpu.critical {
+    color: red;
+    background: #190000;
+}
+
+#tray {
+    margin: 0 10px;
+}
+
+#pulseaudio.muted {
+    color: red;
+    background: #190000;
+}
+
+#network.disconnected {
+    color: red;
+    background: #190000;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
