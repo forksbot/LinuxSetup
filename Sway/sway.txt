@@ -1,4 +1,4 @@
-pacman -S sway swayidle bemenu waybar grim xorg-server-xwayland pulseaudio pamixer pavucontrol gsimplecal gsfonts ttf-dejavu breeze breeze-gtk xsettingsd plasma-integration
+pacman -S sway swayidle bemenu waybar grim xorg-server-xwayland pulseaudio pamixer pavucontrol gsimplecal lxtask-gtk3 breeze breeze-gtk xsettingsd plasma-integration
 yay -S j4-dmenu-desktop redshift-wlr-gamma-control
 
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
@@ -28,13 +28,26 @@ If using SDDM:
 	chown root:root /usr/share/wayland-sessions/sway.desktop
 
 
+# FONTS
+pacman -S gsfonts ttf-dejavu
+gsettings set org.gnome.desktop.interface font-name "Noto Sans Regular 10"
+yay -S ttf-ms-fonts fontconfig-ubuntu cairo-ubuntu
+pacman -S gnome-settings-daemon # Fixes GTK flatpaks font rendering via wayland
+
+
 # APPS
 
 pacman -S termite thunar thunar-archive-plugin tumbler ristretto firefox flatpak
+pacman -S mesa-demos openssh screen mpv intel-ucode
+flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak --user install flathub com.sublimetext.three org.gimp.GIMP org.kde.okular com.valvesoftware.Steam com.mojang.Minecraft org.libreoffice.LibreOffice
+yay -S inxi
+
+# To force a given flatpak to use x11 / wayland
+flatpak --user override --env=GDK_BACKEND=<x11 or wayland> <APP ID>
 
 # Sublime
 flatpak --user override --nosocket=fallback-x11 --socket=x11 com.sublimetext.three
-flatpak --user override --env=GDK_BACKEND=x11 com.sublimetext.three
 
 # Firefox
 about:config >
@@ -45,6 +58,14 @@ about:config >
 	gfx.webrender.enabled = true
 Customise > enable Title Bar
 
-# FONTS
-gsettings set org.gnome.desktop.interface font-name "Noto Sans Regular 10"
-yay -S fontconfig-ubuntu cairo-ubuntu
+# Timeshift
+yay -S timeshift
+sudo systemctl enable cronie.service
+sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-backup /etc/cron.d/
+
+# Software Installer
+sudo ln -s /home/jordan/Scripts/python/softwareinstaller/softwareinstaller /usr/bin/si
+
+# Modular calculator
+sudo pacman -S extra/python-pyqt5
+sudo ln -s /home/jordan/Scripts/python/modularcalculator/run /usr/bin/modularcalculator

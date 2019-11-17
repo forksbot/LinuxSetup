@@ -65,7 +65,7 @@ pacman -S sway swayidle waybar bemenu xorg-server-xwayland qt5-wayland pulseaudi
 pacman -S termite thunar tumbler ristretto
 su - jordan
 yay -S redshift-wlr-gamma-control j4-dmenu-desktop 
-git clone git@github.com:JordanL2/Wilfred.git ~/.config
+cp -r /home/jordan/Scripts/LinuxSetup/Wilfred/config/* ~/.config/
 
 #cd /usr/share/icons
 #mv Adwaita .Adwaita
@@ -76,3 +76,4 @@ systemctl enable sway@1
 
 gsettings set org.gnome.desktop.interface font-name "Noto Sans Regular 10"
 yay -S fontconfig-ubuntu cairo-ubuntu
+pacman -S gnome-settings-daemon
