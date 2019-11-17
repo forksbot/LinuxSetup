@@ -9,8 +9,16 @@ output $output0 resolution 3840x2160 position 0,0
 output $output1 resolution 3840x2160 position 3840,0
 output * bg #000000 solid_color
 
-# Keyboard input
-input * xkb_layout "gb"
+# Keyboard
+input type:keyboard {
+    xkb_layout "gb"
+}
+
+# Touchpad
+input type:touchpad {
+    tap enabled
+    middle_emulation enabled
+}
 
 # Cursor theme and size
 set $cursor_theme Breeze_Snow
