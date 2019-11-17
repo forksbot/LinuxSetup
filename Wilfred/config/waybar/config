@@ -45,7 +45,7 @@
     "pulseaudio": {
         "format": " Volume:{volume:3}% ",
         "format-muted": "    Muted    ",
-        "on-click": "GDK_BACKEND=x11 pavucontrol",
+        "on-click": "pavucontrol",
         "scroll-step": 5
     },
 
@@ -53,13 +53,14 @@
         "format": " {:%a, %2d %b %H:%M:%S} ",
         "interval": 1,
         "tooltip": false,
-        "on-click": "GDK_BACKEND=x11 gsimplecal"
+        "on-click": "gsimplecal"
     },
 
     "custom/disk#root": {
         "interval": 30,
-        "exec": "/home/jordan/.config/waybar/disk / 5",
+        "exec": "df -h --output=avail / | tail -n+2 | sed -e's/ //g'",
         "tooltip": false,
-        "format": " {} "
+        "on-click": "thunar /",
+        "format": " /: {:4} "
     }
 }

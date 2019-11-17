@@ -116,7 +116,7 @@ mode "$mode_quit" {
 bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill -nx swayidle'
 
 # Reload the configuration file
-bindsym $mod+Shift+c exec cp -r /home/jordan/Scripts/Wilfred/Wilfred/* .config/ ; reload
+bindsym $mod+Shift+c exec cp -r /home/jordan/Scripts/LinuxSetup/Wilfred/config/* ~/.config/ ; reload
 
 
 #
