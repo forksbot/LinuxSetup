@@ -36,9 +36,10 @@
     },
 
     "network": {
-        "tooltip": false,
+        "tooltip": true,
         "format-ethernet": " E: {ipaddr:15} ",
         "format-wifi": " W: {ipaddr:15} ",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
         "format-disconnected": "    DISCONNECTED    "
     },
 
