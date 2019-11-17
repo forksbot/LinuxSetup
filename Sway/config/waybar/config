@@ -40,6 +40,7 @@
     "network": {
         "tooltip": false,
         "format-ethernet": " E: {ipaddr:15} ",
+        "format-wifi": " W: {ipaddr:15} ",
         "format-disconnected": "    DISCONNECTED    "
     },
 
