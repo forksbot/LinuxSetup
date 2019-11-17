@@ -60,25 +60,25 @@
 
     "custom/disk#root": {
         "interval": 30,
-        "exec": "/home/jordan/.config/waybar/disk / 5",
+        "exec": "df -h --output=avail / | tail -n+2 | sed -e's/ //g'",
         "tooltip": false,
         "on-click": "GDK_BACKEND=x11 thunar /",
-        "format": " {} "
+        "format": " /: {:4} "
     },
 
     "custom/disk#home": {
         "interval": 30,
-        "exec": "/home/jordan/.config/waybar/disk /home 5",
+        "exec": "df -h --output=avail /home | tail -n+2 | sed -e's/ //g'",
         "tooltip": false,
         "on-click": "GDK_BACKEND=x11 thunar /home/jordan",
-        "format": " {} "
+        "format": " /home: {:4} "
     },
 
     "custom/disk#jordan": {
         "interval": 30,
-        "exec": "/home/jordan/.config/waybar/disk /mnt/jordan 5",
+        "exec": "df -h --output=avail /mnt/jordan | tail -n+2 | sed -e's/ //g'",
         "tooltip": false,
         "on-click": "GDK_BACKEND=x11 thunar /mnt/jordan",
-        "format": " {} "
+        "format": " /mnt/jordan: {:4} "
     }
 }

@@ -1,8 +1,0 @@
-#!/usr/bin/sh
-
-dir=$1
-width=$2
-
-size=`df -h --output=avail $dir | tail -n+2`
-
-echo "$dir:`printf %${width}s $size`"
