@@ -86,8 +86,8 @@
     "custom/status": {
         "interval": 30,
         "exec": "/home/jordan/.config/waybar/status",
-        "format": "{}",
-        "tooltip": true,
-        "tooltip-format": "{}"
+        "format": " {} ",
+        "tooltip": false,
+        "on-click": "swaynag -m \"`/home/jordan/.config/waybar/status`\" --font 'Noto Sans Bold 20'"
     }
 }
