@@ -86,8 +86,8 @@
     "custom/status": {
         "interval": 30,
         "exec": "/home/jordan/.config/waybar/status",
+        "format": "{}",
         "tooltip": true,
-        "format": " {:15} ",
         "tooltip-format": "{}"
     }
 }
