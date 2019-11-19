@@ -1,0 +1,11 @@
+#!/usr/bin/sh
+
+if [[ -z `pidof swayidle` ]]
+then
+	echo "swayidle is not running"
+fi
+
+if [[ -z `pidof redshift` && -z `ps -ef | grep "redshift_launcher" | grep -v "grep"` ]]
+then
+	echo "redshift is not running"
+fi

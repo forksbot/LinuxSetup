@@ -37,6 +37,10 @@ window#waybar {
     border: 1px solid #0f5f8a;
 }
 
+#custom-status {
+    color: red;
+}
+
 #memory.warning {
     color: orange;
     background: #191000;

@@ -3,7 +3,7 @@
     "position": "bottom",
     
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["tray", "custom/disk#root", "custom/disk#home", "custom/disk#jordan", "cpu", "memory", "network", "pulseaudio", "clock"],
+    "modules-right": ["custom/status", "tray", "custom/disk#root", "custom/disk#home", "custom/disk#jordan", "cpu", "memory", "network", "pulseaudio", "clock"],
 
     "sway/mode": {
         "format": " {}",
@@ -81,5 +81,13 @@
         "tooltip": false,
         "on-click": "GDK_BACKEND=x11 thunar /mnt/jordan",
         "format": " /mnt/jordan: {:4} "
+    },
+
+    "custom/status": {
+        "interval": 30,
+        "exec": "/home/jordan/.config/waybar/status",
+        "tooltip": true,
+        "format": " {:15} ",
+        "tooltip-format": "{}"
     }
 }
