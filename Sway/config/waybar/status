@@ -1,16 +1,19 @@
 #!/usr/bin/sh
 
+# Ensure Swayidle is running
 if [[ -z `pidof swayidle` ]]
 then
 	echo "swayidle is not running"
 fi
 
+# Ensure Redshift is running
 if [[ -z `pidof redshift` && -z `ps -ef | grep "redshift_launcher" | grep -v "grep"` ]]
 then
 	echo "redshift is not running"
 fi
 
-ping www.google.co.uk -c1 -w5 >/dev/null 2>&1
+# Ping Google DNS servers to check internet connectivity
+ping 8.8.8.8 -c1 -w5 >/dev/null 2>&1
 if [[ $? != 0 ]]
 then
 	echo "internet connection is down"
