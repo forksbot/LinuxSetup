@@ -88,6 +88,6 @@
         "exec": "/home/jordan/.config/waybar/status",
         "format": " {} ",
         "tooltip": false,
-        "on-click": "swaynag -m \"`/home/jordan/.config/waybar/status`\" --font 'Noto Sans Bold 20'"
+        "on-click": "/home/jordan/.config/waybar/status | swaynag -m \"Problems have been found:\" -l --detailed-button \"Show Problems\" --font 'Noto Sans Bold 20'"
     }
 }
