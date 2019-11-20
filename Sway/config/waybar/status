@@ -9,3 +9,9 @@ if [[ -z `pidof redshift` && -z `ps -ef | grep "redshift_launcher" | grep -v "gr
 then
 	echo "redshift is not running"
 fi
+
+ping www.google.co.uk -c1 -w5 >/dev/null 2>&1
+if [[ $? != 0 ]]
+then
+	echo "internet connection is down"
+fi
