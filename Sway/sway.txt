@@ -1,4 +1,4 @@
-pacman -S sway swayidle bemenu waybar grim xorg-server-xwayland pulseaudio pamixer pavucontrol gsimplecal lxtask-gtk3 breeze breeze-gtk xsettingsd plasma-integration
+pacman -S sway swayidle bemenu waybar grim xorg-server-xwayland pulseaudio pamixer pavucontrol gsimplecal nm-connection-editor lxtask-gtk3 breeze breeze-gtk xsettingsd plasma-integration
 yay -S j4-dmenu-desktop redshift-wlr-gamma-control
 
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/

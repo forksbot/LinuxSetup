@@ -41,7 +41,8 @@
         "tooltip": false,
         "format-ethernet": " E: {ipaddr:15} ",
         "format-wifi": " W: {ipaddr:15} ",
-        "format-disconnected": "    DISCONNECTED    "
+        "format-disconnected": "    DISCONNECTED    ",
+        "on-click": "GDK_BACKEND=x11 nm-connection-editor"
     },
 
     "pulseaudio": {
