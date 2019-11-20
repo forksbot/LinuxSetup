@@ -47,8 +47,8 @@
     "pulseaudio": {
         "format": " Volume:{volume:3}% ",
         "format-muted": "    Muted    ",
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-click-right": "GDK_BACKEND=x11 pavucontrol",
+        "on-click": "GDK_BACKEND=x11 pavucontrol",
+        "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "scroll-step": 5
     },
 
