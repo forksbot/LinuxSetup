@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 
 # Ensure Swayidle is running
-if [[ -z `pidof swayidle` ]]
+if [[ -z `pidof swayidle` && -z `ps -ef | grep "swayidle_launcher" | grep -v "grep"` ]]
 then
 	echo "swayidle is not running"
 fi

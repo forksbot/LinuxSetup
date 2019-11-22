@@ -1,0 +1,9 @@
+#!/usr/bin/sh
+
+echo 1 >> ~/swayidle_log 2>&1
+killall swayidle >> ~/swayidle_log 2>&1
+echo 2 >> ~/swayidle_log 2>&1
+sleep 1 >> ~/swayidle_log 2>&1
+echo 3 >> ~/swayidle_log 2>&1
+swayidle timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' >> ~/swayidle_log 2>&1 &
+echo 4 >> ~/swayidle_log 2>&1

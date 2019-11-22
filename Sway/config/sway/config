@@ -289,7 +289,7 @@ exec_always {
 
 # Monitor power saving
 exec_always {
-	killall swayidle || true ; swayidle timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' 
+	/home/jordan/.config/sway/swayidle_launcher
 }
 
 include /etc/sway/config.d/*
