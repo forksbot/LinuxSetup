@@ -163,7 +163,8 @@ systemctl enable sshd.service
 # Timeshift
 yay -S timeshift
 sudo systemctl enable cronie.service
-sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-backup /etc/cron.d/
+sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-boot /etc/cron.d/
+sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-hourly /etc/cron.d/
 
 # Software Installer
 sudo ln -s /home/jordan/Scripts/python/softwareinstaller/softwareinstaller /usr/bin/si
