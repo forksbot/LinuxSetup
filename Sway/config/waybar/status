@@ -12,6 +12,12 @@ then
 	echo "redshift is not running"
 fi
 
+# Ensure xsettingsd is running
+if [[ -z `pidof xsettingsd` ]]
+then
+	echo "xsettingsd is not running"
+fi
+
 # Ping Google DNS servers to check internet connectivity
 ping 8.8.8.8 -c1 -w5 >/dev/null 2>&1
 if [[ $? != 0 ]]
