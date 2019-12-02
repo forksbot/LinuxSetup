@@ -273,15 +273,16 @@ bar {
     swaybar_command /home/jordan/.config/waybar/waybar
 }
 
-# Waybar Tooltips
+# Waybar tooltips positioner
 exec_always {
     /home/jordan/.config/sway/tooltips_launcher
 }
 
 # Calendar
 for_window [class="Gsimplecal" floating] {
-    move position 3432 1780
+    move position 3432 1781
 }
+
 
 
 #######################
