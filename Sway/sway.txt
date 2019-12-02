@@ -1,4 +1,4 @@
-pacman -S sway swayidle bemenu waybar grim xorg-server-xwayland pulseaudio pamixer pavucontrol gsimplecal nm-connection-editor lxtask-gtk3 breeze breeze-gtk xsettingsd plasma-integration
+pacman -S sway swayidle bemenu waybar grim jq xorg-server-xwayland pulseaudio pamixer pavucontrol gsimplecal nm-connection-editor lxtask-gtk3 breeze breeze-gtk xsettingsd plasma-integration
 yay -S j4-dmenu-desktop redshift-wlr-gamma-control
 
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
@@ -29,9 +29,9 @@ If using SDDM:
 
 
 # FONTS
-pacman -S gsfonts ttf-dejavu kcharselect
+pacman -S gsfonts ttf-dejavu noto-fonts-emoji kcharselect
 gsettings set org.gnome.desktop.interface font-name "Noto Sans Regular 10"
-yay -S ttf-ms-fonts fontconfig-ubuntu cairo-ubuntu noto-fonts-emoji
+yay -S ttf-ms-fonts fontconfig-ubuntu cairo-ubuntu
 fc-cache -f -v
 pacman -S gnome-settings-daemon # Fixes GTK flatpaks font rendering via wayland
 
