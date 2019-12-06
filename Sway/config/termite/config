@@ -1,5 +1,7 @@
 [options]
 font = Monospace Medium 23
+clickable_url = false
+hyperlinks = false
 
 [colors]
 foreground = #ffffff
