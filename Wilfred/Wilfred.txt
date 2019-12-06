@@ -74,7 +74,8 @@ cp -r /home/jordan/Scripts/LinuxSetup/Wilfred/config/* ~/.config/
 cp /home/jordan/Scripts/LinuxSetup/Sway/wilfred-sway\@.service /etc/systemd/system/sway\@.service
 systemctl enable sway@1
 
-pacman -S gsfonts ttf-dejavu
+pacman -S gsfonts ttf-dejavu noto-fonts-emoji
 gsettings set org.gnome.desktop.interface font-name "Noto Sans Regular 10"
 yay -S ttf-ms-fonts fontconfig-ubuntu cairo-ubuntu
+fc-cache -f -v
 pacman -S gnome-settings-daemon # Fixes GTK flatpaks font rendering via wayland
