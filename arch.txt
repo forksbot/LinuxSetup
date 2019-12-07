@@ -193,5 +193,6 @@ sudo hp-plugin # select d
 ### Update Mirror List ###
 
 sudo cp /home/jordan/Scripts/LinuxSetup/mirrorlist /etc/pacman.d/mirrorlist
+sudo pacman -Sc
 sudo pacman-key --refresh-keys
 sudo pacman -Syy
