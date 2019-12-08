@@ -46,6 +46,7 @@
     },
 
     "pulseaudio": {
+        "tooltip": false,
         "format": " ♪{volume:3}% ",
         "format-muted": " MUTED ",
         "on-click": "GDK_BACKEND=x11 pavucontrol",
