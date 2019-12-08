@@ -279,14 +279,15 @@ bar {
     swaybar_command /home/jordan/.config/waybar/waybar
 }
 
-# Waybar tooltips positioner
-exec_always {
-    /home/jordan/.config/sway/tooltips_launcher
-}
-
 # Calendar
 for_window [class="Gsimplecal" floating] {
     move position 3432 1781
+}
+
+# Waybar tooltips
+for_window [app_id="waybar" floating] {
+    move position cursor
+    move up 300
 }
 
 

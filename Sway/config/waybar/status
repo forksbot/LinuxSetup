@@ -12,12 +12,6 @@ then
 	echo "redshift is not running"
 fi
 
-# Ensure Waybar tooltips positioning script is running
-if [[ -z `pidof tooltips` && -z `ps -ef | grep "tooltips_launcher" | grep -v "grep"` ]]
-then
-	echo "tooltips is not running"
-fi
-
 # Ensure xsettingsd is running
 if [[ -z `pidof xsettingsd` ]]
 then
