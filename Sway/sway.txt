@@ -29,7 +29,7 @@ If using SDDM:
 
 
 # FONTS
-pacman -S gsfonts ttf-dejavu noto-fonts-emoji kcharselect
+pacman -S gsfonts ttf-dejavu noto-fonts-emoji otf-font-awesome kcharselect
 gsettings set org.gnome.desktop.interface font-name "Noto Sans Regular 10"
 yay -S ttf-ms-fonts fontconfig-ubuntu cairo-ubuntu
 fc-cache -f -v
@@ -72,3 +72,7 @@ sudo ln -s /home/jordan/Scripts/python/softwareinstaller/softwareinstaller /usr/
 # Modular calculator
 sudo pacman -S extra/python-pyqt5
 sudo ln -s /home/jordan/Scripts/python/modularcalculator/run /usr/bin/modularcalculator
+
+# PulseAudio Effects
+flatpak --user install flathub com.github.wwmm.pulseeffects
+flatpak --user override --nosocket=fallback-x11 --socket=x11 com.github.wwmm.pulseeffects

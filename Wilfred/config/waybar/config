@@ -12,7 +12,7 @@
 
     "memory": {
         "interval": 1,
-        "format": " Memory:{percentage:3}% ",
+        "format": " {percentage:3}% ",
         "tooltip": false,
         "states": {
             "warning": 70,
@@ -23,7 +23,7 @@
 
     "cpu": {
         "interval": 1,
-        "format": " CPU:{usage:3}% ",
+        "format": " {usage:3}% ",
         "states": {
             "warning": 70,
             "critical": 90
@@ -39,8 +39,8 @@
 
     "network": {
         "tooltip": true,
-        "format-ethernet": " E: {ipaddr:15} ",
-        "format-wifi": " W: {ipaddr:15} ",
+        "format-ethernet": "  {ipaddr:15} ",
+        "format-wifi": "  {ipaddr:15} ",
         "tooltip-format-wifi": "{essid} ({signalStrength}%)",
         "format-disconnected": "    DISCONNECTED    ",
         "on-click": "nm-connection-editor"
