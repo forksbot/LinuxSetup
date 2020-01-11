@@ -1,8 +1,8 @@
 #!/usr/bin/sh
 
-# Symlink this to make a "steam" command that runs Steam flatpak
+# Copy or symlink this to make a "steam" command that runs Steam flatpak
 # This fixes the menu items for Steam games with the Steam flatpak
-# sudo ln -s /home/jordan/Scripts/steam_flatpak /usr/bin/steam
+# sudo cp /home/jordan/Scripts/LinuxSetup/Sway/steam_flatpak /usr/bin/steam
 
 # Don't run if Steam is already running
 pid=`pidof steam`

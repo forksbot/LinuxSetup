@@ -23,6 +23,6 @@ Easy to configure keyboard+mouse bindings to make operation faster
 
 SWAY ISSUES
 
-Can't scale GIMP or other gtk2 apps (gimp 3.0 will fix this, not using any other gtk2 apps)
+Can't scale GIMP or other gtk2 apps (gimp 3.0 will fix this and currently running git version, not using any other gtk2 apps)
 Chrome seems to drop to 30fps after resume sometimes, have to restart Chrome (using firefox for now which is working perfectly, also fixes chrome's dark theme issues)
 Waybar doesn't start when logging in from sddm the first time after boot (using systemd unit to boot straight into sway)
