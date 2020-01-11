@@ -76,3 +76,6 @@ sudo ln -s /home/jordan/Scripts/python/modularcalculator/run /usr/bin/modularcal
 # PulseAudio Effects
 flatpak --user install flathub com.github.wwmm.pulseeffects
 flatpak --user override --nosocket=fallback-x11 --socket=x11 com.github.wwmm.pulseeffects
+
+# Steam Flatpak
+sudo cp /home/jordan/Scripts/LinuxSetup/Sway/steam_flatpak /usr/bin/steam
