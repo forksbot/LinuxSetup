@@ -128,7 +128,7 @@ mode "$mode_quit" {
 bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill -nx swayidle'
 
 # Reload the configuration file
-bindsym $mod+Shift+c exec cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* .config/ ; reload
+bindsym Ctrl+Alt+Delete exec cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* .config/ ; reload
 
 
 #
