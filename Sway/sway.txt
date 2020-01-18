@@ -1,5 +1,5 @@
 pacman -S sway swayidle bemenu waybar grim jq xorg-server-xwayland pulseaudio pamixer pavucontrol gsimplecal nm-connection-editor lxtask-gtk3 breeze breeze-gtk xsettingsd plasma-integration
-yay -S j4-dmenu-desktop redshift-wlr-gamma-control
+yay -S wofi redshift-wlr-gamma-control
 
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/icons /home/jordan/.icons
