@@ -6,7 +6,7 @@
 
 window {
 	margin: 0px;
-	background-color: #000000;
+	background-color: rgba(0, 0, 0, 0.8);
 }
 
 #input {
@@ -16,25 +16,15 @@ window {
 	background-color: #000000;
 }
 
-#inner-box {
-	background-color: #000000;
-}
-
-#outer-box {
-	background-color: #000000;
-}
-
 #scroll {
 	margin: 0px;
 	padding: 5px;
 	border: 1px solid #3daee9;
-	background-color: #000000;
 }
 
 #text {
 	margin: 0px;
-	background-color: #000000;
-	color: #3daee9;
+	color: #ffffff;
 }
 
 #img {
