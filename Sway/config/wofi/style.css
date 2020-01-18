@@ -13,17 +13,20 @@ window {
 	margin: 0px 0px 5px 0px;
 	padding: 5px;
 	border: 2px solid #3daee9;
-	background-color: #000000;
+	color: #ffffff;
+	background-color: rgba(30, 87, 116, 0.8);
+}
+
+#input image {
+	color: rgba(0,0,0,0);
 }
 
 #scroll {
-	margin: 0px;
 	padding: 5px;
 	border: 1px solid #3daee9;
 }
 
 #text {
-	margin: 0px;
 	color: #ffffff;
 }
 
