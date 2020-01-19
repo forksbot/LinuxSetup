@@ -15,7 +15,7 @@ window {
 	padding: 5px;
 	border: 2px solid #3daee9;
 	color: #ffffff;
-	background-color: rgba(30, 87, 116, 0.8);
+	background-color: rgba(30, 87, 116, 0.9);
 }
 
 #input image {
@@ -32,11 +32,11 @@ window {
 
 #inner-box flowboxchild {
 	padding: 5px;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
 #inner-box flowboxchild:nth-child(even) {
-    background-color: rgba(10, 10, 10, 0.8);
+    background-color: rgba(10, 10, 10, 0.9);
 }
 
 #inner-box flowboxchild:selected {
