@@ -6,7 +6,7 @@
 
 window {
 	margin: 0px;
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(0, 0, 0, 0);
 }
 
 #input {
@@ -24,6 +24,7 @@ window {
 #scroll {
 	padding: 5px;
 	border: 1px solid #3daee9;
+	background-color: rgba(0, 0, 0, 0.8);
 }
 
 #text {
