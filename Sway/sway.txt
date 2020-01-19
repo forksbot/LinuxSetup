@@ -41,14 +41,14 @@ pacman -S gnome-settings-daemon # Fixes GTK flatpaks font rendering via wayland
 pacman -S termite thunar thunar-archive-plugin tumbler ristretto firefox flatpak
 pacman -S mesa-demos openssh screen mpv intel-ucode
 flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak --user install flathub com.sublimetext.three org.gimp.GIMP org.kde.okular com.valvesoftware.Steam com.mojang.Minecraft org.libreoffice.LibreOffice
-yay -S inxi
-
-# To force a given flatpak to use x11 / wayland
-flatpak --user override --env=GDK_BACKEND=<x11 or wayland> <APP ID>
-
-# Sublime
+for f in com.sublimetext.three org.gimp.GIMP org.kde.okular com.valvesoftware.Steam com.mojang.Minecraft org.libreoffice.LibreOffice com.github.wwmm.pulseeffects
+do
+	flatpak --user install flathub $f
+	flatpak --user override --env=GDK_BACKEND=x11 $f
+done
 flatpak --user override --nosocket=fallback-x11 --socket=x11 com.sublimetext.three
+flatpak --user override --nosocket=fallback-x11 --socket=x11 com.github.wwmm.pulseeffects
+yay -S inxi
 
 # Firefox
 about:config >
@@ -72,10 +72,6 @@ sudo ln -s /home/jordan/Scripts/python/softwareinstaller/softwareinstaller /usr/
 # Modular calculator
 sudo pacman -S extra/python-pyqt5
 sudo ln -s /home/jordan/Scripts/python/modularcalculator/run /usr/bin/modularcalculator
-
-# PulseAudio Effects
-flatpak --user install flathub com.github.wwmm.pulseeffects
-flatpak --user override --nosocket=fallback-x11 --socket=x11 com.github.wwmm.pulseeffects
 
 # Steam Flatpak
 sudo cp /home/jordan/Scripts/LinuxSetup/Sway/steam_flatpak /usr/bin/steam
