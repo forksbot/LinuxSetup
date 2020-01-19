@@ -2,6 +2,7 @@
 	font-family: Monospace;
     font-weight: bold;
     font-size: 28px;
+    border-radius: 0;
 }
 
 window {
@@ -22,7 +23,6 @@ window {
 }
 
 #scroll {
-	padding: 5px;
 	color: #3daee9;
 }
 
@@ -30,7 +30,8 @@ window {
 	margin: 0px 5px 0px 0px;
 }
 
-#inner-box flowboxchild:nth-child(odd) {
+#inner-box flowboxchild {
+	padding: 5px;
     background-color: rgba(0, 0, 0, 0.8);
 }
 
