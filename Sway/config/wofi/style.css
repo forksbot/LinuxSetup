@@ -23,14 +23,22 @@ window {
 
 #scroll {
 	padding: 5px;
-	border: 1px solid #3daee9;
-	background-color: rgba(0, 0, 0, 0.8);
-}
-
-#text {
-	color: #ffffff;
+	color: #3daee9;
 }
 
 #img {
 	margin: 0px 5px 0px 0px;
+}
+
+#inner-box flowboxchild:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#inner-box flowboxchild:nth-child(even) {
+    background-color: rgba(10, 10, 10, 0.8);
+}
+
+#inner-box flowboxchild:selected {
+    background-color: #3daee9;
+    color: #ffffff;
 }
