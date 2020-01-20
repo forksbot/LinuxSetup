@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "bottom",
     
-    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-left": ["sway/workspaces", "custom/apps", "sway/mode"],
     "modules-right": ["custom/status", "tray", "custom/disk#root", "custom/disk#home", "custom/disk#jordan", "cpu", "memory", "network", "idle_inhibitor", "pulseaudio", "clock"],
 
     "sway/mode": {
@@ -101,5 +101,11 @@
         "format": " {} ",
         "tooltip": false,
         "on-click": "/home/jordan/.config/waybar/status | swaynag -m \"Problems have been found:\" -l --detailed-button \"Show Problems\" --font 'Noto Sans Bold 20'"
+    },
+
+    "custom/apps": {
+        "format": " Apps ",
+        "tooltip": false,
+        "on-click": "killall wofi || wofi"
     }
 }
