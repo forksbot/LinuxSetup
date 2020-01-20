@@ -29,7 +29,7 @@ window#waybar {
 }
 
 #mode {
-    color: #3daee9;
+    color: #ffffff;
 }
 
 #cpu, #memory, #network, #pulseaudio, #clock, #custom-disk, #idle_inhibitor, #custom-apps {
