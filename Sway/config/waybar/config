@@ -104,7 +104,7 @@
     },
 
     "custom/apps": {
-        "format": " Apps ",
+        "format": "  ",
         "tooltip": false,
         "on-click": "killall wofi || wofi"
     }
