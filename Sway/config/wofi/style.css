@@ -18,7 +18,7 @@ window {
 }
 
 #input image {
-	color: rgba(0,0,0,0);
+	margin: 6px;
 }
 
 #scroll {
