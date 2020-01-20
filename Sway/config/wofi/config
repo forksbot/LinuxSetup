@@ -5,4 +5,3 @@ prompt=
 width=1000
 height=1500
 term=termite
-run-always_parse_args=true

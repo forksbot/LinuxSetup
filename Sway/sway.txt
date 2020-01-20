@@ -50,6 +50,13 @@ flatpak --user override --nosocket=fallback-x11 --socket=x11 com.sublimetext.thr
 flatpak --user override --nosocket=fallback-x11 --socket=x11 com.github.wwmm.pulseeffects
 yay -S inxi
 
+# X11/Wayland - for individual apps
+Edit a .desktop file and prefix the Exec with:
+env GDK_BACKEND=x11
+Do this for:
+	thunar
+	ristretto
+
 # Firefox
 about:config >
 	layers.acceleration.force-enabled = true
