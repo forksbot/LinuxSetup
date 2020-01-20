@@ -51,7 +51,7 @@
         "format-muted": " MUTED ",
         "on-click": "GDK_BACKEND=x11 pavucontrol",
         "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-click-right": "/usr/bin/pulseeffects",
+        "on-click-right": "flatpak run com.github.wwmm.pulseeffects",
         "scroll-step": 5
     },
 
