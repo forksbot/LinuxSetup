@@ -65,7 +65,7 @@ workspace_layout tabbed
 
 # Apps
 set $term GDK_BACKEND=wayland termite
-set $menu GDK_BACKEND=wayland wofi
+set $menu killall wofi || GDK_BACKEND=wayland wofi
 set $runner bemenu-run --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 20"
 set $filemanager thunar
 set $webbrowser /home/jordan/.config/sway/firefox
