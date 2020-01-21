@@ -23,6 +23,7 @@ window {
 
 #scroll {
 	color: #3daee9;
+    background-color: rgba(0, 0, 0, 0.95);
 }
 
 #img {
@@ -31,11 +32,6 @@ window {
 
 #inner-box flowboxchild {
 	padding: 5px;
-    background-color: rgba(0, 0, 0, 0.95);
-}
-
-#inner-box flowboxchild:nth-child(even) {
-    background-color: rgba(10, 10, 10, 0.95);
 }
 
 #inner-box flowboxchild:selected {
