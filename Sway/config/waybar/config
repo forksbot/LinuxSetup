@@ -112,6 +112,6 @@
     "custom/exit": {
         "format": "  ",
         "tooltip": false,
-        "on-click": "GDK_BACKEND=wayland wlogout -b 2"
+        "on-click": "GDK_BACKEND=wayland wlogout -b 2 --protocol=layer-shell"
     }
 }

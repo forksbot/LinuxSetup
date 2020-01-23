@@ -112,7 +112,7 @@ bindsym --border button2 kill
 bindsym --whole-window --border $mod+button2 kill
 
 # Exit / Power off etc menu
-bindsym $mod+x exec GDK_BACKEND=wayland wlogout -b 2
+bindsym $mod+x exec GDK_BACKEND=wayland wlogout -b 2 --protocol=layer-shell
 
 # Send monitors to sleep
 bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill -nx swayidle'
