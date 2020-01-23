@@ -5,8 +5,8 @@
 # Output configuration
 set $output0 DP-1
 set $output1 DP-2
-output $output0 resolution 3840x2160 position 0,0    scale 2
-output $output1 resolution 3840x2160 position 1920,0 scale 2
+output $output0 resolution 3840x2160 position 0 0    scale 2
+output $output1 resolution 3840x2160 position 1920 0 scale 2
 output * bg #000000 solid_color
 
 # Keyboard
@@ -76,6 +76,15 @@ set $texteditor subl
 ################
 # Key Bindings #
 ################
+
+#
+# Output scale disabling
+#
+
+bindsym Ctrl+$mod+Alt+1 output $output0 scale 1 ; output $output1 position 3840 0
+bindsym Ctrl+$mod+Shift+1 output $output0 scale 2 ; output $output1 position 1920 0
+bindsym Ctrl+$mod+Alt+2  output $output1 scale 1
+bindsym Ctrl+$mod+Shift+2  output $output1 scale 2
 
 #
 # Launching Apps
