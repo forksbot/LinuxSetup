@@ -8,7 +8,6 @@ window {
 }
 button {
 	background-color: #000000;
-	border: 2px solid #3daee9;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 25%;
@@ -23,6 +22,10 @@ button:focus, button:active, button:hover {
 
 #logout {
     background-image: image(url("/home/jordan/.config/wlogout/logout_unselected.png"));
+	border-top: 2px solid #3daee9;
+	border-right: 1px solid #3daee9;
+	border-bottom: 1px solid #3daee9;
+	border-left: 2px solid #3daee9;
 }
 #logout:focus, #logout:active, #logout:hover {
     background-image: image(url("/home/jordan/.config/wlogout/logout.png"));
@@ -30,6 +33,10 @@ button:focus, button:active, button:hover {
 
 #suspend {
     background-image: image(url("/home/jordan/.config/wlogout/suspend_unselected.png"));
+	border-top: 1px solid #3daee9;
+	border-right: 2px solid #3daee9;
+	border-bottom: 2px solid #3daee9;
+	border-left: 1px solid #3daee9;
 }
 #suspend:focus, #suspend:active, #suspend:hover {
     background-image: image(url("/home/jordan/.config/wlogout/suspend.png"));
@@ -37,6 +44,10 @@ button:focus, button:active, button:hover {
 
 #shutdown {
     background-image: image(url("/home/jordan/.config/wlogout/shutdown_unselected.png"));
+	border-top: 1px solid #3daee9;
+	border-right: 1px solid #3daee9;
+	border-bottom: 2px solid #3daee9;
+	border-left: 2px solid #3daee9;
 }
 #shutdown:focus, #shutdown:active, #shutdown:hover {
     background-image: image(url("/home/jordan/.config/wlogout/shutdown.png"));
@@ -44,6 +55,10 @@ button:focus, button:active, button:hover {
 
 #reboot {
     background-image: image(url("/home/jordan/.config/wlogout/reboot_unselected.png"));
+	border-top: 2px solid #3daee9;
+	border-right: 2px solid #3daee9;
+	border-bottom: 1px solid #3daee9;
+	border-left: 1px solid #3daee9;
 }
 #reboot:focus, #reboot:active, #reboot:hover {
     background-image: image(url("/home/jordan/.config/wlogout/reboot.png"));
