@@ -11,14 +11,14 @@
     "keybind" : "p"
 }
 {
-    "label" : "reboot",
-    "action" : "systemctl reboot",
-    "text" : "Reboot [r]",
-    "keybind" : "r"
-}
-{
     "label" : "suspend",
     "action" : "systemctl suspend",
     "text" : "Suspend [s]",
     "keybind" : "s"
+}
+{
+    "label" : "reboot",
+    "action" : "systemctl reboot",
+    "text" : "Reboot [r]",
+    "keybind" : "r"
 }
