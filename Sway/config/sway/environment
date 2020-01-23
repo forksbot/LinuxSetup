@@ -1,13 +1,8 @@
-GDK_BACKEND=x11
-GDK_DPI_SCALE=1
-GDK_SCALE=2
+GDK_BACKEND=wayland
 PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/home/jordan/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 SHLVL=2
-QT_AUTO_SCREEN_SCALE_FACTOR=0
-QT_FONT_DPI=96
-QT_QPA_PLATFORM=xcb
-QT_SCALE_FACTOR=2
-XCURSOR_SIZE=48
+QT_QPA_PLATFORM=wayland
+XCURSOR_SIZE=24
 XCURSOR_THEME=Breeze_Snow
 XDG_CACHE_HOME=/home/jordan/.cache
 XDG_CONFIG_HOME=/home/jordan/.config

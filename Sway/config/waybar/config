@@ -18,7 +18,7 @@
             "warning": 70,
             "critical": 90
         },
-        "on-click": "GDK_BACKEND=x11 lxtask"
+        "on-click": "lxtask"
     },
 
     "cpu": {
@@ -28,12 +28,12 @@
             "warning": 70,
             "critical": 90
         },
-        "on-click": "GDK_BACKEND=x11 lxtask"
+        "on-click": "lxtask"
     },
 
     "tray": {
         "tooltip": false,
-        "icon-size": 36,
+        "icon-size": 18,
         "spacing": 10
     },
 
@@ -42,14 +42,14 @@
         "format-ethernet": "  {ipaddr:15} ",
         "format-wifi": "  {ipaddr:15} ",
         "format-disconnected": "    DISCONNECTED    ",
-        "on-click": "GDK_BACKEND=x11 nm-connection-editor"
+        "on-click": "nm-connection-editor"
     },
 
     "pulseaudio": {
         "tooltip": false,
         "format": " ♪{volume:3}% ",
         "format-muted": " MUTED ",
-        "on-click": "GDK_BACKEND=x11 pavucontrol",
+        "on-click": "pavucontrol",
         "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-click-right": "flatpak run com.github.wwmm.pulseeffects",
         "scroll-step": 5
@@ -59,7 +59,7 @@
         "format": " {:%a, %2d %b %H:%M:%S} ",
         "interval": 1,
         "tooltip": false,
-        "on-click": "GDK_BACKEND=x11 gsimplecal"
+        "on-click": "gsimplecal"
     },
 
     "idle_inhibitor": {
@@ -75,7 +75,7 @@
         "interval": 30,
         "exec": "df -h --output=avail / | tail -n+2 | sed -e's/ //g'",
         "tooltip": false,
-        "on-click": "GDK_BACKEND=x11 thunar /",
+        "on-click": "thunar /",
         "format": " /: {:4} "
     },
 
@@ -83,7 +83,7 @@
         "interval": 30,
         "exec": "df -h --output=avail /home | tail -n+2 | sed -e's/ //g'",
         "tooltip": false,
-        "on-click": "GDK_BACKEND=x11 thunar /home/jordan",
+        "on-click": "thunar /home/jordan",
         "format": " /home: {:4} "
     },
 
@@ -91,7 +91,7 @@
         "interval": 30,
         "exec": "df -h --output=avail /mnt/jordan | tail -n+2 | sed -e's/ //g'",
         "tooltip": false,
-        "on-click": "GDK_BACKEND=x11 thunar /mnt/jordan",
+        "on-click": "thunar /mnt/jordan",
         "format": " /mnt/jordan: {:4} "
     },
 
@@ -112,6 +112,6 @@
     "custom/exit": {
         "format": "  ",
         "tooltip": false,
-        "on-click": "GDK_BACKEND=wayland wlogout -b 2 --protocol=layer-shell"
+        "on-click": "wlogout -b 2 --protocol=layer-shell"
     }
 }

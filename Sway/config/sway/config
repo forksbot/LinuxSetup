@@ -5,8 +5,8 @@
 # Output configuration
 set $output0 DP-1
 set $output1 DP-2
-output $output0 resolution 3840x2160 position 0,0
-output $output1 resolution 3840x2160 position 3840,0
+output $output0 resolution 3840x2160 position 0,0 scale 2
+output $output1 resolution 3840x2160 position 1920,0 scale 2
 output * bg #000000 solid_color
 
 # Keyboard
@@ -28,7 +28,7 @@ input type:pointer {
 
 # Cursor theme and size
 set $cursor_theme Breeze_Snow
-set $cursor_size 48
+set $cursor_size 24
 seat seat0 xcursor_theme $cursor_theme $cursor_size
 exec_always {
     gsettings set org.gnome.desktop.interface cursor-theme $cursor_theme
@@ -48,7 +48,7 @@ client.unfocused $c_low $c_back $c_high $c_low $c_low
 client.urgent $c_urgent $c_urgent $c_fore $c_urgent $c_urgent
 
 # Font
-font Noto Sans Bold 20
+font Noto Sans Bold 10
 
 # Titles
 title_align center
@@ -64,12 +64,12 @@ set $mod Mod4
 workspace_layout tabbed
 
 # Apps
-set $term GDK_BACKEND=wayland termite
-set $menu killall wofi || GDK_BACKEND=wayland wofi
-set $runner bemenu-run --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 20"
+set $term termite
+set $menu killall wofi || wofi
+set $runner bemenu-run --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 10"
 set $filemanager thunar
-set $webbrowser /home/jordan/.config/sway/firefox
-set $texteditor flatpak run com.sublimetext.three
+set $webbrowser firefox
+set $texteditor subl
 
 
 
@@ -112,7 +112,7 @@ bindsym --border button2 kill
 bindsym --whole-window --border $mod+button2 kill
 
 # Exit / Power off etc menu
-bindsym $mod+x exec GDK_BACKEND=wayland wlogout -b 2 --protocol=layer-shell
+bindsym $mod+x exec wlogout -b 2 --protocol=layer-shell
 
 # Send monitors to sleep
 bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill -nx swayidle'

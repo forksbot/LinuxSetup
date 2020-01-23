@@ -1,5 +1,0 @@
-#!/usr/bin/sh
-
-killall tooltips
-sleep 1
-/home/jordan/.config/sway/tooltips
