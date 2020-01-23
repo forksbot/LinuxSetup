@@ -47,7 +47,7 @@ yay -S sublime-text-3-imfix inxi
 Edit a .desktop file and prefix the Exec with:
 env GDK_BACKEND=x11
 Flatpak:
-flatpak --user override --env=GDK_BACKEND=x11 
+flatpak --user override --env=GDK_BACKEND=x11 <appid>
 
 # Firefox
 about:config >

@@ -1,7 +1,7 @@
 CONS
 
 XWayland games, Steam, and GIMP are blurry
-PulseEffects doesn't use theme and font looks bad
+PulseEffects doesn't use theme and font looks bad (or if via xwayland, looks blurry)
 Having to use non-flatpak versions of most stuff
 
 
