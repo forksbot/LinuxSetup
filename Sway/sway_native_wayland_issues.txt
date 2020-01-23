@@ -1,0 +1,15 @@
+CONS
+
+XWayland games, Steam, and GIMP are blurry
+PulseEffects doesn't use theme and font looks bad
+Having to use non-flatpak versions of most stuff
+
+
+PROS
+
+GIMP is properly scaled
+Much simpler config, not having to edit .desktop files and set env vars all over the place
+Having as many things run wayland native makes them more responsive and less flickery, especially when resizing/moving
+Firefox icons are scaled
+Wofi icons are scaled
+Font size settings between wayland and non-wayland stuff comparable now

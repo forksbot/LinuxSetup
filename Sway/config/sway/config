@@ -270,14 +270,14 @@ bar {
 }
 
 # Calendar
-for_window [class="Gsimplecal" floating] {
-    move position 3432 1781
+for_window [app_id="gsimplecal" floating] {
+    move position 1712 860
 }
 
 # Waybar tooltips
 for_window [app_id="waybar" floating] {
     move position cursor
-    move up 300
+    move up 150
 }
 
 
