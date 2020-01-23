@@ -1,0 +1,24 @@
+{
+    "label" : "logout",
+    "action" : "swaymsg exit",
+    "text" : "Exit Sway [x]" ,
+    "keybind" : "x"
+}
+{
+    "label" : "shutdown",
+    "action" : "systemctl poweroff",
+    "text" : "Power Off [p]",
+    "keybind" : "p"
+}
+{
+    "label" : "reboot",
+    "action" : "systemctl reboot",
+    "text" : "Reboot [r]",
+    "keybind" : "r"
+}
+{
+    "label" : "suspend",
+    "action" : "systemctl suspend",
+    "text" : "Suspend [s]",
+    "keybind" : "s"
+}

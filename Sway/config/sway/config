@@ -112,17 +112,7 @@ bindsym --border button2 kill
 bindsym --whole-window --border $mod+button2 kill
 
 # Exit / Power off etc menu
-set $mode_quit Exit: [x] Exit Sway - [p] Power Off - [r] Reboot - [s] Suspend
-bindsym $mod+x mode "$mode_quit"
-mode "$mode_quit" {
-    bindsym x exec swaymsg exit
-    bindsym p exec systemctl poweroff
-    bindsym r exec systemctl reboot
-    bindsym s mode "default" ; exec systemctl suspend
-
-    bindsym Escape mode "default"
-    bindsym Return mode "default"
-}
+bindsym $mod+x exec GDK_BACKEND=wayland wlogout -b 2
 
 # Send monitors to sleep
 bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill -nx swayidle'

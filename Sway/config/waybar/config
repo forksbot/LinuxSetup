@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "bottom",
     
-    "modules-left": ["sway/workspaces", "custom/apps", "sway/mode"],
+    "modules-left": ["sway/workspaces", "custom/apps", "custom/exit", "sway/mode"],
     "modules-right": ["custom/status", "tray", "custom/disk#root", "custom/disk#home", "custom/disk#jordan", "cpu", "memory", "network", "idle_inhibitor", "pulseaudio", "clock"],
 
     "sway/mode": {
@@ -107,5 +107,11 @@
         "format": "  ",
         "tooltip": false,
         "on-click": "killall wofi || wofi"
+    },
+
+    "custom/exit": {
+        "format": "  ",
+        "tooltip": false,
+        "on-click": "GDK_BACKEND=wayland wlogout -b 2"
     }
 }

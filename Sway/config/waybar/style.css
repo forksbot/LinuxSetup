@@ -32,7 +32,7 @@ window#waybar {
     color: #ffffff;
 }
 
-#cpu, #memory, #network, #pulseaudio, #clock, #custom-disk, #idle_inhibitor, #custom-apps {
+#cpu, #memory, #network, #pulseaudio, #clock, #custom-disk, #idle_inhibitor, #custom-apps, #custom-exit {
     color: #3daee9;
     border: 1px solid #0f5f8a;
 }
