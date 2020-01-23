@@ -27,8 +27,5 @@ then
 	PS1="${newline}${user_host}${colon}${path}${git_branch}${git_status}${time}${prompt}"
 fi
 
-# Termite is running wayland native, this makes any app launched via termite use xwayland
-export GDK_BACKEND=x11
-
 source ~/env.sh
 source ~/aliases.sh

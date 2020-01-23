@@ -7,9 +7,7 @@ Having to use non-flatpak versions of most stuff
 
 PROS
 
-GIMP is properly scaled
-Firefox icons are scaled
-Wofi icons are scaled
+Everything is scaled properly (GIMP, Firefox icons, Wofi icons)
 Much simpler config, not having to edit .desktop files and set env vars all over the place - can just install apps and use them without configuring the launch
 Having as many things run wayland native makes them more responsive and less flickery, especially when resizing/moving
 Font size settings between wayland and non-wayland stuff comparable now
