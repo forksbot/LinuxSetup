@@ -1,6 +1,9 @@
 CONS
 
 XWayland games, Steam, and GIMP are blurry
+	- Solved games with binding to switch to de-scaled workspace and back
+	- Steam - not a big issue, is readable with nearest scale filtering
+	- GIMP - waiting for 3.0
 PulseEffects doesn't use theme and font looks bad (or if via xwayland, looks blurry)
 Having to use non-flatpak versions of most stuff
 
