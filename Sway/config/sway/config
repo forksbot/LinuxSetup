@@ -3,7 +3,7 @@
 ###########
 
 set $config /home/jordan/.config
-set $workspace_rules /home/jordan/.config/sway/workspace_rules
+set $workspace_rules $config/sway/workspace_rules
 
 # Output configuration
 set $output0 DP-1
