@@ -280,7 +280,8 @@ bar {
 
 # Calendar
 for_window [app_id="gsimplecal" floating] {
-    move position 1712 860
+    move position 1714 862
+    border none
 }
 
 # Waybar tooltips
