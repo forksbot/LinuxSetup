@@ -6,7 +6,7 @@ XWayland games, Steam, and GIMP are blurry
 			- Fixed by script run on wakeup
 	- GIMP - waiting for 3.0 - anyway big and blurry is better than tiny
 PulseEffects doesn't use theme and font looks bad (or if via xwayland, looks blurry)
-Having to use non-flatpak versions of most stuff
+Having to use non-flatpak versions of most stuff - why? this is working on Wilfred
 
 
 PROS
