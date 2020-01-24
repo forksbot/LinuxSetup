@@ -179,6 +179,13 @@ bindsym $mod+Control+Right workspace next
 bindsym --whole-window --border $mod+Control+button4 workspace prev
 bindsym --whole-window --border $mod+Control+button5 workspace next
 
+# Switch between last focused workspaces
+bindsym $mod+Tab workspace back_and_forth
+
+# De-scaled workspace on left monitor for Xwayland games
+bindsym $mod+g workspace Game ; move workspace to output $output0 ; output $output0 scale 1 ; output $output1 position 3840 0
+bindsym $mod+b workspace 1 ; output $output0 scale 2 ; output $output1 position 1920 0
+
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
