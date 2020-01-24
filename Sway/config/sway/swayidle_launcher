@@ -2,4 +2,4 @@
 
 killall swayidle
 sleep 1
-swayidle timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' &
+swayidle timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; sleep 4 ; /home/jordan/.config/sway/fix_workspaces ; swaymsg "reload"' &

@@ -115,7 +115,7 @@ bindsym --whole-window --border $mod+button2 kill
 bindsym $mod+x exec wlogout -b 2 --protocol=layer-shell
 
 # Send monitors to sleep
-bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill -nx swayidle'
+bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill -nx swayidle ; sleep 4 ; /home/jordan/.config/sway/fix_workspaces ; swaymsg "reload"'
 
 # Reload the configuration file
 bindsym Control+$mod+Alt+Delete exec cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* .config/ ; reload
@@ -176,7 +176,7 @@ bindsym $mod+Tab workspace back_and_forth
 
 # Unscaled workspace on left monitor for Xwayland games
 bindsym $mod+g workspace Game ; move workspace to output $output0 ; output $output0 scale 1 ; output $output1 position 3840 0
-bindsym $mod+b workspace 1 ; output $output0 scale 2 ; output $output1 position 1920 0
+bindsym $mod+b output $output0 scale 2 ; output $output1 position 1920 0 ; workspace 1
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
