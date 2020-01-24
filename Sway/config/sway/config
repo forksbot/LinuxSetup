@@ -81,10 +81,10 @@ set $texteditor subl
 # Output scale disabling
 #
 
-bindsym Ctrl+$mod+Alt+1 output $output0 scale 1 ; output $output1 position 3840 0
-bindsym Ctrl+$mod+Shift+1 output $output0 scale 2 ; output $output1 position 1920 0
-bindsym Ctrl+$mod+Alt+2  output $output1 scale 1
-bindsym Ctrl+$mod+Shift+2  output $output1 scale 2
+bindsym Control+$mod+Alt+1 output $output0 scale 1 ; output $output1 position 3840 0
+bindsym Control+$mod+Shift+1 output $output0 scale 2 ; output $output1 position 1920 0
+bindsym Control+$mod+Alt+2  output $output1 scale 1
+bindsym Control+$mod+Shift+2  output $output1 scale 2
 
 #
 # Launching Apps
@@ -127,7 +127,7 @@ bindsym $mod+x exec wlogout -b 2 --protocol=layer-shell
 bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill -nx swayidle'
 
 # Reload the configuration file
-bindsym Ctrl+$mod+Alt+Delete exec cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* .config/ ; reload
+bindsym Control+$mod+Alt+Delete exec cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* .config/ ; reload
 
 
 #
