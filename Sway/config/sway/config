@@ -329,6 +329,3 @@ exec_always {
 }
 
 include /etc/sway/config.d/*
-
-
-
