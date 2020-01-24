@@ -9,11 +9,13 @@ def run_command(command):
 
 output = run_command("swaymsg -t get_workspaces")
 workspaces = json.loads(output)
-focused = None
+focused = '1'
 visible = []
 
 for workspace in workspaces:
 	name = workspace['name']
+	if name == 'Game':
+		continue
 	if workspace['focused']:
 		focused = name
 	if workspace['visible'] and not workspace['focused']:
