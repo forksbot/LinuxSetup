@@ -1,9 +1,8 @@
 CONS
 
 XWayland games, Steam, and GIMP are blurry
-	- Solved games with binding to switch to de-scaled workspace and back
-	- Steam - not a big issue, is readable with nearest scale filtering
-	- GIMP - waiting for 3.0
+	- Solved games with binding to switch to unscaled workspace on left monitor and back
+	- GIMP - waiting for 3.0 - anyway big and blurry is better than tiny
 PulseEffects doesn't use theme and font looks bad (or if via xwayland, looks blurry)
 Having to use non-flatpak versions of most stuff
 
@@ -11,6 +10,5 @@ Having to use non-flatpak versions of most stuff
 PROS
 
 Everything is scaled properly (GIMP, Firefox icons, Wofi icons)
-Much simpler config, not having to edit .desktop files and set env vars all over the place - can just install apps and use them without configuring the launch
-Having as many things run wayland native makes them more responsive and less flickery, especially when resizing/moving
-Font size settings between wayland and non-wayland stuff comparable now
+Much simpler config, not having to edit .desktop files and set env vars all over the place - can just install apps and use them without configuring the launch - can use same font size settings in different apps and expect the same results
+Having as many things run wayland native as possible makes them more responsive and less flickery, especially when resizing/moving
