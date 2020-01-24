@@ -1,0 +1,47 @@
+#!/usr/bin/python3
+
+import json
+import subprocess
+
+outputs = ['DP-1', 'DP-2']
+
+workspace_rules = {
+	'1': { 'output': 0, 'scale': 2 },
+	'2': { 'output': 1, 'scale': 2 },
+	'3': { 'output': 0, 'scale': 2 },
+	'4': { 'output': 1, 'scale': 2 },
+	'5': { 'output': 0, 'scale': 2 },
+	'6': { 'output': 1, 'scale': 2 },
+	'7': { 'output': 0, 'scale': 2 },
+	'8': { 'output': 1, 'scale': 2 },
+	'9': { 'output': 0, 'scale': 2 },
+	'10': { 'output': 1, 'scale': 2 },
+	'Game': { 'output': 0, 'scale': 1 },
+}
+
+def run_command(command):
+	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	return result.stdout.decode('utf-8').rstrip("\n")
+
+workspaces = json.loads(run_command("swaymsg -t get_workspaces"))
+for workspace in workspaces:
+	if workspace['focused']:
+		name = workspace['name']
+		rules = workspace_rules[name]
+
+		# Move to output
+		output = outputs[rules['output']]
+		run_command("swaymsg \"move workspace to output {}\"".format(output))
+
+		# Scale
+		scale = rules['scale']
+		run_command("swaymsg \"output {} scale {}\"".format(output, scale))
+
+		# If on first output, ensure second output position is correct
+		if rules['output'] == 0:
+			if scale == 2:
+				run_command("swaymsg \"output {} position 1920 0\"".format(outputs[1]))
+			elif scale == 1:
+				run_command("swaymsg \"output {} position 3840 0\"".format(outputs[1]))
+		
+		break

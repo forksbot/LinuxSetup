@@ -2,6 +2,8 @@
 # General #
 ###########
 
+set $config /home/jordan/.config
+
 # Output configuration
 set $output0 DP-1
 set $output1 DP-2
@@ -115,7 +117,7 @@ bindsym --whole-window --border $mod+button2 kill
 bindsym $mod+x exec wlogout -b 2 --protocol=layer-shell
 
 # Send monitors to sleep
-bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on ; output $output0 scale 2 ; output $output1 position 1920 0" ; pkill -nx swayidle ; sleep 4 ; /home/jordan/.config/sway/fix_workspaces ; swaymsg "reload"'
+bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on ; output $output0 scale 2 ; output $output1 position 1920 0" ; pkill -nx swayidle ; sleep 4 ; $config/sway/fix_workspaces ; swaymsg "reload"'
 
 # Reload the configuration file
 bindsym Control+$mod+Alt+Delete exec cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* .config/ ; reload
@@ -152,31 +154,32 @@ bindsym --whole-window --border $mod+shift+button5 move right
 
 # Switch to workspace - odd on left, even on right
 # Ensure left workspaces are scaled in-case coming from unscaled workspace
-bindsym $mod+1 workspace 1 ; move workspace to output $output0 ; output $output0 scale 2 ; output $output1 position 1920 0
-bindsym $mod+2 workspace 2 ; move workspace to output $output1
-bindsym $mod+3 workspace 3 ; move workspace to output $output0 ; output $output0 scale 2 ; output $output1 position 1920 0
-bindsym $mod+4 workspace 4 ; move workspace to output $output1
-bindsym $mod+5 workspace 5 ; move workspace to output $output0 ; output $output0 scale 2 ; output $output1 position 1920 0
-bindsym $mod+6 workspace 6 ; move workspace to output $output1
-bindsym $mod+7 workspace 7 ; move workspace to output $output0 ; output $output0 scale 2 ; output $output1 position 1920 0
-bindsym $mod+8 workspace 8 ; move workspace to output $output1
-bindsym $mod+9 workspace 9 ; move workspace to output $output0 ; output $output0 scale 2 ; output $output1 position 1920 0
-bindsym $mod+0 workspace 10; move workspace to output $output1
+bindsym $mod+1 workspace 1 ; exec $config/sway/workspace_rules
+bindsym $mod+2 workspace 2 ; exec $config/sway/workspace_rules
+bindsym $mod+3 workspace 3 ; exec $config/sway/workspace_rules
+bindsym $mod+4 workspace 4 ; exec $config/sway/workspace_rules
+bindsym $mod+5 workspace 5 ; exec $config/sway/workspace_rules
+bindsym $mod+6 workspace 6 ; exec $config/sway/workspace_rules
+bindsym $mod+7 workspace 7 ; exec $config/sway/workspace_rules
+bindsym $mod+8 workspace 8 ; exec $config/sway/workspace_rules
+bindsym $mod+9 workspace 9 ; exec $config/sway/workspace_rules
+bindsym $mod+0 workspace 10; exec $config/sway/workspace_rules
 
 # Switch to previous / next workspace
-bindsym $mod+Control+Prior workspace prev
-bindsym $mod+Control+Next workspace next
-bindsym $mod+Control+Left workspace prev
-bindsym $mod+Control+Right workspace next
-bindsym --whole-window --border $mod+Control+button4 workspace prev
-bindsym --whole-window --border $mod+Control+button5 workspace next
+bindsym $mod+Control+Prior workspace prev ; exec $config/sway/workspace_rules
+bindsym $mod+Control+Next workspace next ; exec $config/sway/workspace_rules
+bindsym $mod+Control+Left workspace prev ; exec $config/sway/workspace_rules
+bindsym $mod+Control+Right workspace next ; exec $config/sway/workspace_rules
+bindsym --whole-window --border $mod+Control+button4 workspace prev ; exec $config/sway/workspace_rules
+bindsym --whole-window --border $mod+Control+button5 workspace next ; exec $config/sway/workspace_rules
 
 # Switch between last focused workspaces
-bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Tab workspace back_and_forth ; exec $config/sway/workspace_rules
 
 # Unscaled workspace on left monitor for Xwayland games
-bindsym $mod+g workspace Game ; move workspace to output $output0 ; output $output0 scale 1 ; output $output1 position 3840 0
-bindsym $mod+b output $output0 scale 2 ; output $output1 position 1920 0 ; workspace 1
+bindsym $mod+g workspace Game ; exec $config/sway/workspace_rules
+# Binding to easily switch "back" to workspace 1, most likely workspace to want to jump to from Game
+bindsym $mod+b workspace 1 ; exec $config/sway/workspace_rules
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -291,7 +294,7 @@ bindsym Control+$mod+Shift+2  output $output1 scale 2
 ##############
 
 bar {
-    swaybar_command /home/jordan/.config/waybar/waybar
+    swaybar_command $config/waybar/waybar
 }
 
 # Calendar
@@ -313,16 +316,16 @@ for_window [app_id="waybar" floating] {
 #######################
 
 # Xsettingsd - For Flatpak themes to work
-exec /home/jordan/.config/sway/xsettingsd
+exec $config/sway/xsettingsd
 
 # Reshift
 exec_always {
-	/home/jordan/.config/sway/redshift_launcher
+	$config/sway/redshift_launcher
 }
 
 # Monitor power saving
 exec_always {
-	/home/jordan/.config/sway/swayidle_launcher
+	$config/sway/swayidle_launcher
 }
 
 include /etc/sway/config.d/*
