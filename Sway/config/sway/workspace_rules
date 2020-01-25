@@ -33,7 +33,8 @@ for workspace in workspaces:
 		rules = workspace_rules[name]
 
 		# Move workspace to output
-		output = outputs[rules['output']]
+		output_i = rules['output']
+		output = outputs[output_i]
 		run_command("swaymsg \"move workspace to output {}\"".format(output))
 
 		# Scale output
@@ -41,7 +42,7 @@ for workspace in workspaces:
 		run_command("swaymsg \"output {} scale {}\"".format(output, scale))
 
 		# Re-position all outputs to right of the output that was rescaled
-		for i in range(rules['output'] + 1, len(outputs)):
+		for i in range(output_i + 1, len(outputs)):
 			outputs_info = sorted(json.loads(run_command("swaymsg -t get_outputs")), key = lambda o : o['rect']['x'])
 			outputs_width = [o['rect']['width'] for o in outputs_info]
 			output_x = sum(outputs_width[0 : i])
