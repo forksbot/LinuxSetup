@@ -8,6 +8,9 @@ def run_command(command):
 	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	return result.stdout.decode('utf-8').rstrip("\n")
 
+def get_outputs():
+	return sorted(json.loads(run_command("swaymsg -t get_outputs")), key = lambda o : o['rect']['x'])
+
 
 workspace_rules = {
 	'1': { 'output': 0, 'scale': 2 },
@@ -23,7 +26,7 @@ workspace_rules = {
 	'Game': { 'output': 0, 'scale': 1 },
 }
 
-outputs_info = sorted(json.loads(run_command("swaymsg -t get_outputs")), key = lambda o : o['rect']['x'])
+outputs_info = get_outputs()
 outputs = [output['name'] for output in outputs_info]
 
 workspaces = json.loads(run_command("swaymsg -t get_workspaces"))
@@ -42,8 +45,9 @@ for workspace in workspaces:
 		run_command("swaymsg \"output {} scale {}\"".format(output, scale))
 
 		# Re-position all outputs to right of the output that was rescaled
+		if output_i + 1 < len(outputs):
+			outputs_info = get_outputs()
 		for i in range(output_i + 1, len(outputs)):
-			outputs_info = sorted(json.loads(run_command("swaymsg -t get_outputs")), key = lambda o : o['rect']['x'])
 			outputs_width = [o['rect']['width'] for o in outputs_info]
 			output_x = sum(outputs_width[0 : i])
 			run_command("swaymsg \"output {} position {} 0\"".format(outputs[i], round(output_x)))
