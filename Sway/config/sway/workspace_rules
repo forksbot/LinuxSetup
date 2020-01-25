@@ -13,17 +13,17 @@ def get_outputs():
 
 
 workspace_rules = {
-	'1': { 'output': 0, 'scale': 2 },
-	'2': { 'output': 1, 'scale': 2 },
-	'3': { 'output': 0, 'scale': 2 },
-	'4': { 'output': 1, 'scale': 2 },
-	'5': { 'output': 0, 'scale': 2 },
-	'6': { 'output': 1, 'scale': 2 },
-	'7': { 'output': 0, 'scale': 2 },
-	'8': { 'output': 1, 'scale': 2 },
-	'9': { 'output': 0, 'scale': 2 },
-	'10': { 'output': 1, 'scale': 2 },
-	'Game': { 'output': 0, 'scale': 1 },
+	'1': { 'scale': 2 },
+	'2': { 'scale': 2 },
+	'3': { 'scale': 2 },
+	'4': { 'scale': 2 },
+	'5': { 'scale': 2 },
+	'6': { 'scale': 2 },
+	'7': { 'scale': 2 },
+	'8': { 'scale': 2 },
+	'9': { 'scale': 2 },
+	'10': { 'scale': 2 },
+	'Game': { 'scale': 1 },
 }
 
 outputs_info = get_outputs()
@@ -34,11 +34,8 @@ for workspace in workspaces:
 	if workspace['focused']:
 		name = workspace['name']
 		rules = workspace_rules[name]
-
-		# Move workspace to output
-		output_i = rules['output']
-		output = outputs[output_i]
-		run_command("swaymsg \"move workspace to output {}\"".format(output))
+		output = workspace['output']
+		output_i = outputs.index(output)
 
 		# Scale output
 		scale = rules['scale']
