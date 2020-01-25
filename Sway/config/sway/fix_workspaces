@@ -20,6 +20,8 @@ for workspace in workspaces:
 	name = workspace['name']
 	if name == 'Game':
 		continue
+	if len(workspace['focus']) == 0:
+		continue
 	if workspace['focused']:
 		focused = name
 	if workspace['visible'] and not workspace['focused']:
