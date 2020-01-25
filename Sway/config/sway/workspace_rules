@@ -25,7 +25,6 @@ workspace_rules = {
 
 outputs_info = sorted(json.loads(run_command("swaymsg -t get_outputs")), key = lambda o : o['rect']['x'])
 outputs = [output['name'] for output in outputs_info]
-output_width = outputs_info[0]['rect']['width'] * outputs_info[0]['scale']
 
 workspaces = json.loads(run_command("swaymsg -t get_workspaces"))
 for workspace in workspaces:
@@ -33,16 +32,19 @@ for workspace in workspaces:
 		name = workspace['name']
 		rules = workspace_rules[name]
 
-		# Move to output
+		# Move workspace to output
 		output = outputs[rules['output']]
 		run_command("swaymsg \"move workspace to output {}\"".format(output))
 
-		# Scale
+		# Scale output
 		scale = rules['scale']
 		run_command("swaymsg \"output {} scale {}\"".format(output, scale))
 
-		# If on first output, ensure second output position is correct
-		if rules['output'] == 0:
-			run_command("swaymsg \"output {} position {} 0\"".format(outputs[1], round(output_width / scale)))
+		# Re-position all outputs to right of the output that was rescaled
+		for i in range(rules['output'] + 1, len(outputs)):
+			outputs_info = sorted(json.loads(run_command("swaymsg -t get_outputs")), key = lambda o : o['rect']['x'])
+			outputs_width = [o['rect']['width'] for o in outputs_info]
+			output_x = sum(outputs_width[0 : i])
+			run_command("swaymsg \"output {} position {} 0\"".format(outputs[i], round(output_x)))
 		
 		break
