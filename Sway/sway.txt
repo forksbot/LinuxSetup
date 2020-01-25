@@ -38,16 +38,19 @@ pacman -S gnome-settings-daemon # Fixes GTK flatpaks font rendering via wayland
 
 # APPS
 
-pacman -S termite thunar thunar-archive-plugin tumbler ristretto firefox okular flatpak libreoffice-fresh mesa-demos openssh screen mpv intel-ucode
+pacman -S termite thunar thunar-archive-plugin tumbler ristretto firefox flatpak mesa-demos openssh screen mpv intel-ucode
+# FOR FLATPAK USE xdg-desktop-portal-gdk
 flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak --user install org.gimp.GIMP com.valvesoftware.Steam com.mojang.Minecraft com.github.wwmm.pulseeffects
-yay -S sublime-text-3-imfix inxi
+flatpak --user install org.gimp.GIMP com.valvesoftware.Steam com.mojang.Minecraft com.github.wwmm.pulseeffects org.libreoffice.LibreOffice com.sublimetext.three org.kde.okular
+yay -S inxi
 
 # Configuring individual apps to use X11/Wayland
 Edit a .desktop file and prefix the Exec with:
 env GDK_BACKEND=x11
 Flatpak:
-flatpak --user override --env=GDK_BACKEND=x11 <appid>
+flatpak --user override --env=GDK_BACKEND=x11/wayland <appid>
+flatpak --user override --env=QT_QPA_PLATFORM=xcb/wayland <appid>
+flatpak info --show-metadata <appid>
 
 # Firefox
 about:config >

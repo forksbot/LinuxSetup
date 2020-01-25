@@ -72,7 +72,7 @@ set $menu killall wofi || wofi
 set $runner bemenu-run --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 10"
 set $filemanager thunar
 set $webbrowser firefox
-set $texteditor subl
+set $texteditor flatpak run com.sublimetext.three
 
 
 
