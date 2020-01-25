@@ -164,7 +164,6 @@ workspace 7 output $output0
 workspace 8 output $output1
 workspace 9 output $output0
 workspace 10 output $output1
-workspace Game
 
 # Switch to workspace
 bindsym $mod+1 workspace 1 ; exec $workspace_rules
