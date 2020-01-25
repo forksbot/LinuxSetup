@@ -153,7 +153,7 @@ bindsym --whole-window --border $mod+shift+button5 move right
 # Workspaces
 #
 
-# Assigning workspaces to outputs - odd on left, even on right, Game on left
+# Assigning workspaces to outputs - odd on left, even on right
 workspace 1 output $output0
 workspace 2 output $output1
 workspace 3 output $output0
@@ -164,7 +164,7 @@ workspace 7 output $output0
 workspace 8 output $output1
 workspace 9 output $output0
 workspace 10 output $output1
-workspace Game output $output0
+workspace Game
 
 # Switch to workspace
 bindsym $mod+1 workspace 1 ; exec $workspace_rules
@@ -177,8 +177,10 @@ bindsym $mod+7 workspace 7 ; exec $workspace_rules
 bindsym $mod+8 workspace 8 ; exec $workspace_rules
 bindsym $mod+9 workspace 9 ; exec $workspace_rules
 bindsym $mod+0 workspace 10; exec $workspace_rules
-# Unscaled workspace on left monitor for Xwayland games
+
+# Unscaled workspace for Xwayland games
 bindsym $mod+g workspace Game ; exec $workspace_rules
+
 # Binding to easily switch "back" to workspace 1, most likely workspace to want to jump to from Game
 bindsym $mod+b workspace 1 ; exec $workspace_rules
 
