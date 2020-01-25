@@ -47,9 +47,9 @@ for workspace in workspaces:
 		# Re-position all outputs to right of the output that was rescaled
 		if output_i + 1 < len(outputs):
 			outputs_info = get_outputs()
-		for i in range(output_i + 1, len(outputs)):
-			outputs_width = [o['rect']['width'] for o in outputs_info]
-			output_x = sum(outputs_width[0 : i])
-			run_command("swaymsg \"output {} position {} 0\"".format(outputs[i], round(output_x)))
+			for i in range(output_i + 1, len(outputs)):
+				outputs_width = [o['rect']['width'] for o in outputs_info]
+				output_x = sum(outputs_width[0 : i])
+				run_command("swaymsg \"output {} position {} 0\"".format(outputs[i], round(output_x)))
 		
 		break
