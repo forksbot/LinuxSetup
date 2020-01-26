@@ -30,8 +30,8 @@ for workspace in workspaces:
 	other_output = 'DP-2'
 	if output == 'DP-2':
 		other_output = 'DP-1'
-	run_command("swaymsg \"workspace {}\" ; sleep 0.1 ; swaymsg \"move workspace to output {}\" ; sleep 0.1 ; swaymsg \"move workspace to output {} ; sleep 0.5\"".format(name, other_output, output))
+	run_command("swaymsg \"workspace {}\" ; swaymsg \"move workspace to output {}\" ; sleep 0.1 ; swaymsg \"move workspace to output {} ; sleep 0.1\"".format(name, other_output, output))
 
 for w in visible:
-	run_command("sleep 0.5 ; swaymsg \"workspace {}\"".format(w))
-run_command("sleep 0.5 ; swaymsg \"workspace {}\"".format(focused))
+	run_command("sleep 0.1 ; swaymsg \"workspace {}\"".format(w))
+run_command("sleep 0.1 ; swaymsg \"workspace {}\"".format(focused))
