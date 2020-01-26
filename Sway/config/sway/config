@@ -284,23 +284,6 @@ mode "$mode_screenshot" {
 }
 
 
-#
-# Output scale disabling/reenabling
-#
-
-# Left output - disable scale
-bindsym Control+$mod+Alt+1 output $output0 scale 1 ; output $output1 position 3840 0
-
-# Left output - enable scale
-bindsym Control+$mod+Shift+1 output $output0 scale 2 ; output $output1 position 1920 0
-
-# Right output - disable scale
-bindsym Control+$mod+Alt+2  output $output1 scale 1
-
-# Right output - enable scale
-bindsym Control+$mod+Shift+2  output $output1 scale 2
-
-
 
 ##############
 # Status Bar #
