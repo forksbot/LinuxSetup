@@ -174,7 +174,7 @@ bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10; exec $workspace_rules
+bindsym $mod+0 workspace 10
 
 # Unscaled workspace for Xwayland games
 bindsym $mod+g workspace Game
