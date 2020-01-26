@@ -9,8 +9,21 @@ def run_command(command):
 	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	return result.stdout.decode('utf-8').rstrip("\n")
 
+def get_outputs():
+	return sorted(json.loads(run_command("swaymsg -t get_outputs")), key = lambda o : o['rect']['x'])
 
-time.sleep(4)
+
+#time.sleep(4)
+good = 0
+while good < 2:
+	time.sleep(1)
+	outputs_info = get_outputs()
+	for o in outputs_info:
+		if not o['dpms']:
+			good = 0
+			break
+	else:
+		good += 1
 
 run_command("swaymsg \"output DP-1 scale 2 ; output DP-2 scale 2 ; output DP-2 position 1920 0\"")
 
