@@ -117,7 +117,7 @@ bindsym --whole-window --border $mod+button2 kill
 bindsym $mod+x exec wlogout -b 2 --protocol=layer-shell
 
 # Send monitors to sleep
-bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill -nx swayidle ; sleep 4 ; $config/sway/fix_workspaces ; swaymsg "reload"'
+bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill -nx swayidle ; /home/jordan/.config/sway/fix_workspaces'
 
 # Reload the configuration file
 bindsym Control+$mod+Alt+Delete exec cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* .config/ ; reload

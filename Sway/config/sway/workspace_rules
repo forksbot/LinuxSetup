@@ -55,4 +55,5 @@ while True:
 		outputs_width = [o['rect']['width'] for o in outputs_info]
 		for i in range(output_i + 1, len(outputs)):
 			output_x = sum(outputs_width[0 : i])
-			run_command("swaymsg \"output {} position {} 0\"".format(outputs[i], round(output_x)))
+			if output_x > 0:
+				run_command("swaymsg \"output {} position {} 0\"".format(outputs[i], round(output_x)))

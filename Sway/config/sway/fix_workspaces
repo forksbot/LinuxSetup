@@ -2,12 +2,15 @@
 
 import json
 import subprocess
+import time
 
 
 def run_command(command):
 	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	return result.stdout.decode('utf-8').rstrip("\n")
 
+
+time.sleep(4)
 
 run_command("swaymsg \"output DP-1 scale 2 ; output DP-2 scale 2 ; output DP-2 position 1920 0\"")
 
@@ -16,6 +19,7 @@ workspaces = json.loads(output)
 focused = '1'
 visible = []
 
+workspace_commands = []
 for workspace in workspaces:
 	name = workspace['name']
 	if name == 'Game':
@@ -30,8 +34,13 @@ for workspace in workspaces:
 	other_output = 'DP-2'
 	if output == 'DP-2':
 		other_output = 'DP-1'
-	run_command("swaymsg \"workspace {}\" ; swaymsg \"move workspace to output {}\" ; sleep 0.1 ; swaymsg \"move workspace to output {} ; sleep 0.1\"".format(name, other_output, output))
+	workspace_commands.append([name, other_output, output])
+
+for wc in workspace_commands:
+	run_command("swaymsg \"workspace {}\" ; swaymsg \"move workspace to output {}\" ; sleep 0.1 ; swaymsg \"move workspace to output {} ; sleep 0.1\"".format(wc[0], wc[1], wc[2]))
 
 for w in visible:
 	run_command("sleep 0.1 ; swaymsg \"workspace {}\"".format(w))
 run_command("sleep 0.1 ; swaymsg \"workspace {}\"".format(focused))
+
+run_command("swaymsg \"reload\"")
