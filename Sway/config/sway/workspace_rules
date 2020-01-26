@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import json
+import os
 import subprocess
 
 
@@ -29,24 +30,29 @@ workspace_rules = {
 outputs_info = get_outputs()
 outputs = [output['name'] for output in outputs_info]
 
-workspaces = json.loads(run_command("swaymsg -t get_workspaces"))
-for workspace in workspaces:
-	if workspace['focused']:
-		name = workspace['name']
-		rules = workspace_rules[name]
-		output = workspace['output']
-		output_i = outputs.index(output)
+# Kill other running instances
+pids = run_command("pgrep -f \"python3 .*/workspace_rules\"").split("\n")
+pids.remove(str(os.getpid()))
+for pid in pids:
+	run_command("kill {}".format(pid))
 
-		# Scale output
-		scale = rules['scale']
-		run_command("swaymsg \"output {} scale {}\"".format(output, scale))
+while True:
+	event = json.loads(run_command("swaymsg -t subscribe \"['workspace']\""))
+	workspace = event['current']
+	
+	name = workspace['name']
+	rules = workspace_rules[name]
+	output = workspace['output']
+	output_i = outputs.index(output)
 
-		# Re-position all outputs to right of the output that was rescaled
-		if output_i + 1 < len(outputs):
-			outputs_info = get_outputs()
-			outputs_width = [o['rect']['width'] for o in outputs_info]
-			for i in range(output_i + 1, len(outputs)):
-				output_x = sum(outputs_width[0 : i])
-				run_command("swaymsg \"output {} position {} 0\"".format(outputs[i], round(output_x)))
-		
-		break
+	# Scale output
+	scale = rules['scale']
+	run_command("swaymsg \"output {} scale {}\"".format(output, scale))
+
+	# Re-position all outputs to right of the output that was rescaled
+	if output_i + 1 < len(outputs):
+		outputs_info = get_outputs()
+		outputs_width = [o['rect']['width'] for o in outputs_info]
+		for i in range(output_i + 1, len(outputs)):
+			output_x = sum(outputs_width[0 : i])
+			run_command("swaymsg \"output {} position {} 0\"".format(outputs[i], round(output_x)))
