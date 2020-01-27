@@ -9,7 +9,7 @@ swaymsg "output $output1 resolution 3840x2160 position 1920 0 scale 2"
 sleep 2
 
 swaymsg "output $output0 scale 1"
-swaymsg "output $output1 position 3840x2160 0"
+swaymsg "output $output1 position 3840 0"
 sleep 2
 
 swaymsg "output $output0 scale 2"
