@@ -38,6 +38,8 @@ for pid in pids:
 
 while True:
 	event = json.loads(run_command("swaymsg -t subscribe \"['workspace']\""))
+	if event['change'] != 'focus':
+		continue
 	workspace = event['current']
 	
 	name = workspace['name']
