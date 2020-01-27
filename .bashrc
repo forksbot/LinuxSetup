@@ -29,3 +29,8 @@ fi
 
 source ~/env.sh
 source ~/aliases.sh
+
+# Helper functions
+reniceall() {
+	for p in `pgrep -f "$1"` ; do sudo renice -20 $p ; done
+}
