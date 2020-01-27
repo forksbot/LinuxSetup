@@ -13,9 +13,8 @@ def get_outputs():
 	return sorted(json.loads(run_command("swaymsg -t get_outputs")), key = lambda o : o['rect']['x'])
 
 
-#time.sleep(4)
 good = 0
-while good < 2:
+while good < 3:
 	time.sleep(1)
 	outputs_info = get_outputs()
 	for o in outputs_info:
