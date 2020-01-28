@@ -14,14 +14,14 @@ swapon /dev/mmcblk0p2
 mkfs.ext4 /dev/mmcblk0p3
 
 mount /dev/mmcblk0p3 /mnt
-mkdir /mnt/efi
-mount /dev/mmcblk0p1 /mnt/efi
+mkdir /mnt/boot
+mount /dev/mmcblk0p1 /mnt/boot
 
 pacstrap /mnt base base-devel linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
-pacman -S grub efibootmgr vim ntp networkmanager cifs-utils git
+pacman -S efibootmgr vim ntp networkmanager cifs-utils git
 
 ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
 hwclock --systohc
@@ -42,9 +42,25 @@ passwd jordan
 chmod 0640 /etc/sudoers
 vi /etc/sudoers # Uncomment "%wheel ALL=(ALL) ALL"
 
-grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
-vim /etc/default/grub #remove quiet
-grub-mkconfig -o /boot/grub/grub.cfg
+
+# Systemd-boot
+
+bootctl --path=/boot install
+efibootmgr # Check "Linux Boot Manager" appears, if not first will need to be reordered in BIOS
+pacman -S linux
+
+echo "default arch
+timeout  4
+console-mode max" > /boot/loader/loader.conf
+
+lsblk -o NAME,MOUNTPOINT,SIZE,TYPE,UUID
+
+# Replace <UUID> with UUID for root partition from table
+echo "title Arch
+linux   /vmlinuz-linux
+initrd  /initramfs-linux.img
+options root=UUID=<UUID> rw quiet" > /boot/loader/entries/arch.conf
+
 
 systemctl enable dhcpcd.service
 systemctl enable NetworkManager.service
@@ -65,6 +81,7 @@ pacman -S sway swayidle waybar bemenu xorg-server-xwayland qt5-wayland pulseaudi
 pacman -S termite thunar tumbler ristretto
 su - jordan
 yay -S redshift-wlr-gamma-control j4-dmenu-desktop 
+yay -S systemd-boot-pacman-hook
 cp -r /home/jordan/Scripts/LinuxSetup/Wilfred/config/* ~/.config/
 
 #cd /usr/share/icons
