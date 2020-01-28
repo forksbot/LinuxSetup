@@ -3,6 +3,7 @@
 import json
 import os
 import subprocess
+import sys
 
 
 def run_command(command):
@@ -30,32 +31,35 @@ workspace_rules = {
 outputs_info = get_outputs()
 outputs = [output['name'] for output in outputs_info]
 
-# Kill other running instances
-pids = run_command("pgrep -f \"python3 .*/workspace_rules\"").split("\n")
-pids.remove(str(os.getpid()))
-for pid in pids:
-	run_command("kill {}".format(pid))
+json_input = ''
+for line in sys.stdin:
+	json_input += line
+	try:
+		# Try to parse workspace event from JSON read so far
+		event = json.loads(json_input)
+		json_input = ''
 
-while True:
-	event = json.loads(run_command("swaymsg -t subscribe \"['workspace']\""))
-	if event['change'] != 'focus':
-		continue
-	workspace = event['current']
-	
-	name = workspace['name']
-	rules = workspace_rules[name]
-	output = workspace['output']
-	output_i = outputs.index(output)
+		# Skip events that aren't focus events
+		if event['change'] != 'focus':
+			continue
 
-	# Scale output
-	scale = rules['scale']
-	run_command("swaymsg \"output {} scale {}\"".format(output, scale))
+		workspace = event['current']
+		name = workspace['name']
+		rules = workspace_rules[name]
+		output = workspace['output']
+		output_i = outputs.index(output)
 
-	# Re-position all outputs to right of the output that was rescaled
-	if output_i + 1 < len(outputs):
-		outputs_info = get_outputs()
-		outputs_width = [o['rect']['width'] for o in outputs_info]
-		for i in range(output_i + 1, len(outputs)):
-			output_x = sum(outputs_width[0 : i])
-			if output_x > 0:
-				run_command("swaymsg \"output {} position {} 0\"".format(outputs[i], round(output_x)))
+		# Scale output
+		scale = rules['scale']
+		run_command("swaymsg \"output {} scale {}\"".format(output, scale))
+
+		# Re-position all outputs to right of the output that was rescaled
+		if output_i + 1 < len(outputs):
+			outputs_info = get_outputs()
+			outputs_width = [o['rect']['width'] for o in outputs_info]
+			for i in range(output_i + 1, len(outputs)):
+				output_x = sum(outputs_width[0 : i])
+				if output_x > 0:
+					run_command("swaymsg \"output {} position {} 0\"".format(outputs[i], round(output_x)))
+	except:
+		pass

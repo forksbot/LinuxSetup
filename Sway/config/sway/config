@@ -7,8 +7,8 @@ set $config /home/jordan/.config
 # Output configuration
 set $output0 DP-1
 set $output1 DP-2
-output $output0 resolution 3840x2160 position 0 0    scale 2
-output $output1 resolution 3840x2160 position 1920 0 scale 2
+output $output0 resolution 3840x2160 position 0 0    scale 2 subpixel rgb
+output $output1 resolution 3840x2160 position 1920 0 scale 2 subpixel rgb
 output * bg #000000 solid_color
 
 # Keyboard
@@ -324,8 +324,9 @@ exec_always {
 	$config/sway/swayidle_launcher
 }
 
+# Workspace rules
 exec_always {
-    $config/sway/workspace_rules
+    $config/sway/workspace_rules_launcher
 }
 
 include /etc/sway/config.d/*
