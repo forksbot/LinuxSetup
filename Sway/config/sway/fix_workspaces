@@ -13,16 +13,20 @@ def get_outputs():
 	return sorted(json.loads(run_command("swaymsg -t get_outputs")), key = lambda o : o['rect']['x'])
 
 
+outputs = ['DP-1', 'DP-2']
 good = 0
 while good < 3:
 	time.sleep(1)
 	outputs_info = get_outputs()
-	for o in outputs_info:
-		if not o['dpms']:
-			good = 0
-			break
+	if len(outputs_info) < len (outputs):
+		good = 0
 	else:
-		good += 1
+		for o in outputs_info:
+			if not o['dpms']:
+				good = 0
+				break
+		else:
+			good += 1
 
 run_command("swaymsg \"output DP-1 scale 2 ; output DP-2 scale 2 ; output DP-2 position 1920 0\"")
 
