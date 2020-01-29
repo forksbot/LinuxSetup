@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import atexit
 import json
 import os
 import subprocess
@@ -11,6 +12,9 @@ def run_command(command):
 
 def get_outputs():
 	return sorted(json.loads(run_command("swaymsg -t get_outputs")), key = lambda o : o['rect']['x'])
+
+def cleanup(proc):
+	proc.terminate()
 
 
 workspace_rules = {
@@ -35,9 +39,6 @@ pids = run_command("pgrep -f \"python3 .*/workspace_rules\"").split("\n")
 pids.remove(str(os.getpid()))
 for pid in pids:
 	run_command("kill {}".format(pid))
-pids = run_command("pgrep -f \"swaymsg -t subscribe .*workspace.* -m\"").split("\n")
-for pid in pids:
-	run_command("kill {}".format(pid))
 
 # Start swaymsg monitor as a subprocess, to listen to workspace events
 proc = subprocess.Popen("swaymsg -t subscribe \"['workspace']\" -m", 
@@ -46,10 +47,11 @@ proc = subprocess.Popen("swaymsg -t subscribe \"['workspace']\" -m",
 	stderr=subprocess.PIPE,
 	universal_newlines=True,
 	bufsize=1)
+atexit.register(cleanup, proc)
 
 # Read JSON output from subprocess
 json_input = ''
-while True:
+while proc.poll() is None:
 	line = proc.stdout.readline()
 	json_input += line
 	try:
