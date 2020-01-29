@@ -35,7 +35,7 @@ pids = run_command("pgrep -f \"python3 .*/workspace_rules\"").split("\n")
 pids.remove(str(os.getpid()))
 for pid in pids:
 	run_command("kill {}".format(pid))
-pids = run_command("pgrep -f \"pgrep -f \"\"\"").split("\n")
+pids = run_command("pgrep -f \"swaymsg -t subscribe .*workspace.* -m\"").split("\n")
 for pid in pids:
 	run_command("kill {}".format(pid))
 
