@@ -39,6 +39,7 @@ pids = run_command("pgrep -f \"swaymsg -t subscribe .*workspace.* -m\"").split("
 for pid in pids:
 	run_command("kill {}".format(pid))
 
+# Start swaymsg monitor as a subprocess, to listen to workspace events
 proc = subprocess.Popen("swaymsg -t subscribe \"['workspace']\" -m", 
 	shell=True, 
 	stdout=subprocess.PIPE, 
@@ -46,6 +47,7 @@ proc = subprocess.Popen("swaymsg -t subscribe \"['workspace']\" -m",
 	universal_newlines=True,
 	bufsize=1)
 
+# Read JSON output from subprocess
 json_input = ''
 while True:
 	line = proc.stdout.readline()
