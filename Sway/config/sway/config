@@ -122,7 +122,7 @@ bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swa
 # Reload the configuration file
 bindsym Control+$mod+Alt+Delete Reload
 # Copy config from NAS and reload the configuration file
-bindsym $mod+Shift+r exec cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* .config/ ; reload
+bindsym $mod+F5 exec cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* .config/ ; reload
 
 
 #
