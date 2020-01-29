@@ -10,5 +10,6 @@ XWayland games, Steam, and GIMP are blurry
 PROS
 
 Everything is scaled properly (GIMP, Firefox icons, Wofi icons)
+Sublime menus appearing on wrong window bug seems to be gone
 Much simpler config, not having to edit .desktop files and set env vars all over the place - can just install apps and use them without configuring the launch - can use same font size settings in different apps and expect the same results
 Having as many things run wayland native as possible makes them more responsive and less flickery, especially when resizing/moving

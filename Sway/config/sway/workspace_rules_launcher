@@ -1,3 +1,0 @@
-#!/usr/bin/sh
-kill `pgrep -f "swaymsg -t subscribe \['workspace'\] -m"`
-swaymsg -t subscribe "['workspace']" -m | /home/jordan/.config/sway/workspace_rules
