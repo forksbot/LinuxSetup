@@ -49,37 +49,29 @@ proc = subprocess.Popen("swaymsg -t subscribe \"['workspace']\" -m",
 	bufsize=1)
 atexit.register(cleanup, proc)
 
-# Read JSON output from subprocess
-json_input = ''
+# Get events from subprocess
 while proc.poll() is None:
-	line = proc.stdout.readline()
-	json_input += line
-	try:
-		# Try to parse workspace event from JSON read so far
-		event = json.loads(json_input)
-		json_input = ''
+	event = json.loads(proc.stdout.readline())
 
-		# Skip events that aren't focus events
-		if event['change'] != 'focus':
-			continue
+	# Skip events that aren't focus events
+	if event['change'] != 'focus':
+		continue
 
-		workspace = event['current']
-		name = workspace['name']
-		rules = workspace_rules[name]
-		output = workspace['output']
-		output_i = outputs.index(output)
+	workspace = event['current']
+	name = workspace['name']
+	rules = workspace_rules[name]
+	output = workspace['output']
+	output_i = outputs.index(output)
 
-		# Scale output
-		scale = rules['scale']
-		run_command("swaymsg \"output {} scale {}\"".format(output, scale))
+	# Scale output
+	scale = rules['scale']
+	run_command("swaymsg \"output {} scale {}\"".format(output, scale))
 
-		# Re-position all outputs to right of the output that was rescaled
-		if output_i + 1 < len(outputs):
-			outputs_info = get_outputs()
-			outputs_width = [o['rect']['width'] for o in outputs_info]
-			for i in range(output_i + 1, len(outputs)):
-				output_x = sum(outputs_width[0 : i])
-				if output_x > 0:
-					run_command("swaymsg \"output {} position {} 0\"".format(outputs[i], round(output_x)))
-	except:
-		pass
+	# Re-position all outputs to right of the output that was rescaled
+	if output_i + 1 < len(outputs):
+		outputs_info = get_outputs()
+		outputs_width = [o['rect']['width'] for o in outputs_info]
+		for i in range(output_i + 1, len(outputs)):
+			output_x = sum(outputs_width[0 : i])
+			if output_x > 0:
+				run_command("swaymsg \"output {} position {} 0\"".format(outputs[i], round(output_x)))
