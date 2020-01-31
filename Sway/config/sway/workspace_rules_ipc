@@ -62,19 +62,22 @@ async def send_command(message_type, command=''):
 	await writer.drain()
 	return reader
 
-async def get_response_size(reader):
+async def get_response(reader):
 	header = await reader.read(len(magic_string) + 8)
-	return int.from_bytes(header[len(magic_string) : len(magic_string) + 4], sys.byteorder)
+	size = int.from_bytes(header[len(magic_string) : len(magic_string) + 4], sys.byteorder)
+	return (await reader.read(size)).decode()
+
+async def get_response_json(reader):
+	response = await get_response(reader)
+	return json.loads(response)
 
 async def run_command(message_type, command=''):
 	reader = await send_command(message_type, command)
-	size = await get_response_size(reader)
-	response = (await reader.read(size)).decode()
-
-	return response
+	return await get_response(reader)
 
 async def get_outputs():
 	return sorted(json.loads(await run_command("get_outputs")), key = lambda o : o['rect']['x'])
+
 
 async def main():
 	# Kill other running instances
@@ -89,16 +92,16 @@ async def main():
 
 	# Open subscribe IPC connection
 	reader = await send_command('subscribe', "['workspace']")
-	size = await get_response_size(reader)
-	await reader.read(size)
+	response = await get_response_json(reader)
+	if not response['success']:
+		print("Could not open IPC connection to Sway", file=sys.stderr)
+		sys.exit(1)
 
 	# Loop forever
 	while True:
 
 		# Get events from connection
-		size = await get_response_size(reader)
-		event_json = (await reader.read(size)).decode()
-		event = json.loads(event_json)
+		event = await get_response_json(reader)
 
 		# Skip events that aren't focus events
 		if event['change'] != 'focus':
