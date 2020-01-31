@@ -3,7 +3,6 @@
 import asyncio
 import json
 import os
-import subprocess
 import sys
 
 
@@ -43,9 +42,13 @@ workspace_rules = {
 }
 
 
-def shell_command(command):
-	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	return result.stdout.decode('utf-8').rstrip("\n")
+async def shell_command(command):
+	proc = await asyncio.create_subprocess_shell(
+		command,
+		stdout=asyncio.subprocess.PIPE,
+		stderr=asyncio.subprocess.PIPE)
+	stdout, stderr = await proc.communicate()
+	return stdout.decode('utf-8').rstrip("\n")
 
 async def send_command(message_type, command=''):
 	payload_type = message_types[message_type.upper()]
@@ -80,10 +83,10 @@ async def get_outputs():
 
 async def main():
 	# Kill other running instances
-	pids = shell_command("pgrep -f \"python3 .*/workspace_rules_ipc\"").split("\n")
+	pids = (await shell_command("pgrep -f \"python3 .*/workspace_rules_ipc\"")).split("\n")
 	pids.remove(str(os.getpid()))
 	for pid in pids:
-		shell_command("kill {}".format(pid))
+		await shell_command("kill {}".format(pid))
 
 	# Get list of outputs
 	outputs_info = await get_outputs()
