@@ -52,10 +52,10 @@ async def send_command(message_type, command=''):
 	payload_type = message_types[message_type.upper()]
 	payload_length = len(command)
 
-	data = magic_string.encode('utf-8')
+	data = magic_string.encode()
 	data += payload_length.to_bytes(4, sys.byteorder)
 	data += payload_type.to_bytes(4, sys.byteorder)
-	data += command.encode('utf-8')
+	data += command.encode()
 
 	(reader, writer) = await asyncio.open_unix_connection(path=socket)
 	writer.write(data)
@@ -69,7 +69,7 @@ async def get_response_size(reader):
 async def run_command(message_type, command=''):
 	reader = await send_command(message_type, command)
 	size = await get_response_size(reader)
-	response = (await reader.read(size)).decode('utf-8')
+	response = (await reader.read(size)).decode()
 
 	return response
 
@@ -97,7 +97,7 @@ async def main():
 
 		# Get events from connection
 		size = await get_response_size(reader)
-		event_json = (await reader.read(size)).decode('utf-8')
+		event_json = (await reader.read(size)).decode()
 		event = json.loads(event_json)
 
 		# Skip events that aren't focus events
