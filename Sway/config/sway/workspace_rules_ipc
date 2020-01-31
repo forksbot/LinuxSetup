@@ -44,6 +44,10 @@ workspace_rules = {
 }
 
 
+def shell_command(command):
+	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	return result.stdout.decode('utf-8').rstrip("\n")
+
 async def send_command(message_type, command=''):
 	payload_type = message_types[message_type.upper()]
 	payload_length = len(command)
@@ -58,10 +62,13 @@ async def send_command(message_type, command=''):
 	await writer.drain()
 	return reader
 
+async def get_response_size(reader):
+	header = await reader.read(len(magic_string) + 8)
+	return int.from_bytes(header[len(magic_string) : len(magic_string) + 4], sys.byteorder)
+
 async def run_command(message_type, command=''):
 	reader = await send_command(message_type, command)
-	header = await reader.read(len(magic_string) + 8)
-	size = int.from_bytes(header[len(magic_string) : len(magic_string) + 4], sys.byteorder)
+	size = await get_response_size(reader)
 	response = (await reader.read(size)).decode('utf-8')
 
 	return response
@@ -69,31 +76,29 @@ async def run_command(message_type, command=''):
 async def get_outputs():
 	return sorted(json.loads(await run_command("get_outputs")), key = lambda o : o['rect']['x'])
 
-def cleanup(proc):
-	proc.terminate()
-
 async def main():
+	# Kill other running instances
+	pids = shell_command("pgrep -f \"python3 .*/workspace_rules_ipc\"").split("\n")
+	pids.remove(str(os.getpid()))
+	for pid in pids:
+		shell_command("kill {}".format(pid))
+
+	# Get list of outputs
 	outputs_info = await get_outputs()
 	outputs = [output['name'] for output in outputs_info]
 
-	# Kill other running instances
-	#pids = run_command("pgrep -f \"python3 .*/workspace_rules\"").split("\n")
-	#pids.remove(str(os.getpid()))
-	#for pid in pids:
-	#	run_command("kill {}".format(pid))
+	# Open subscribe IPC connection
+	reader = await send_command('subscribe', "['workspace']")
+	size = await get_response_size(reader)
+	await reader.read(size)
 
-	# Start swaymsg monitor as a subprocess, to listen to workspace events
-	proc = subprocess.Popen("swaymsg -t subscribe \"['workspace']\" -m", 
-		shell=True, 
-		stdout=subprocess.PIPE, 
-		stderr=subprocess.PIPE,
-		universal_newlines=True,
-		bufsize=1)
-	atexit.register(cleanup, proc)
+	# Loop forever
+	while True:
 
-	# Get events from subprocess
-	while proc.poll() is None:
-		event = json.loads(proc.stdout.readline())
+		# Get events from connection
+		size = await get_response_size(reader)
+		event_json = (await reader.read(size)).decode('utf-8')
+		event = json.loads(event_json)
 
 		# Skip events that aren't focus events
 		if event['change'] != 'focus':
@@ -117,5 +122,6 @@ async def main():
 				output_x = sum(outputs_width[0 : i])
 				if output_x > 0:
 					await run_command("run_command", "output {} position {} 0".format(outputs[i], round(output_x)))
+
 
 asyncio.run(main())
