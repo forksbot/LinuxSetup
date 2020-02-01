@@ -3,7 +3,7 @@ Description=Sway compositor
 
 [Service]
 ExecStartPre=/usr/bin/chvt %I
-ExecStart=/usr/bin/dbus-launch --exit-with-session /home/jordan/.config/sway/sway_debug
+ExecStart=/usr/bin/dbus-launch --exit-with-session /usr/bin/sway -d
 TTYPath=/dev/tty%I
 TTYReset=yes
 TTYVHangup=yes
@@ -15,8 +15,8 @@ EnvironmentFile=/home/jordan/.config/sway/environment
 Restart=on-failure
 RestartSec=2
 StandardInput=tty
-StandardError=journal
-StandardOutput=journal
+StandardError=syslog
+StandardOutput=syslog
 Nice=-5
 
 [Install]

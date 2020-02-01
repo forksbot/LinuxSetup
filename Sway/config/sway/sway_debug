@@ -1,3 +1,0 @@
-#!/usr/bin/sh
-
-sway -d > /home/jordan/sway_log.txt 2>&1
