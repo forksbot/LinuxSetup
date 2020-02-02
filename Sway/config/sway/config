@@ -120,9 +120,11 @@ bindsym $mod+x exec wlogout -b 2 --protocol=layer-shell
 bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; /home/jordan/.config/sway/fix_workspaces ; pkill -nx swayidle'
 
 # Reload the configuration file
-bindsym Control+$mod+Alt+Delete Reload
+bindsym $mod+F5 Reload
 # Copy config from NAS and reload the configuration file
-bindsym $mod+F5 exec cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* .config/ ; reload
+bindsym Control+$mod+F5 exec cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* .config/ ; reload
+# Fix workspaces
+bindsym $mod+F6 exec $config/sway/fix_workspaces
 
 
 #
