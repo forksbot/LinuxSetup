@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 
 import json
+import os
 import subprocess
+import sys
 import time
 
 
@@ -12,6 +14,11 @@ def run_command(command):
 def get_outputs():
 	return sorted(json.loads(run_command("swaymsg -t get_outputs")), key = lambda o : o['rect']['x'])
 
+
+pids = run_command("pgrep -f \"python3 .*/fix_workspace\"").split("\n")
+pids.remove(str(os.getpid()))
+if len(pids) > 0:
+	sys.exit(0)
 
 outputs = ['DP-1', 'DP-2']
 good = 0
