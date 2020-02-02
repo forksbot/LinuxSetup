@@ -41,6 +41,7 @@ output = run_command("swaymsg -t get_workspaces")
 workspaces = json.loads(output)
 focused = '1'
 visible = []
+delay = 0.1
 
 workspace_commands = []
 for workspace in workspaces:
@@ -61,10 +62,16 @@ for workspace in workspaces:
 
 for wc in workspace_commands:
 	run_command("swaymsg \"workspace {0}\" ; swaymsg \"move workspace to output {1}\"".format(wc[0], wc[1]))
+	time.sleep(delay)
 	run_command("swaymsg \"move workspace to output {0}\"".format(wc[2]))
+	time.sleep(delay)
+	correct_output = outputs[(int(wc[0]) + 1) % 2]
+	run_command("swaymsg \"workspace {0}\" ; swaymsg \"move workspace to output {1}\"".format(wc[0], correct_output))
+	time.sleep(delay)
 
 for w in visible:
 	run_command("swaymsg \"workspace {}\"".format(w))
+	time.sleep(delay)
 
 run_command("swaymsg \"workspace {}\"".format(focused))
 run_command("swaymsg \"reload\"")
