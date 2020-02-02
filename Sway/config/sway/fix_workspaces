@@ -65,11 +65,11 @@ for wc in workspace_commands:
 	other_output = wc[1]
 	original_output = wc[2]
 	correct_output = outputs[(int(workspace) + 1) % 2]
-	run_command("swaymsg \"workspace {0}\" ; swaymsg \"move workspace to output {1}\"".format(workspace, other_output))
+	run_command("swaymsg \"workspace {0} ; move workspace to output {1}\"".format(workspace, other_output))
 	time.sleep(delay)
-	run_command("swaymsg \"workspace {0}\" ; move workspace to output {0}\"".format(workspace, original_output))
+	run_command("swaymsg \"workspace {0} ; move workspace to output {1}\"".format(workspace, original_output))
 	time.sleep(delay)
-	run_command("swaymsg \"workspace {0}\" ; swaymsg \"move workspace to output {1}\"".format(workspace, correct_output))
+	run_command("swaymsg \"workspace {0} ; move workspace to output {1}\"".format(workspace, correct_output))
 	time.sleep(delay)
 
 for w in visible:
@@ -77,4 +77,6 @@ for w in visible:
 	time.sleep(delay)
 
 run_command("swaymsg \"workspace {}\"".format(focused))
+
+time.sleep(1)
 run_command("swaymsg \"reload\"")
