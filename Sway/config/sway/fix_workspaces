@@ -63,7 +63,7 @@ for workspace in workspaces:
 for wc in workspace_commands:
 	run_command("swaymsg \"workspace {0}\" ; swaymsg \"move workspace to output {1}\"".format(wc[0], wc[1]))
 	time.sleep(delay)
-	run_command("swaymsg \"move workspace to output {0}\"".format(wc[2]))
+	run_command("swaymsg \"workspace {0}\" ; move workspace to output {0}\"".format(wc[0], wc[2]))
 	time.sleep(delay)
 	correct_output = outputs[(int(wc[0]) + 1) % 2]
 	run_command("swaymsg \"workspace {0}\" ; swaymsg \"move workspace to output {1}\"".format(wc[0], correct_output))
