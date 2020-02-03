@@ -10,6 +10,8 @@ socket = os.environ['SWAYSOCK']
 
 magic_string = 'i3-ipc'
 magic_string_len = len(magic_string)
+payload_length_length = 4
+payload_type_length = 4
 
 message_types = {
 	'RUN_COMMAND': 0,
@@ -30,12 +32,12 @@ message_types = {
 
 
 async def send(message_type, command=''):
-	payload_type = message_types[message_type.upper()]
 	payload_length = len(command)
+	payload_type = message_types[message_type.upper()]
 
 	data = magic_string.encode()
-	data += payload_length.to_bytes(4, sys.byteorder)
-	data += payload_type.to_bytes(4, sys.byteorder)
+	data += payload_length.to_bytes(payload_length_length, sys.byteorder)
+	data += payload_type.to_bytes(payload_type_length, sys.byteorder)
 	data += command.encode()
 
 	(reader, writer) = await asyncio.open_unix_connection(path=socket)
@@ -43,8 +45,8 @@ async def send(message_type, command=''):
 	return reader
 
 async def receive(reader):
-	header = await reader.read(magic_string_len + 8)
-	size = int.from_bytes(header[magic_string_len : magic_string_len + 4], sys.byteorder)
+	header = await reader.read(magic_string_len + payload_length_length + payload_type_length)
+	size = int.from_bytes(header[magic_string_len : magic_string_len + payload_length_length], sys.byteorder)
 	return (await reader.read(size)).decode()
 
 async def receive_json(reader):
