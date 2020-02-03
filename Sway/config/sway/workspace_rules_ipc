@@ -77,8 +77,12 @@ async def run_command(message_type, command=''):
 	reader = await send_command(message_type, command)
 	return await get_response(reader)
 
+async def run_command_json(message_type, command=''):
+	reader = await send_command(message_type, command)
+	return await get_response_json(reader)
+
 async def get_outputs():
-	return sorted(json.loads(await run_command('get_outputs')), key = lambda o : o['rect']['x'])
+	return sorted(await run_command_json('get_outputs'), key = lambda o : o['rect']['x'])
 
 
 async def main():

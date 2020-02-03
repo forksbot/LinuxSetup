@@ -63,11 +63,16 @@ async def run_command(message_type, command=''):
 	reader = await send_command(message_type, command)
 	return await get_response(reader)
 
+async def run_command_json(message_type, command=''):
+	reader = await send_command(message_type, command)
+	return await get_response_json(reader)
+
 async def get_outputs():
-	return sorted(json.loads(await run_command('get_outputs')), key = lambda o : o['rect']['x'])
+	return sorted(await run_command_json('get_outputs'), key = lambda o : o['rect']['x'])
 
 
 async def main():
+
 	# Exit if there is another running instance
 	pids = (await shell_command("pgrep -f \"python3 .*/fix_workspace\"")).split("\n")
 	pids.remove(str(os.getpid()))
@@ -93,8 +98,7 @@ async def main():
 	# Start by ensuring both monitors are scaled
 	await run_command("run_command", "output DP-1 scale 2 ; output DP-2 scale 2 ; output DP-2 position 1920 0")
 
-	output = await run_command("get_workspaces")
-	workspaces = json.loads(output)
+	workspaces = await run_command_json("get_workspaces")
 	focused = '1'
 	visible = []
 	delay = 0.1
