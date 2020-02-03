@@ -15,8 +15,8 @@ EnvironmentFile=/home/jordan/.config/sway/environment
 Restart=on-failure
 RestartSec=2
 StandardInput=tty
-StandardError=syslog
-StandardOutput=syslog
+StandardError=journal
+StandardOutput=journal
 Nice=-5
 
 [Install]
