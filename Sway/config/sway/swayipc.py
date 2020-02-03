@@ -46,8 +46,10 @@ async def send(message_type, command=''):
 
 async def receive(reader):
 	header = await reader.read(magic_string_len + payload_length_length + payload_type_length)
-	size = int.from_bytes(header[magic_string_len : magic_string_len + payload_length_length], sys.byteorder)
-	return (await reader.read(size)).decode()
+	payload_length_bytes = header[magic_string_len : magic_string_len + payload_length_length]
+	payload_length = int.from_bytes(payload_length_bytes, sys.byteorder)
+	response = await reader.read(payload_length)
+	return (response).decode()
 
 async def receive_json(reader):
 	response = await receive(reader)
