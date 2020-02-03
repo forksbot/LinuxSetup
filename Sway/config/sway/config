@@ -330,7 +330,7 @@ exec_always {
 
 # Workspace rules
 exec_always {
-    $config/sway/workspace_rules_ipc
+    $config/sway/workspace_rules
 }
 
 include /etc/sway/config.d/*

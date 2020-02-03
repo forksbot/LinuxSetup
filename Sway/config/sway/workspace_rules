@@ -1,21 +1,32 @@
 #!/usr/bin/python3
 
-import atexit
+import asyncio
 import json
 import os
-import subprocess
+import sys
 
 
-def run_command(command):
-	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	return result.stdout.decode('utf-8').rstrip("\n")
+socket = os.environ['SWAYSOCK']
 
-def get_outputs():
-	return sorted(json.loads(run_command("swaymsg -t get_outputs")), key = lambda o : o['rect']['x'])
+magic_string = 'i3-ipc'
+magic_string_len = len(magic_string)
 
-def cleanup(proc):
-	proc.terminate()
-
+message_types = {
+	'RUN_COMMAND': 0,
+	'GET_WORKSPACES': 1,
+	'SUBSCRIBE': 2,
+	'GET_OUTPUTS': 3,
+	'GET_TREE': 4,
+	'GET_MARKS': 5,
+	'GET_BAR_CONFIG': 6,
+	'GET_VERSION': 7,
+	'GET_BINDING_MODES': 8,
+	'GET_CONFIG': 9,
+	'SEND_TICK': 10,
+	'SYNC': 11,
+	'GET_INPUTS': 100,
+	'GET_SEATS': 101,
+}
 
 workspace_rules = {
 	'1': { 'scale': 2 },
@@ -31,47 +42,95 @@ workspace_rules = {
 	'Game': { 'scale': 1 },
 }
 
-outputs_info = get_outputs()
-outputs = [output['name'] for output in outputs_info]
 
-# Kill other running instances
-pids = run_command("pgrep -f \"python3 .*/workspace_rules\"").split("\n")
-pids.remove(str(os.getpid()))
-for pid in pids:
-	run_command("kill {}".format(pid))
+async def shell_command(command):
+	proc = await asyncio.create_subprocess_shell(
+		command,
+		stdout=asyncio.subprocess.PIPE,
+		stderr=asyncio.subprocess.PIPE)
+	stdout, stderr = await proc.communicate()
+	return stdout.decode('utf-8').rstrip("\n")
 
-# Start swaymsg monitor as a subprocess, to listen to workspace events
-proc = subprocess.Popen("swaymsg -t subscribe \"['workspace']\" -m", 
-	shell=True, 
-	stdout=subprocess.PIPE, 
-	stderr=subprocess.PIPE,
-	universal_newlines=True,
-	bufsize=1)
-atexit.register(cleanup, proc)
+async def send_command(message_type, command=''):
+	payload_type = message_types[message_type.upper()]
+	payload_length = len(command)
 
-# Get events from subprocess
-while proc.poll() is None:
-	event = json.loads(proc.stdout.readline())
+	data = magic_string.encode()
+	data += payload_length.to_bytes(4, sys.byteorder)
+	data += payload_type.to_bytes(4, sys.byteorder)
+	data += command.encode()
 
-	# Skip events that aren't focus events
-	if event['change'] != 'focus':
-		continue
+	(reader, writer) = await asyncio.open_unix_connection(path=socket)
+	writer.write(data)
+	return reader
 
-	workspace = event['current']
-	name = workspace['name']
-	rules = workspace_rules[name]
-	output = workspace['output']
-	output_i = outputs.index(output)
+async def get_response(reader):
+	header = await reader.read(magic_string_len + 8)
+	size = int.from_bytes(header[magic_string_len : magic_string_len + 4], sys.byteorder)
+	return (await reader.read(size)).decode()
 
-	# Scale output
-	scale = rules['scale']
-	run_command("swaymsg \"output {} scale {}\"".format(output, scale))
+async def get_response_json(reader):
+	response = await get_response(reader)
+	return json.loads(response)
 
-	# Re-position all outputs to right of the output that was rescaled
-	if output_i + 1 < len(outputs):
-		outputs_info = get_outputs()
-		outputs_width = [o['rect']['width'] for o in outputs_info]
-		for i in range(output_i + 1, len(outputs)):
-			output_x = sum(outputs_width[0 : i])
-			if output_x > 0:
-				run_command("swaymsg \"output {} position {} 0\"".format(outputs[i], round(output_x)))
+async def run_command(message_type, command=''):
+	reader = await send_command(message_type, command)
+	return await get_response(reader)
+
+async def run_command_json(message_type, command=''):
+	reader = await send_command(message_type, command)
+	return await get_response_json(reader)
+
+async def get_outputs():
+	return sorted(await run_command_json('get_outputs'), key = lambda o : o['rect']['x'])
+
+
+async def main():
+	# Kill other running instances
+	pids = (await shell_command("pgrep -f \"python3 .*/workspace_rules_ipc\"")).split("\n")
+	pids.remove(str(os.getpid()))
+	for pid in pids:
+		asyncio.create_task(shell_command("kill {}".format(pid)))
+
+	# Get list of outputs
+	outputs_info = await get_outputs()
+	outputs = [output['name'] for output in outputs_info]
+
+	# Open subscribe IPC connection
+	reader = await send_command('subscribe', "['workspace']")
+	response = await get_response_json(reader)
+	if not response['success']:
+		print("Could not open IPC connection to Sway", file=sys.stderr)
+		sys.exit(1)
+
+	# Loop forever
+	while True:
+
+		# Get events from connection
+		event = await get_response_json(reader)
+
+		# Skip events that aren't focus events
+		if event['change'] != 'focus':
+			continue
+
+		workspace = event['current']
+		name = workspace['name']
+		rules = workspace_rules[name]
+		output = workspace['output']
+		output_i = outputs.index(output)
+
+		# Scale output
+		scale = rules['scale']
+		await run_command('run_command', "output {} scale {}".format(output, scale))
+
+		# Re-position all outputs to right of the output that was rescaled
+		if output_i + 1 < len(outputs):
+			outputs_info = await get_outputs()
+			outputs_width = [o['rect']['width'] for o in outputs_info]
+			for i in range(output_i + 1, len(outputs)):
+				output_x = sum(outputs_width[0 : i])
+				if output_x > 0:
+					await run_command('run_command', "output {} position {} 0".format(outputs[i], round(output_x)))
+
+
+asyncio.run(main())
