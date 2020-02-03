@@ -29,7 +29,7 @@ message_types = {
 }
 
 
-async def send_command(message_type, command=''):
+async def send(message_type, command=''):
 	payload_type = message_types[message_type.upper()]
 	payload_length = len(command)
 
@@ -42,22 +42,31 @@ async def send_command(message_type, command=''):
 	writer.write(data)
 	return reader
 
-async def get_response(reader):
+async def receive(reader):
 	header = await reader.read(magic_string_len + 8)
 	size = int.from_bytes(header[magic_string_len : magic_string_len + 4], sys.byteorder)
 	return (await reader.read(size)).decode()
 
-async def get_response_json(reader):
-	response = await get_response(reader)
+async def receive_json(reader):
+	response = await receive(reader)
 	return json.loads(response)
 
-async def run_command(message_type, command=''):
-	reader = await send_command(message_type, command)
-	return await get_response(reader)
+async def send_receive(message_type, command=''):
+	reader = await send(message_type, command)
+	return await receive(reader)
 
-async def run_command_json(message_type, command=''):
-	reader = await send_command(message_type, command)
-	return await get_response_json(reader)
+async def send_receive_json(message_type, command=''):
+	reader = await send(message_type, command)
+	return await receive_json(reader)
+
+async def run_command(command):
+	return await send_receive_json('RUN_COMMAND', command)
+
+async def get_workspaces():
+	return await send_receive_json('GET_WORKSPACES')
+
+async def subscribe(events):
+	return await send('SUBSCRIBE', events)
 
 async def get_outputs():
-	return sorted(await run_command_json('get_outputs'), key = lambda o : o['rect']['x'])
+	return sorted(await send_receive_json('GET_OUTPUTS'), key = lambda o : o['rect']['x'])

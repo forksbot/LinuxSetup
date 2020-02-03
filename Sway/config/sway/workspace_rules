@@ -29,9 +29,11 @@ async def shell_command(command):
 	stdout, stderr = await proc.communicate()
 	return stdout.decode('utf-8').rstrip("\n")
 
+
 async def main():
+
 	# Kill other running instances
-	pids = (await shell_command("pgrep -f \"python3 .*/workspace_rules_ipc\"")).split("\n")
+	pids = (await shell_command("pgrep -f \"python3 .*/workspace_rules\"")).split("\n")
 	pids.remove(str(os.getpid()))
 	for pid in pids:
 		asyncio.create_task(shell_command("kill {}".format(pid)))
@@ -41,8 +43,8 @@ async def main():
 	outputs = [output['name'] for output in outputs_info]
 
 	# Open subscribe IPC connection
-	reader = await swayipc.send_command('subscribe', "['workspace']")
-	response = await swayipc.get_response_json(reader)
+	reader = await swayipc.subscribe("['workspace']")
+	response = await swayipc.receive_json(reader)
 	if not response['success']:
 		print("Could not open IPC connection to Sway", file=sys.stderr)
 		sys.exit(1)
@@ -51,7 +53,7 @@ async def main():
 	while True:
 
 		# Get events from connection
-		event = await swayipc.get_response_json(reader)
+		event = await swayipc.receive_json(reader)
 
 		# Skip events that aren't focus events
 		if event['change'] != 'focus':
@@ -65,7 +67,7 @@ async def main():
 
 		# Scale output
 		scale = rules['scale']
-		await swayipc.run_command('run_command', "output {} scale {}".format(output, scale))
+		await swayipc.run_command("output {} scale {}".format(output, scale))
 
 		# Re-position all outputs to right of the output that was rescaled
 		if output_i + 1 < len(outputs):
@@ -74,7 +76,7 @@ async def main():
 			for i in range(output_i + 1, len(outputs)):
 				output_x = sum(outputs_width[0 : i])
 				if output_x > 0:
-					await swayipc.run_command('run_command', "output {} position {} 0".format(outputs[i], round(output_x)))
+					await swayipc.run_command("output {} position {} 0".format(outputs[i], round(output_x)))
 
 
 asyncio.run(main())

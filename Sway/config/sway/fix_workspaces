@@ -40,9 +40,9 @@ async def main():
 				good += 1
 
 	# Start by ensuring both monitors are scaled
-	await swayipc.run_command("run_command", "output DP-1 scale 2 ; output DP-2 scale 2 ; output DP-2 position 1920 0")
+	await swayipc.run_command("output DP-1 scale 2 ; output DP-2 scale 2 ; output DP-2 position 1920 0")
 
-	workspaces = await swayipc.run_command_json("get_workspaces")
+	workspaces = await swayipc.get_workspaces()
 	focused = '1'
 	visible = []
 	delay = 0.1
@@ -71,24 +71,24 @@ async def main():
 		other_output = wc[1]
 		original_output = wc[2]
 		correct_output = outputs[(int(workspace) + 1) % 2]
-		await swayipc.run_command("run_command", "workspace {0} ; move workspace to output {1}".format(workspace, other_output))
+		await swayipc.run_command("workspace {0} ; move workspace to output {1}".format(workspace, other_output))
 		await asyncio.sleep(delay)
-		await swayipc.run_command("run_command", "workspace {0} ; move workspace to output {1}".format(workspace, original_output))
+		await swayipc.run_command("workspace {0} ; move workspace to output {1}".format(workspace, original_output))
 		await asyncio.sleep(delay)
-		await swayipc.run_command("run_command", "workspace {0} ; move workspace to output {1}".format(workspace, correct_output))
+		await swayipc.run_command("workspace {0} ; move workspace to output {1}".format(workspace, correct_output))
 		await asyncio.sleep(delay)
 
 	# Ensure visible workspaces are focused to make them visible
 	for w in visible:
-		await swayipc.run_command("run_command", "workspace {}".format(w))
+		await swayipc.run_command("workspace {}".format(w))
 		await asyncio.sleep(delay)
 
 	# Focus originally focused workspace
-	await swayipc.run_command("run_command", "workspace {}".format(focused))
+	await swayipc.run_command("workspace {}".format(focused))
 
 	# Reload
 	await asyncio.sleep(0.5)
-	await swayipc.run_command("run_command", "reload")
+	await swayipc.run_command("reload")
 
 
 asyncio.run(main())
