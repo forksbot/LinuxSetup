@@ -1,82 +1,146 @@
 #!/usr/bin/python3
 
+import asyncio
 import json
 import os
-import subprocess
 import sys
-import time
 
 
-def run_command(command):
-	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	return result.stdout.decode('utf-8').rstrip("\n")
+socket = os.environ['SWAYSOCK']
 
-def get_outputs():
-	return sorted(json.loads(run_command("swaymsg -t get_outputs")), key = lambda o : o['rect']['x'])
+magic_string = 'i3-ipc'
+magic_string_len = len(magic_string)
+
+message_types = {
+	'RUN_COMMAND': 0,
+	'GET_WORKSPACES': 1,
+	'SUBSCRIBE': 2,
+	'GET_OUTPUTS': 3,
+	'GET_TREE': 4,
+	'GET_MARKS': 5,
+	'GET_BAR_CONFIG': 6,
+	'GET_VERSION': 7,
+	'GET_BINDING_MODES': 8,
+	'GET_CONFIG': 9,
+	'SEND_TICK': 10,
+	'SYNC': 11,
+	'GET_INPUTS': 100,
+	'GET_SEATS': 101,
+}
 
 
-pids = run_command("pgrep -f \"python3 .*/fix_workspace\"").split("\n")
-pids.remove(str(os.getpid()))
-if len(pids) > 0:
-	sys.exit(0)
+async def shell_command(command):
+	proc = await asyncio.create_subprocess_shell(
+		command,
+		stdout=asyncio.subprocess.PIPE,
+		stderr=asyncio.subprocess.PIPE)
+	stdout, stderr = await proc.communicate()
+	return stdout.decode('utf-8').rstrip("\n")
 
-outputs = ['DP-1', 'DP-2']
-good = 0
-while good < 3:
-	time.sleep(1)
-	outputs_info = get_outputs()
-	if len(outputs_info) < len (outputs):
-		good = 0
-	else:
-		for o in outputs_info:
-			if not o['dpms']:
-				good = 0
-				break
+async def send_command(message_type, command=''):
+	payload_type = message_types[message_type.upper()]
+	payload_length = len(command)
+
+	data = magic_string.encode()
+	data += payload_length.to_bytes(4, sys.byteorder)
+	data += payload_type.to_bytes(4, sys.byteorder)
+	data += command.encode()
+
+	(reader, writer) = await asyncio.open_unix_connection(path=socket)
+	writer.write(data)
+	return reader
+
+async def get_response(reader):
+	header = await reader.read(magic_string_len + 8)
+	size = int.from_bytes(header[magic_string_len : magic_string_len + 4], sys.byteorder)
+	return (await reader.read(size)).decode()
+
+async def get_response_json(reader):
+	response = await get_response(reader)
+	return json.loads(response)
+
+async def run_command(message_type, command=''):
+	reader = await send_command(message_type, command)
+	return await get_response(reader)
+
+async def get_outputs():
+	return sorted(json.loads(await run_command('get_outputs')), key = lambda o : o['rect']['x'])
+
+
+async def main():
+	# Exit if there is another running instance
+	pids = (await shell_command("pgrep -f \"python3 .*/fix_workspace\"")).split("\n")
+	pids.remove(str(os.getpid()))
+	if len(pids) > 0:
+		sys.exit(0)
+
+	# Wait until both monitors are in state dpms=true for 3 consequtive seconds
+	outputs = ['DP-1', 'DP-2']
+	good = 0
+	while good < 3:
+		await asyncio.sleep(1)
+		outputs_info = await get_outputs()
+		if len(outputs_info) < len (outputs):
+			good = 0
 		else:
-			good += 1
+			for o in outputs_info:
+				if not o['dpms']:
+					good = 0
+					break
+			else:
+				good += 1
 
-run_command("swaymsg \"output DP-1 scale 2 ; output DP-2 scale 2 ; output DP-2 position 1920 0\"")
+	# Start by ensuring both monitors are scaled
+	await run_command("run_command", "output DP-1 scale 2 ; output DP-2 scale 2 ; output DP-2 position 1920 0")
 
-output = run_command("swaymsg -t get_workspaces")
-workspaces = json.loads(output)
-focused = '1'
-visible = []
-delay = 0.1
+	output = await run_command("get_workspaces")
+	workspaces = json.loads(output)
+	focused = '1'
+	visible = []
+	delay = 0.1
 
-workspace_commands = []
-for workspace in workspaces:
-	name = workspace['name']
-	if name == 'Game':
-		continue
-	if len(workspace['focus']) == 0:
-		continue
-	if workspace['focused']:
-		focused = name
-	if workspace['visible'] and not workspace['focused']:
-		visible.append(name)
-	output = workspace['output']
-	other_output = 'DP-2'
-	if output == 'DP-2':
-		other_output = 'DP-1'
-	workspace_commands.append([name, other_output, output])
+	# For each workspace, add it to a list if it's not "Game" and has apps on it
+	workspace_commands = []
+	for workspace in workspaces:
+		name = workspace['name']
+		if name == 'Game':
+			continue
+		if len(workspace['focus']) == 0:
+			continue
+		if workspace['focused']:
+			focused = name
+		if workspace['visible'] and not workspace['focused']:
+			visible.append(name)
+		output = workspace['output']
+		other_output = 'DP-2'
+		if output == 'DP-2':
+			other_output = 'DP-1'
+		workspace_commands.append([name, other_output, output])
 
-for wc in workspace_commands:
-	workspace = wc[0]
-	other_output = wc[1]
-	original_output = wc[2]
-	correct_output = outputs[(int(workspace) + 1) % 2]
-	run_command("swaymsg \"workspace {0} ; move workspace to output {1}\"".format(workspace, other_output))
-	time.sleep(delay)
-	run_command("swaymsg \"workspace {0} ; move workspace to output {1}\"".format(workspace, original_output))
-	time.sleep(delay)
-	run_command("swaymsg \"workspace {0} ; move workspace to output {1}\"".format(workspace, correct_output))
-	time.sleep(delay)
+	# Move each workspace to the other monitor then back again
+	for wc in workspace_commands:
+		workspace = wc[0]
+		other_output = wc[1]
+		original_output = wc[2]
+		correct_output = outputs[(int(workspace) + 1) % 2]
+		await run_command("run_command", "workspace {0} ; move workspace to output {1}".format(workspace, other_output))
+		await asyncio.sleep(delay)
+		await run_command("run_command", "workspace {0} ; move workspace to output {1}".format(workspace, original_output))
+		await asyncio.sleep(delay)
+		await run_command("run_command", "workspace {0} ; move workspace to output {1}".format(workspace, correct_output))
+		await asyncio.sleep(delay)
 
-for w in visible:
-	run_command("swaymsg \"workspace {}\"".format(w))
-	time.sleep(delay)
+	# Ensure visible workspaces are focused to make them visible
+	for w in visible:
+		await run_command("run_command", "workspace {}".format(w))
+		await asyncio.sleep(delay)
 
-run_command("swaymsg \"workspace {}\"".format(focused))
+	# Focus originally focused workspace
+	await run_command("run_command", "workspace {}".format(focused))
 
-time.sleep(1)
-run_command("swaymsg \"reload\"")
+	# Reload
+	await asyncio.sleep(0.5)
+	await run_command("run_command", "reload")
+
+
+asyncio.run(main())
