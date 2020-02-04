@@ -210,6 +210,18 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+g move container to workspace Game
 
+# Move all containers in focused workspace to another workspace
+bindsym Control+$mod+Shift+1 [workspace=\"__focused__\"] move container to workspace 1
+bindsym Control+$mod+Shift+2 [workspace=\"__focused__\"] move container to workspace 2
+bindsym Control+$mod+Shift+3 [workspace=\"__focused__\"] move container to workspace 3
+bindsym Control+$mod+Shift+4 [workspace=\"__focused__\"] move container to workspace 4
+bindsym Control+$mod+Shift+5 [workspace=\"__focused__\"] move container to workspace 5
+bindsym Control+$mod+Shift+6 [workspace=\"__focused__\"] move container to workspace 6
+bindsym Control+$mod+Shift+7 [workspace=\"__focused__\"] move container to workspace 7
+bindsym Control+$mod+Shift+8 [workspace=\"__focused__\"] move container to workspace 8
+bindsym Control+$mod+Shift+9 [workspace=\"__focused__\"] move container to workspace 9
+bindsym Control+$mod+Shift+0 [workspace=\"__focused__\"] move container to workspace 10
+
 # Move focused container to previous / next workspace and then switch to that workspace
 bindsym $mod+Shift+Control+Prior move container to workspace prev ; workspace prev
 bindsym $mod+Shift+Control+Next  move container to workspace next ; workspace next
