@@ -59,7 +59,10 @@ lsblk -o NAME,MOUNTPOINT,SIZE,TYPE,UUID
 echo "title Arch
 linux   /vmlinuz-linux
 initrd  /initramfs-linux.img
-options root=UUID=<UUID> rw quiet" > /boot/loader/entries/arch.conf
+options root=UUID=<UUID> rw quiet loglevel=3 vga=current rd.systemd.show_status=auto rd.udev.log_priority=3 vt.global_cursor_default=0" > /boot/loader/entries/arch.conf
+
+# Silent boot - fsck section
+https://wiki.archlinux.org/index.php/Silent_boot
 
 
 systemctl enable dhcpcd.service
