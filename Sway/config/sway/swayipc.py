@@ -42,6 +42,10 @@ async def send(message_type, command=''):
 
 	(reader, writer) = await asyncio.open_unix_connection(path=socket)
 	writer.write(data)
+	await writer.drain()
+	writer.close()
+	await writer.wait_closed()
+	
 	return reader
 
 async def receive(reader):
