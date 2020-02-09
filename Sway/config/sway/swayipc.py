@@ -73,11 +73,8 @@ async def send_receive(message_type, command=''):
 	return response
 
 async def send_receive_json(message_type, command=''):
-	connection = SwayIPCConnection()
-	await connection.send(message_type, command)
-	response = await connection.receive_json()
-	await connection.close()
-	return response
+	response = await send_receive(message_type, command)
+	return json.loads(response)
 
 
 async def run_command(command):
