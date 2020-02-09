@@ -87,7 +87,7 @@ async def get_workspaces():
 	return await send_receive_json('GET_WORKSPACES')
 
 async def subscribe(events):
-	return await SwayIPCConnection.new('SUBSCRIBE', events)
+	return await SwayIPCConnection.new('SUBSCRIBE', json.dumps(events))
 
 async def get_outputs():
 	return sorted(await send_receive_json('GET_OUTPUTS'), key = lambda o : o['rect']['x'])
