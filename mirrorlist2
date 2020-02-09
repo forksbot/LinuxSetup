@@ -1,0 +1,910 @@
+#0.33713433599768905
+Server = http://mirrors.evowise.com/archlinux/$repo/os/$arch
+#0.3912167519956711
+Server = https://mirror.bytemark.co.uk/archlinux/$repo/os/$arch
+#0.40070894199743634
+Server = http://mirrors.ukfast.co.uk/sites/archlinux.org/$repo/os/$arch
+#0.4190845819975948
+Server = http://archlinux.mirror.pcextreme.nl/$repo/os/$arch
+#0.42008586400334025
+Server = http://www.mirrorservice.org/sites/ftp.archlinux.org/$repo/os/$arch
+#0.4285792599985143
+Server = https://mirror.osbeck.com/archlinux/$repo/os/$arch
+#0.4354131200016127
+Server = https://mirror.cyberbits.eu/archlinux/$repo/os/$arch
+#0.44016312399617163
+Server = https://archlinux.mirror.pcextreme.nl/$repo/os/$arch
+#0.44020192800235236
+Server = http://mirror.netcologne.de/archlinux/$repo/os/$arch
+#0.44779730300069787
+Server = http://mirror.koddos.net/archlinux/$repo/os/$arch
+#0.4574705580016598
+Server = https://mirrors.xtom.nl/archlinux/$repo/os/$arch
+#0.45798521200049436
+Server = https://ftp.heanet.ie/mirrors/ftp.archlinux.org/$repo/os/$arch
+#0.47013146599783795
+Server = https://www.mirrorservice.org/sites/ftp.archlinux.org/$repo/os/$arch
+#0.4752717970040976
+Server = http://ftp.heanet.ie/mirrors/ftp.archlinux.org/$repo/os/$arch
+#0.48184345500339987
+Server = https://arch.yourlabs.org/$repo/os/$arch
+#0.48368439299520105
+Server = https://mirror.netcologne.de/archlinux/$repo/os/$arch
+#0.48368855100125074
+Server = https://mirrors.celianvdb.fr/archlinux/$repo/os/$arch
+#0.4856962679987191
+Server = http://mirror-archlinux.webruimtehosting.nl/$repo/os/$arch
+#0.4940449619971332
+Server = https://mirror-archlinux.webruimtehosting.nl/$repo/os/$arch
+#0.49745450699992944
+Server = http://mirror.cyberbits.eu/archlinux/$repo/os/$arch
+#0.5007134530023905
+Server = https://mirror.wtnet.de/arch/$repo/os/$arch
+#0.510907401003351
+Server = https://mirror.koddos.net/archlinux/$repo/os/$arch
+#0.5109117679967312
+Server = https://archlinux.mirror.liteserver.nl/$repo/os/$arch
+#0.5129149490021518
+Server = https://mirror.selfnet.de/archlinux/$repo/os/$arch
+#0.5151030089982669
+Server = https://archlinux.uk.mirror.allworldit.com/archlinux/$repo/os/$arch
+#0.522274955001194
+Server = https://mirror.neostrada.nl/archlinux/$repo/os/$arch
+#0.5238281830024789
+Server = http://mirrors.celianvdb.fr/archlinux/$repo/os/$arch
+#0.5244743069997639
+Server = http://archlinux.mirror.liteserver.nl/$repo/os/$arch
+#0.5261593310060562
+Server = https://mirrors.niyawe.de/archlinux/$repo/os/$arch
+#0.5284191070022644
+Server = http://mirrors.niyawe.de/archlinux/$repo/os/$arch
+#0.5419327889976557
+Server = http://archlinux.rezopole.net/$repo/os/$arch
+#0.5536695339978905
+Server = http://mirrors.xtom.nl/archlinux/$repo/os/$arch
+#0.5538339810009347
+Server = http://ftp.hosteurope.de/mirror/ftp.archlinux.org/$repo/os/$arch
+#0.570385921993875
+Server = http://mirror.chaoticum.net/arch/$repo/os/$arch
+#0.5741325760027394
+Server = https://mirrors.eric.ovh/arch/$repo/os/$arch
+#0.6050895759981358
+Server = https://ger.mirror.pkgbuild.com/$repo/os/$arch
+#0.6146237349967123
+Server = http://mirror.archlinux.ikoula.com/archlinux/$repo/os/$arch
+#0.6149346809979761
+Server = https://mirror.pkgbuild.com/$repo/os/$arch
+#0.6202092329986044
+Server = http://mirrors.dotsrc.org/archlinux/$repo/os/$arch
+#0.6337076260024332
+Server = http://pkg.adfinis-sygroup.ch/archlinux/$repo/os/$arch
+#0.6463582099968335
+Server = https://arch.eckner.net/archlinux/$repo/os/$arch
+#0.6472501169992029
+Server = https://mirrors.dotsrc.org/archlinux/$repo/os/$arch
+#0.6477838599967072
+Server = http://archlinux.mirror.kangaroot.net/$repo/os/$arch
+#0.6505840179961524
+Server = http://archlinux.mirror.iphh.net/$repo/os/$arch
+#0.6609222459956072
+Server = https://arch.jensgutermuth.de/$repo/os/$arch
+#0.6702129500044975
+Server = https://mirror.puzzle.ch/archlinux/$repo/os/$arch
+#0.6731597410034738
+Server = http://ftp.uni-kl.de/pub/linux/archlinux/$repo/os/$arch
+#0.6741118540012394
+Server = http://archlinux.koyanet.lv/archlinux/$repo/os/$arch
+#0.6752201799972681
+Server = http://ftp-stud.hs-esslingen.de/pub/Mirrors/archlinux/$repo/os/$arch
+#0.681871789995057
+Server = http://mirrors.n-ix.net/archlinux/$repo/os/$arch
+#0.6850132959953044
+Server = http://mirror.wtnet.de/arch/$repo/os/$arch
+#0.6913711180022801
+Server = https://mirror.chaoticum.net/arch/$repo/os/$arch
+#0.6913880110005266
+Server = http://mirror.ibcp.fr/pub/archlinux/$repo/os/$arch
+#0.6988260990037816
+Server = http://archmirror.hbit.sztaki.hu/archlinux/$repo/os/$arch
+#0.7067768559936667
+Server = http://mirror.easyname.at/archlinux/$repo/os/$arch
+#0.7068884879990947
+Server = https://mirror.metalgamer.eu/archlinux/$repo/os/$arch
+#0.7089739319999353
+Server = http://mirror.orbit-os.com/archlinux/$repo/os/$arch
+#0.7244083269979456
+Server = http://www.gutscheindrache.com/mirror/archlinux/$repo/os/$arch
+#0.7285621809933218
+Server = https://mirror.orbit-os.com/archlinux/$repo/os/$arch
+#0.7295268949965248
+Server = http://ftp.fi.muni.cz/pub/linux/arch/$repo/os/$arch
+#0.7309284470029525
+Server = http://archlinux.mirror.wearetriple.com/$repo/os/$arch
+#0.7337118650029879
+Server = http://archlinux.mirrors.uk2.net/$repo/os/$arch
+#0.7442149439957575
+Server = https://mirror.gnomus.de/$repo/os/$arch
+#0.7452668699988862
+Server = http://arch.jensgutermuth.de/$repo/os/$arch
+#0.7453986469990923
+Server = https://pkg.adfinis-sygroup.ch/archlinux/$repo/os/$arch
+#0.7516460839979118
+Server = https://dist-mirror.fem.tu-ilmenau.de/archlinux/$repo/os/$arch
+#0.7537056090004626
+Server = http://artfiles.org/archlinux.org/$repo/os/$arch
+#0.7615554110016092
+Server = http://packages.oth-regensburg.de/archlinux/$repo/os/$arch
+#0.7689907399981166
+Server = http://mirror.datacenter.by/pub/archlinux/$repo/os/$arch
+#0.7693027799978154
+Server = http://mirror.yandex.ru/archlinux/$repo/os/$arch
+#0.7716439850046299
+Server = https://packages.oth-regensburg.de/archlinux/$repo/os/$arch
+#0.7904740390004008
+Server = https://mirror.wormhole.eu/archlinux/$repo/os/$arch
+#0.7911911109986249
+Server = https://ftp.myrveln.se/pub/linux/archlinux/$repo/os/$arch
+#0.7967324829951394
+Server = http://mirror.united-gameserver.de/archlinux/$repo/os/$arch
+#0.7974446519947378
+Server = https://arch-mirror.cloud.louifox.house/$repo/os/$arch
+#0.8062162710048142
+Server = https://archlinux.mirror.wearetriple.com/$repo/os/$arch
+#0.8097913599995081
+Server = https://mirror.pseudoform.org/$repo/os/$arch
+#0.8133047469964367
+Server = http://mirrors.nic.cz/archlinux/$repo/os/$arch
+#0.8178551410019281
+Server = https://archimonde.ts.si/archlinux/$repo/os/$arch
+#0.8206695789995138
+Server = http://ftp.lysator.liu.se/pub/archlinux/$repo/os/$arch
+#0.8232698009960586
+Server = https://mirror.thekinrar.fr/archlinux/$repo/os/$arch
+#0.8322188579986687
+Server = http://mirror.neostrada.nl/archlinux/$repo/os/$arch
+#0.8342222770006629
+Server = https://mirror.yandex.ru/archlinux/$repo/os/$arch
+#0.8423843109994777
+Server = http://mirror.system.is/arch/$repo/os/$arch
+#0.843086075001338
+Server = https://mirror.netweaver.uk/archlinux/$repo/os/$arch
+#0.8507096910034306
+Server = https://ftp.lysator.liu.se/pub/archlinux/$repo/os/$arch
+#0.852252946999215
+Server = https://mirror.bethselamin.de/$repo/os/$arch
+#0.854370201996062
+Server = http://ftp.myrveln.se/pub/linux/archlinux/$repo/os/$arch
+#0.8580570609992719
+Server = http://mirror.selfnet.de/archlinux/$repo/os/$arch
+#0.8617962749995058
+Server = https://mirror.system.is/arch/$repo/os/$arch
+#0.8673428710026201
+Server = http://archimonde.ts.si/archlinux/$repo/os/$arch
+#0.8773545980002382
+Server = http://archlinux.de-labrusse.fr/$repo/os/$arch
+#0.8948574569949415
+Server = http://mirrors.netix.net/archlinux/$repo/os/$arch
+#0.895810034002352
+Server = http://mirrors.atviras.lt/archlinux/$repo/os/$arch
+#0.9040413879993139
+Server = http://mirrors.standaloneinstaller.com/archlinux/$repo/os/$arch
+#0.916902074997779
+Server = https://mirrors.ims.nksc.lt/archlinux/$repo/os/$arch
+#0.9231926400025259
+Server = https://archlinux.mailtunnel.eu/$repo/os/$arch
+#0.9240419910056517
+Server = https://mirrors.atviras.lt/archlinux/$repo/os/$arch
+#0.9356538779975381
+Server = http://mirror.terrahost.no/linux/archlinux/$repo/os/$arch
+#0.935660856004688
+Server = https://mirrors.n-ix.net/archlinux/$repo/os/$arch
+#0.9469226020009955
+Server = https://osl.ugr.es/archlinux/$repo/os/$arch
+#0.9504078420068254
+Server = http://ftp.acc.umu.se/mirror/archlinux/$repo/os/$arch
+#0.95850733199768
+Server = http://mirror.host.ag/archlinux/$repo/os/$arch
+#0.9591864199974225
+Server = https://arch.unixpeople.org/$repo/os/$arch
+#0.9729217130006873
+Server = https://mirrors.arnoldthebat.co.uk/archlinux/$repo/os/$arch
+#0.9729705360005028
+Server = http://arch.yourlabs.org/$repo/os/$arch
+#0.9765912090006168
+Server = http://mirror.onevip.mk/archlinux/$repo/os/$arch
+#0.9896973430004437
+Server = http://archlinux.mirror.garr.it/archlinux/$repo/os/$arch
+#0.9904323790033231
+Server = https://ftp.acc.umu.se/mirror/archlinux/$repo/os/$arch
+#0.990610447996005
+Server = https://archlinux.ip-connect.vn.ua/$repo/os/$arch
+#1.0054171020019567
+Server = https://mirrors.pidginhost.com/arch/$repo/os/$arch
+#1.0150454469985561
+Server = http://mirror.bytemark.co.uk/archlinux/$repo/os/$arch
+#1.0226031029960723
+Server = http://archlinux.mirrors.benatherton.com/$repo/os/$arch
+#1.0236756710000918
+Server = https://mirror.srv.fail/archlinux/$repo/os/$arch
+#1.02907490600046
+Server = http://archlinux.honkgong.info/$repo/os/$arch
+#1.0349422350045643
+Server = http://archlinux.mirrors.linux.ro/$repo/os/$arch
+#1.0400429550063564
+Server = http://mirror.oldsql.cc/archlinux/$repo/os/$arch
+#1.0521622730011586
+Server = http://ftp.linux.cz/pub/linux/arch/$repo/os/$arch
+#1.065273767002509
+Server = http://arch.mirror.constant.com/$repo/os/$arch
+#1.0656549620034639
+Server = http://ftpmirror.infania.net/mirror/archlinux/$repo/os/$arch
+#1.0667330490032327
+Server = https://mirror.oldsql.cc/archlinux/$repo/os/$arch
+#1.073048011996434
+Server = http://mirrors.ims.nksc.lt/archlinux/$repo/os/$arch
+#1.0762702940046438
+Server = http://arch.eckner.net/archlinux/$repo/os/$arch
+#1.081925925995165
+Server = https://mirror.rackspace.com/archlinux/$repo/os/$arch
+#1.093423141996027
+Server = https://ftp.rnl.tecnico.ulisboa.pt/pub/archlinux/$repo/os/$arch
+#1.094716444000369
+Server = http://mirrors.pidginhost.com/arch/$repo/os/$arch
+#1.1045224609988509
+Server = http://mirror.metalgamer.eu/archlinux/$repo/os/$arch
+#1.1240674770015175
+Server = http://mirror.pseudoform.org/$repo/os/$arch
+#1.1276482089961064
+Server = https://mirror.i3d.net/pub/archlinux/$repo/os/$arch
+#1.14646393199655
+Server = https://lon.mirror.rackspace.com/archlinux/$repo/os/$arch
+#1.1883205639969674
+Server = https://arch.mirror.constant.com/$repo/os/$arch
+#1.2025145579973469
+Server = http://mir.archlinux.fr/$repo/os/$arch
+#1.2347943030035822
+Server = https://glua.ua.pt/pub/archlinux/$repo/os/$arch
+#1.2792367860020022
+Server = http://mirror.siena.edu/archlinux/$repo/os/$arch
+#1.2864511459993082
+Server = https://mirrors.rit.edu/archlinux/$repo/os/$arch
+#1.2868701080005849
+Server = http://ftp.rnl.tecnico.ulisboa.pt/pub/archlinux/$repo/os/$arch
+#1.2872532029941794
+Server = https://mirror.stephen304.com/archlinux/$repo/os/$arch
+#1.2924361389959813
+Server = http://mirror.rackspace.com/archlinux/$repo/os/$arch
+#1.2930715969996527
+Server = http://arch.softver.org.mk/archlinux/$repo/os/$arch
+#1.2952218780046678
+Server = http://archlinux.ip-connect.vn.ua/$repo/os/$arch
+#1.2971111219958402
+Server = https://mirror.lnx.sk/pub/linux/archlinux/$repo/os/$arch
+#1.2984172560027218
+Server = http://glua.ua.pt/pub/archlinux/$repo/os/$arch
+#1.3207451240014052
+Server = http://lon.mirror.rackspace.com/archlinux/$repo/os/$arch
+#1.3288002709959983
+Server = http://mirror.netweaver.uk/archlinux/$repo/os/$arch
+#1.3313196980016073
+Server = http://linux.rz.rub.de/archlinux/$repo/os/$arch
+#1.3385042369991424
+Server = http://iad.mirrors.misaka.one/archlinux/$repo/os/$arch
+#1.349693953001406
+Server = https://iad.mirrors.misaka.one/archlinux/$repo/os/$arch
+#1.3545086860031006
+Server = http://archlinux.vi-di.fr/$repo/os/$arch
+#1.3772272569985944
+Server = http://mirrors.rit.edu/archlinux/$repo/os/$arch
+#1.3876458640006604
+Server = http://mirror.puzzle.ch/archlinux/$repo/os/$arch
+#1.3956277299948852
+Server = https://archlinux.mivzakim.net/$repo/os/$arch
+#1.3993336860003183
+Server = http://ftp.rediris.es/mirror/archlinux/$repo/os/$arch
+#1.428428981002071
+Server = http://mirrors.advancedhosters.com/archlinux/$repo/os/$arch
+#1.456379059003666
+Server = http://mirror.stephen304.com/archlinux/$repo/os/$arch
+#1.4635988689988153
+Server = http://mirror.digitalnova.at/archlinux/$repo/os/$arch
+#1.4693111489978037
+Server = http://mirror.veriteknik.net.tr/archlinux/$repo/os/$arch
+#1.4758074920027866
+Server = https://archmirror.lavatech.top/$repo/os/$arch
+#1.509729060002428
+Server = http://archlinux.uk.mirror.allworldit.com/archlinux/$repo/os/$arch
+#1.5213239499935298
+Server = http://archbtw.linuxpride.com/$repo/os/$arch
+#1.5535528180043912
+Server = http://ftp.nluug.nl/os/Linux/distr/archlinux/$repo/os/$arch
+#1.577639902003284
+Server = http://ftp.wrz.de/pub/archlinux/$repo/os/$arch
+#1.5800810719956644
+Server = http://mirror.math.princeton.edu/pub/archlinux/$repo/os/$arch
+#1.611753642995609
+Server = http://arch.nimukaito.net/$repo/os/$arch
+#1.6136277610057732
+Server = https://archlinux.thaller.ws/$repo/os/$arch
+#1.617303790000733
+Server = https://ftp.fau.de/archlinux/$repo/os/$arch
+#1.6289048530015862
+Server = http://mirror.cs.vt.edu/pub/ArchLinux/$repo/os/$arch
+#1.6341516799948295
+Server = http://arch.serverspace.co.uk/arch/$repo/os/$arch
+#1.6355949770004372
+Server = http://arlm.tyzoid.com/$repo/os/$arch
+#1.6406798969983356
+Server = http://mirror.vtti.vt.edu/archlinux/$repo/os/$arch
+#1.6603838560040458
+Server = http://ftp.vectranet.pl/archlinux/$repo/os/$arch
+#1.6699328569957288
+Server = http://archlinux.mirror.rafal.ca/$repo/os/$arch
+#1.7063902100053383
+Server = https://mirror.fra10.de.leaseweb.net/archlinux/$repo/os/$arch
+#1.7146345869987272
+Server = http://mirror.truenetwork.ru/archlinux/$repo/os/$arch
+#1.7307488929945976
+Server = https://mirror.mikrogravitation.org/archlinux/$repo/os/$arch
+#1.7342015380054363
+Server = https://mirror.ubrco.de/archlinux/$repo/os/$arch
+#1.7397275289986283
+Server = http://repo.miserver.it.umich.edu/archlinux/$repo/os/$arch
+#1.7473412180042942
+Server = https://muug.ca/mirror/archlinux/$repo/os/$arch
+#1.7503011919980054
+Server = https://mirror.f4st.host/archlinux/$repo/os/$arch
+#1.8146893020020798
+Server = https://ftp.wrz.de/pub/archlinux/$repo/os/$arch
+#1.832831838997663
+Server = http://mirrors.acm.wpi.edu/archlinux/$repo/os/$arch
+#1.8463335339984042
+Server = http://archlinux.dynamict.se/$repo/os/$arch
+#1.8854992899941863
+Server = http://mirrors.gigenet.com/archlinux/$repo/os/$arch
+#1.9160997680010041
+Server = https://mirror.csclub.uwaterloo.ca/archlinux/$repo/os/$arch
+#1.9209447009998257
+Server = http://mirror.lastmikoi.net/archlinux/$repo/os/$arch
+#1.9621675870002946
+Server = http://mirror.lnx.sk/pub/linux/archlinux/$repo/os/$arch
+#1.9663680529993144
+Server = http://arch.mirrors.pair.com/$repo/os/$arch
+#1.9905505830029142
+Server = https://archlinux.dynamict.se/$repo/os/$arch
+#2.0254480299990973
+Server = http://archmirror1.octyl.net/$repo/os/$arch
+#2.075443074994837
+Server = https://arlm.tyzoid.com/$repo/os/$arch
+#2.106645487001515
+Server = http://mirrors.mirjamali.ir/archlinux/$repo/os/$arch
+#2.111196160003601
+Server = https://mirror.dal10.us.leaseweb.net/archlinux/$repo/os/$arch
+#2.1142945419996977
+Server = https://ftp.halifax.rwth-aachen.de/archlinux/$repo/os/$arch
+#2.1318602969986387
+Server = https://mirror.dkm.cz/archlinux/$repo/os/$arch
+#2.132841135004128
+Server = https://mirror.reisenbauer.ee/archlinux/$repo/os/$arch
+#2.1488452239937033
+Server = https://mirror.ungleich.ch/mirror/packages/archlinux/$repo/os/$arch
+#2.1612936329984223
+Server = http://arch.mirror.far.fi/$repo/os/$arch
+#2.185442742003943
+Server = https://arch.nixlab.pl/$repo/os/$arch
+#2.1876770229937392
+Server = https://mirror.one.com/archlinux/$repo/os/$arch
+#2.200179567000305
+Server = http://archlinux.zepto.cloud/$repo/os/$arch
+#2.201759408999351
+Server = https://mirror.mijn.host/archlinux/$repo/os/$arch
+#2.2140151999992668
+Server = https://ind.mirror.pkgbuild.com/$repo/os/$arch
+#2.2180974379953113
+Server = https://mirror.neuf.no/archlinux/$repo/os/$arch
+#2.2343635770012042
+Server = http://mirrors.xtom.com/archlinux/$repo/os/$arch
+#2.2536313719974714
+Server = http://ftp.icm.edu.pl/pub/Linux/dist/archlinux/$repo/os/$arch
+#2.2606106829989585
+Server = https://ftp.sh.cvut.cz/arch/$repo/os/$arch
+#2.270420592998562
+Server = http://mirror.umd.edu/archlinux/$repo/os/$arch
+#2.3262755350006046
+Server = https://mirror.t-home.mk/archlinux/$repo/os/$arch
+#2.3414940049988218
+Server = https://mirror.wdc1.us.leaseweb.net/archlinux/$repo/os/$arch
+#2.361629040999105
+Server = https://mirrors.xtom.com/archlinux/$repo/os/$arch
+#2.368923773006827
+Server = https://ftp.icm.edu.pl/pub/Linux/dist/archlinux/$repo/os/$arch
+#2.3876177720012493
+Server = https://mirror.arizona.edu/archlinux/$repo/os/$arch
+#2.391712014999939
+Server = https://mirror.23media.com/archlinux/$repo/os/$arch
+#2.432123614999
+Server = http://archlinux.thaller.ws/$repo/os/$arch
+#2.450138510997931
+Server = https://archmirror1.octyl.net/$repo/os/$arch
+#2.5147157309984323
+Server = https://sgp.mirror.pkgbuild.com/$repo/os/$arch
+#2.548204717000772
+Server = https://mirrors.ukfast.co.uk/sites/archlinux.org/$repo/os/$arch
+#2.5515699879979366
+Server = http://mirror.t-home.mk/archlinux/$repo/os/$arch
+#2.5782990980005707
+Server = http://mirror.csclub.uwaterloo.ca/archlinux/$repo/os/$arch
+#2.583361277997028
+Server = http://mirror.arizona.edu/archlinux/$repo/os/$arch
+#2.5863062479984364
+Server = http://mirror.xeonbd.com/archlinux/$repo/os/$arch
+#2.592982746005873
+Server = http://ftp.tu-chemnitz.de/pub/linux/archlinux/$repo/os/$arch
+#2.5931069669968565
+Server = http://mirror.pmf.kg.ac.rs/archlinux/$repo/os/$arch
+#2.6034666530031245
+Server = http://mirrors.nav.ro/archlinux/$repo/os/$arch
+#2.604600515005586
+Server = http://archlinux.mailtunnel.eu/$repo/os/$arch
+#2.610594998994202
+Server = http://archlinux.mirror.liquidtelecom.com/$repo/os/$arch
+#2.61177953400329
+Server = https://mirrors.sonic.net/archlinux/$repo/os/$arch
+#2.6249171559975366
+Server = http://mirrors.sonic.net/archlinux/$repo/os/$arch
+#2.631633213000896
+Server = http://ftp.linux.org.tr/archlinux/$repo/os/$arch
+#2.6414049649974913
+Server = http://archlinux.polymorf.fr/$repo/os/$arch
+#2.6487866780007607
+Server = http://mirror.cedia.org.ec/archlinux/$repo/os/$arch
+#2.6737300219974713
+Server = http://mirror.cedille.club/archlinux/$repo/os/$arch
+#2.6809826199969393
+Server = https://gluttony.sin.cvut.cz/arch/$repo/os/$arch
+#2.717846797997481
+Server = http://mirrors.arnoldthebat.co.uk/archlinux/$repo/os/$arch
+#2.726844508004433
+Server = http://mirrors.udenar.edu.co/archlinux/$repo/os/$arch
+#2.7309369219947257
+Server = https://mirror.ams1.nl.leaseweb.net/archlinux/$repo/os/$arch
+#2.7945418680028524
+Server = http://mirror-hk.koddos.net/archlinux/$repo/os/$arch
+#2.8750196440014406
+Server = http://mirrors.nix.org.ua/linux/archlinux/$repo/os/$arch
+#2.926576785997895
+Server = http://ftp.snt.utwente.nl/pub/os/linux/archlinux/$repo/os/$arch
+#2.934593756996037
+Server = http://mirror.wdc1.us.leaseweb.net/archlinux/$repo/os/$arch
+#2.94117971000378
+Server = http://mirrors.cat.net/archlinux/$repo/os/$arch
+#2.978483722996316
+Server = https://mirror.sfo12.us.leaseweb.net/archlinux/$repo/os/$arch
+#3.031750269998156
+Server = https://mirror.mirohost.net/archlinux/$repo/os/$arch
+#3.0559962279949104
+Server = http://archlinux.uib.no/$repo/os/$arch
+#3.056043516997306
+Server = http://mirror.onet.pl/pub/mirrors/archlinux/$repo/os/$arch
+#3.0726748759989277
+Server = https://arch-mirror.wtako.net/$repo/os/$arch
+#3.079362399999809
+Server = http://ftp.uni-bayreuth.de/linux/archlinux/$repo/os/$arch
+#3.098340451993863
+Server = http://mirror.is.co.za/mirror/archlinux.org/$repo/os/$arch
+#3.101544812998327
+Server = https://mirrors.ocf.berkeley.edu/archlinux/$repo/os/$arch
+#3.1040683510000235
+Server = https://mirrors.nix.org.ua/linux/archlinux/$repo/os/$arch
+#3.113969489997544
+Server = https://mirrors.cat.net/archlinux/$repo/os/$arch
+#3.1189035449933726
+Server = https://mirrors.uni-plovdiv.net/archlinux/$repo/os/$arch
+#3.1761840539984405
+Server = http://mirror.nak-mci.ir/arch/$repo/os/$arch
+#3.2843662579980446
+Server = https://jpn.mirror.pkgbuild.com/$repo/os/$arch
+#3.2844075839966536
+Server = http://br.mirror.archlinux-br.org/$repo/os/$arch
+#3.2983342570005334
+Server = https://mirror-hk.koddos.net/archlinux/$repo/os/$arch
+#3.339897382000345
+Server = http://mirror.xtom.com.hk/archlinux/$repo/os/$arch
+#3.3502176769979997
+Server = http://ftp.u-strasbg.fr/linux/distributions/archlinux/$repo/os/$arch
+#3.3507435919964337
+Server = https://arch.nimukaito.net/$repo/os/$arch
+#3.3598975990025792
+Server = https://mirror.xtom.com.hk/archlinux/$repo/os/$arch
+#3.4223339230011334
+Server = http://mirrors.m247.ro/archlinux/$repo/os/$arch
+#3.4356597660007537
+Server = http://mirror.es.its.nyu.edu/archlinux/$repo/os/$arch
+#3.464038464000623
+Server = http://linorg.usp.br/archlinux/$repo/os/$arch
+#3.5357060179958353
+Server = http://ftp.byfly.by/pub/archlinux/$repo/os/$arch
+#3.542235091998009
+Server = https://archlinux.mirror.liquidtelecom.com/$repo/os/$arch
+#3.6055259720014874
+Server = https://arch.mirror.square-r00t.net/$repo/os/$arch
+#3.611133131002134
+Server = http://mirror.0x.sg/archlinux/$repo/os/$arch
+#3.62498953800241
+Server = http://mirror2.totbb.net/archlinux/$repo/os/$arch
+#3.6502449170002365
+Server = http://f.archlinuxvn.org/archlinux/$repo/os/$arch
+#3.658652425998298
+Server = http://mirror.mijn.host/archlinux/$repo/os/$arch
+#3.6925675579987
+Server = http://ftp.cc.uoc.gr/mirrors/linux/archlinux/$repo/os/$arch
+#3.7017978010044317
+Server = https://mirror.init7.net/archlinux/$repo/os/$arch
+#3.7892372279966366
+Server = http://mirror.ufro.cl/archlinux/$repo/os/$arch
+#3.7904822299969965
+Server = http://mirror.adct.be/arch/$repo/os/$arch
+#3.791159944004903
+Server = http://mirror.ufam.edu.br/archlinux/$repo/os/$arch
+#3.8603263949989923
+Server = http://muug.ca/mirror/archlinux/$repo/os/$arch
+#3.8832455079973442
+Server = https://mirror.kaminski.io/archlinux/$repo/os/$arch
+#3.887844757999119
+Server = http://mirror.23media.com/archlinux/$repo/os/$arch
+#3.898325267000473
+Server = https://archlinux.grena.ge/$repo/os/$arch
+#3.9586500380028156
+Server = http://suro.ubaya.ac.id/archlinux/$repo/os/$arch
+#4.014838338000118
+Server = http://mirror.cs.pitt.edu/archlinux/$repo/os/$arch
+#4.03642026399757
+Server = https://mirror.ufro.cl/archlinux/$repo/os/$arch
+#4.0443900329992175
+Server = http://ftp.otenet.gr/linux/archlinux/$repo/os/$arch
+#4.074464947996603
+Server = http://mirrors.prometeus.net/archlinux/$repo/os/$arch
+#4.114580733999901
+Server = https://www.caco.ic.unicamp.br/archlinux/$repo/os/$arch
+#4.118831097999646
+Server = http://mirrors.163.com/archlinux/$repo/os/$arch
+#4.1359098329994595
+Server = http://ftp.fau.de/archlinux/$repo/os/$arch
+#4.215373979997821
+Server = http://mirror.ams1.nl.leaseweb.net/archlinux/$repo/os/$arch
+#4.221341967000626
+Server = http://mirror.i3d.net/pub/archlinux/$repo/os/$arch
+#4.245223377998627
+Server = http://archlinux.melbourneitmirror.net/$repo/os/$arch
+#4.255273180999211
+Server = https://mirror.mia11.us.leaseweb.net/archlinux/$repo/os/$arch
+#4.269450897001661
+Server = https://mirrors.lug.mtu.edu/archlinux/$repo/os/$arch
+#4.284757092005748
+Server = http://mirror.metrocast.net/archlinux/$repo/os/$arch
+#4.436078833001375
+Server = http://mirror.smith.geek.nz/archlinux/$repo/os/$arch
+#4.466456927999388
+Server = https://archlinux.surlyjake.com/archlinux/$repo/os/$arch
+#4.501966354997421
+Server = http://mirror.aktkn.sg/archlinux/$repo/os/$arch
+#4.529973240998515
+Server = http://mirror.vpsfree.cz/archlinux/$repo/os/$arch
+#4.530838473998301
+Server = http://archmirror.lavatech.top/$repo/os/$arch
+#4.576810752005258
+Server = http://mirror.fra10.de.leaseweb.net/archlinux/$repo/os/$arch
+#4.5821321800031
+Server = http://piotrkosoft.net/pub/mirrors/ftp.archlinux.org/$repo/os/$arch
+#4.600382841999817
+Server = http://mirror.one.com/archlinux/$repo/os/$arch
+#4.677693818004627
+Server = https://shadow.ind.ntou.edu.tw/archlinux/$repo/os/$arch
+#4.702639436996833
+Server = https://mirror2.evolution-host.com/archlinux/$repo/os/$arch
+#4.715200488004484
+Server = https://iad.mirror.rackspace.com/archlinux/$repo/os/$arch
+#4.719706263000262
+Server = http://mirror.mikrogravitation.org/archlinux/$repo/os/$arch
+#4.754746199003421
+Server = https://mirror.aktkn.sg/archlinux/$repo/os/$arch
+#4.791302766003355
+Server = http://mirror.ubrco.de/archlinux/$repo/os/$arch
+#4.799092428002041
+Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux/$repo/os/$arch
+#4.926837959996192
+Server = https://mirrors.kernel.org/archlinux/$repo/os/$arch
+#4.945168513004319
+Server = http://mirror.ufscar.br/archlinux/$repo/os/$arch
+#4.956860168997082
+Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+#4.994807196999318
+Server = http://www.caco.ic.unicamp.br/archlinux/$repo/os/$arch
+#5.011393608998333
+Server = http://mirror.f4st.host/archlinux/$repo/os/$arch
+#5.017069150999305
+Server = https://mirror.lty.me/archlinux/$repo/os/$arch
+#5.033557110000402
+Server = http://archlinux.mirror.root.lu/$repo/os/$arch
+#5.046848496000166
+Server = http://mirror.cc.columbia.edu/pub/linux/archlinux/$repo/os/$arch
+#5.048374291000073
+Server = http://mirror.archlinux.cl/$repo/os/$arch
+#5.089266493996547
+Server = https://mirrors.nxthost.com/archlinux/$repo/os/$arch
+#5.120232860994292
+Server = http://ftp.gwdg.de/pub/linux/archlinux/$repo/os/$arch
+#5.153351234999718
+Server = https://archlinux.nautile.nc/archlinux/$repo/os/$arch
+#5.211387139002909
+Server = http://ftp.uni-hannover.de/archlinux/$repo/os/$arch
+#5.270572004999849
+Server = http://mirrors.lug.mtu.edu/archlinux/$repo/os/$arch
+#5.305531026002427
+Server = https://ord.mirror.rackspace.com/archlinux/$repo/os/$arch
+#5.314395182002045
+Server = https://mirror.aarnet.edu.au/pub/archlinux/$repo/os/$arch
+#5.34299772799568
+Server = http://mirror.labkom.id/archlinux/$repo/os/$arch
+#5.406395589001477
+Server = http://mirrors.kernel.org/archlinux/$repo/os/$arch
+#5.431832870002836
+Server = http://distro.ibiblio.org/archlinux/$repo/os/$arch
+#5.460497292995569
+Server = http://ftp.halifax.rwth-aachen.de/archlinux/$repo/os/$arch
+#5.468698614000459
+Server = http://mirrors.rutgers.edu/archlinux/$repo/os/$arch
+#5.504812505998416
+Server = https://mirror.kku.ac.th/archlinux/$repo/os/$arch
+#5.538608825001575
+Server = http://shadow.ind.ntou.edu.tw/archlinux/$repo/os/$arch
+#5.558403201001056
+Server = http://ord.mirror.rackspace.com/archlinux/$repo/os/$arch
+#5.610525620999397
+Server = http://ftp.sh.cvut.cz/arch/$repo/os/$arch
+#5.62981315900106
+Server = http://mirrors.liquidweb.com/archlinux/$repo/os/$arch
+#5.72360423799546
+Server = http://ftp.spline.inf.fu-berlin.de/mirrors/archlinux/$repo/os/$arch
+#5.7291614450005
+Server = http://archlinux.surlyjake.com/archlinux/$repo/os/$arch
+#5.741512505002902
+Server = http://mirrors.manchester.m247.com/arch-linux/$repo/os/$arch
+#5.827201353997225
+Server = http://archlinux.cs.nctu.edu.tw/$repo/os/$arch
+#5.848027663996618
+Server = http://mirror.dkm.cz/archlinux/$repo/os/$arch
+#5.860436892995494
+Server = http://mirror.kku.ac.th/archlinux/$repo/os/$arch
+#5.95991682800377
+Server = http://arch.nixlab.pl/$repo/os/$arch
+#5.989459171003546
+Server = https://mirror.0x.sg/archlinux/$repo/os/$arch
+#5.998140584000794
+Server = http://mirror.reisenbauer.ee/archlinux/$repo/os/$arch
+#6.036327547997644
+Server = https://mirror.cloroformo.org/archlinux/$repo/os/$arch
+#6.036514995001198
+Server = http://iad.mirror.rackspace.com/archlinux/$repo/os/$arch
+#6.117767328003538
+Server = http://tux.rainside.sk/archlinux/$repo/os/$arch
+#6.118207356004859
+Server = http://mirror.neuf.no/archlinux/$repo/os/$arch
+#6.12549738400412
+Server = http://archlinux.nautile.nc/archlinux/$repo/os/$arch
+#6.150759443000425
+Server = http://archlinux.cu.be/$repo/os/$arch
+#6.25905762000184
+Server = https://repo.ialab.dsu.edu/archlinux/$repo/os/$arch
+#6.40637261899974
+Server = http://mirrors.aggregate.org/archlinux/$repo/os/$arch
+#6.631100706996222
+Server = http://dfw.mirror.rackspace.com/archlinux/$repo/os/$arch
+#6.6325770010007545
+Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+#6.6715891619969625
+Server = https://www.ratenzahlung.de/mirror/archlinux/$repo/os/$arch
+#6.702647514997807
+Server = https://ftp.spline.inf.fu-berlin.de/mirrors/archlinux/$repo/os/$arch
+#6.7213136489954195
+Server = http://ftp.ntua.gr/pub/linux/archlinux/$repo/os/$arch
+#6.885139906000404
+Server = http://ftp.energia.mta.hu/pub/mirrors/ftp.archlinux.org/$repo/os/$arch
+#6.893748233000224
+Server = http://gluttony.sin.cvut.cz/arch/$repo/os/$arch
+#7.154588648001663
+Server = https://archlinux.mirror.digitalpacific.com.au/$repo/os/$arch
+#7.250461454998003
+Server = https://mirror.fsmg.org.nz/archlinux/$repo/os/$arch
+#7.256165202001284
+Server = http://mirror.archlinux.no/$repo/os/$arch
+#7.437758413005213
+Server = https://mirror.pit.teraswitch.com/archlinux/$repo/os/$arch
+#7.461862702002691
+Server = http://archlinux.grena.ge/$repo/os/$arch
+#7.82380270500289
+Server = http://mirror.espoch.edu.ec/archlinux/$repo/os/$arch
+#7.962175214997842
+Server = http://mirrors.neusoft.edu.cn/archlinux/$repo/os/$arch
+#7.962497372995131
+Server = http://arch.petarmaric.com/$repo/os/$arch
+#8.44646360600018
+Server = http://mirror.mirohost.net/archlinux/$repo/os/$arch
+#8.565003187999537
+Server = http://archlinux.mirror.ba/$repo/os/$arch
+#8.576076268000179
+Server = http://mirror.rise.ph/archlinux/$repo/os/$arch
+#8.608486946002813
+Server = https://mirror.saminserver.com/archlinux/$repo/os/$arch
+#8.634440729001653
+Server = https://mirrors.rutgers.edu/archlinux/$repo/os/$arch
+#8.64227587699861
+Server = http://mirror.cse.iitk.ac.in/archlinux/$repo/os/$arch
+#8.802493343006063
+Server = https://ftp.lanet.kr/pub/archlinux/$repo/os/$arch
+#8.818634431998362
+Server = http://mirrors.nxthost.com/archlinux/$repo/os/$arch
+#9.073661037997226
+Server = http://super.quantum-mirror.hu/mirrors/pub/archlinux/$repo/os/$arch
+#9.304245904000709
+Server = http://archlinux.iskon.hr/$repo/os/$arch
+#9.486257427000965
+Server = http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
+#9.52512113100238
+Server = https://quantum-mirror.hu/mirrors/pub/archlinux/$repo/os/$arch
+#9.531388957002491
+Server = http://ftp.lanet.kr/pub/archlinux/$repo/os/$arch
+#9.54105563199846
+Server = https://dfw.mirror.rackspace.com/archlinux/$repo/os/$arch
+#9.65941340399877
+Server = https://mirrors.neusoft.edu.cn/archlinux/$repo/os/$arch
+#9.773318929001107
+Server = https://mirror.redrock.team/archlinux/$repo/os/$arch
+#9.898858868997195
+Server = http://archlinux.pop-es.rnp.br/$repo/os/$arch
+#10.001033751002979
+Server = http://mirrors.uni-plovdiv.net/archlinux/$repo/os/$arch
+#10.294751640001778
+Server = https://ftp.yzu.edu.tw/Linux/archlinux/$repo/os/$arch
+#10.393432065000525
+Server = http://ftp.tsukuba.wide.ad.jp/Linux/archlinux/$repo/os/$arch
+#10.463320046997978
+Server = http://ftp.osuosl.org/pub/archlinux/$repo/os/$arch
+#10.816185760995722
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+#10.881812637999246
+Server = https://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
+#10.896119065000676
+Server = https://mirrors.cqu.edu.cn/archlinux/$repo/os/$arch
+#11.105510458997742
+Server = http://mirror2.evolution-host.com/archlinux/$repo/os/$arch
+#11.26885531800508
+Server = https://super.quantum-mirror.hu/mirrors/pub/archlinux/$repo/os/$arch
+#11.342402984999353
+Server = http://mirror.init7.net/archlinux/$repo/os/$arch
+#11.388536539998313
+Server = http://mirror.pit.teraswitch.com/archlinux/$repo/os/$arch
+#11.413050737006415
+Server = http://arch.mirror.square-r00t.net/$repo/os/$arch
+#11.581195596998441
+Server = http://mirror.dal10.us.leaseweb.net/archlinux/$repo/os/$arch
+#11.848293452996586
+Server = http://repo.iut.ac.ir/repo/archlinux/$repo/os/$arch
+#11.991474053000275
+Server = http://mirror.kaminski.io/archlinux/$repo/os/$arch
+#12.02685199699772
+Server = http://mirror.mia11.us.leaseweb.net/archlinux/$repo/os/$arch
+#12.234693189995596
+Server = http://mirror.rol.ru/archlinux/$repo/os/$arch
+#12.333261537001817
+Server = http://ftp.yzu.edu.tw/Linux/archlinux/$repo/os/$arch
+#12.509799311999814
+Server = http://mirror.lty.me/archlinux/$repo/os/$arch
+#12.644633311996586
+Server = http://mirrors.xmission.com/archlinux/$repo/os/$arch
+#12.702823763997003
+Server = https://syd.mirror.rackspace.com/archlinux/$repo/os/$arch
+#12.770046134995937
+Server = http://syd.mirror.rackspace.com/archlinux/$repo/os/$arch
+#12.826410920002672
+Server = http://mirrors.cqu.edu.cn/archlinux/$repo/os/$arch
+#12.931297018003534
+Server = http://mirror.sfo12.us.leaseweb.net/archlinux/$repo/os/$arch
+#13.366724090999924
+Server = http://arch.midov.pl/arch/$repo/os/$arch
+#13.493366649003292
+Server = https://mirror.rol.ru/archlinux/$repo/os/$arch
+#13.508834371001285
+Server = http://mirror.scd31.com/arch/$repo/os/$arch
+#13.99193948199536
+Server = https://mirror.scd31.com/arch/$repo/os/$arch
+#14.078501348005375
+Server = http://mirror.saminserver.com/archlinux/$repo/os/$arch
+#15.227644742000848
+Server = http://quantum-mirror.hu/mirrors/pub/archlinux/$repo/os/$arch
+#15.300430310002412
+Server = https://hkg.mirror.rackspace.com/archlinux/$repo/os/$arch
+#15.367421697999816
+Server = http://hkg.mirror.rackspace.com/archlinux/$repo/os/$arch
+#15.577322543002083
+Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+#15.808228936999512
+Server = http://mirror.premi.st/archlinux/$repo/os/$arch
+#15.855967208997754
+Server = http://archlinux.mirror.py/archlinux/$repo/os/$arch
+#16.10694667399366
+Server = http://archlinux.mirror.digitalpacific.com.au/$repo/os/$arch
+#16.139678261999507
+Server = http://www.gtlib.gatech.edu/pub/archlinux/$repo/os/$arch
+#16.18763074200251
+Server = http://archlinux.c3sl.ufpr.br/$repo/os/$arch
+#16.44826382100291
+Server = https://mirror.sergal.org/archlinux/$repo/os/$arch
+#16.634339510004793
+Server = http://mirror.fsmg.org.nz/archlinux/$repo/os/$arch
+#16.98902116100362
+Server = http://mirror.nus.edu.sg/archlinux/$repo/os/$arch
+#17.01298569500068
+Server = https://mirror.telkomuniversity.ac.id/archlinux/$repo/os/$arch
+#17.053549919000943
+Server = https://nova.quantum-mirror.hu/mirrors/pub/archlinux/$repo/os/$arch
+#18.341431305998412
+Server = http://ftp.tku.edu.tw/Linux/ArchLinux/$repo/os/$arch
+#18.567857567002648
+Server = http://ftp.iinet.net.au/pub/archlinux/$repo/os/$arch
+#19.071018581998942
+Server = http://mirror.dc02.hackingand.coffee/arch/$repo/os/$arch
+#19.744879335994483
+Server = http://mirror.its.dal.ca/archlinux/$repo/os/$arch
+#19.923488779000763
+Server = http://nova.quantum-mirror.hu/mirrors/pub/archlinux/$repo/os/$arch
+#20.573073434003163
+Server = https://mirrors.mirjamali.ir/archlinux/$repo/os/$arch
+#21.072149270003138
+Server = http://mirror.sergal.org/archlinux/$repo/os/$arch
+#21.085686888000055
+Server = http://mirror.poliwangi.ac.id/archlinux/$repo/os/$arch
+#21.285777926001174
+Server = http://za.mirror.archlinux-br.org/$repo/os/$arch
+#21.34967212999618
+Server = http://repo.ialab.dsu.edu/archlinux/$repo/os/$arch
+#22.458394639004837
+Server = https://mirror.dc02.hackingand.coffee/arch/$repo/os/$arch
+#25.721908430998155
+Server = http://mirrors.ocf.berkeley.edu/archlinux/$repo/os/$arch
+#26.784196947002783
+Server = http://mirrors.zju.edu.cn/archlinux/$repo/os/$arch
+#27.46648843199364
+Server = http://mirror.uta.edu.ec/archlinux/$repo/os/$arch
+#29.60670123699674
+Server = https://archlinux.za.mirror.allworldit.com/archlinux/$repo/os/$arch
+#31.32803958200384
+Server = http://mirrors.myaegean.gr/linux/archlinux/$repo/os/$arch
+#38.81114747199899
+Server = http://mirror.internode.on.net/pub/archlinux/$repo/os/$arch
+#55.80650863399933
+Server = http://archlinux.za.mirror.allworldit.com/archlinux/$repo/os/$arch
+#58.386249302995566
+Server = http://mirror.telkomuniversity.ac.id/archlinux/$repo/os/$arch
+#59.82054886799597
+Server = http://archlinux.mirrors.ovh.net/archlinux/$repo/os/$arch
+#72.34262398999999
+Server = http://mirror.lzu.edu.cn/archlinux/$repo/os/$arch
+#93.3385155549986
+Server = https://download.nus.edu.sg/mirror/archlinux/$repo/os/$arch
+#104.04806394199841
+Server = http://mirror.ps.kz/archlinux/$repo/os/$arch
+#107.12602311500086
+Server = http://ftp.harukasan.org/archlinux/$repo/os/$arch
+#111.2407504799994
+Server = http://ftp.swin.edu.au/archlinux/$repo/os/$arch
+#127.34083838500374
+Server = https://ftp.harukasan.org/archlinux/$repo/os/$arch
+#163.8933577489952
+Server = https://mirror.ps.kz/archlinux/$repo/os/$arch
+#171.18714760400326
+Server = https://archlinux.beccacervello.it/archlinux/$repo/os/$arch
+#374.3136701320036
+Server = http://repo.sadjad.ac.ir/arch/$repo/os/$arch
+#400.32279995099816
+Server = https://repo.sadjad.ac.ir/arch/$repo/os/$arch
