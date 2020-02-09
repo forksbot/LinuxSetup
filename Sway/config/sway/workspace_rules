@@ -43,8 +43,8 @@ async def main():
 	outputs = [output['name'] for output in outputs_info]
 
 	# Open subscribe IPC connection
-	reader = await swayipc.subscribe("['workspace']")
-	response = await swayipc.receive_json(reader)
+	connection = await swayipc.subscribe("['workspace']")
+	response = await connection.receive_json()
 	if not response['success']:
 		print("Could not open IPC connection to Sway", file=sys.stderr)
 		sys.exit(1)
@@ -53,7 +53,7 @@ async def main():
 	while True:
 
 		# Get events from connection
-		event = await swayipc.receive_json(reader)
+		event = await connection.receive_json()
 
 		# Skip events that aren't focus events
 		if event['change'] != 'focus':

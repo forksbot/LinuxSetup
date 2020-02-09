@@ -31,50 +31,62 @@ message_types = {
 }
 
 
-async def send(message_type, command=''):
-	payload_length = len(command)
-	payload_type = message_types[message_type.upper()]
+class SwayIPCConnection():
 
-	data = magic_string.encode()
-	data += payload_length.to_bytes(payload_length_length, sys.byteorder)
-	data += payload_type.to_bytes(payload_type_length, sys.byteorder)
-	data += command.encode()
+	async def send(self, message_type, command=''):
+		payload_length = len(command)
+		payload_type = message_types[message_type.upper()]
 
-	(reader, writer) = await asyncio.open_unix_connection(path=socket)
-	writer.write(data)
-	await writer.drain()
-	writer.close()
-	await writer.wait_closed()
-	
-	return reader
+		data = magic_string.encode()
+		data += payload_length.to_bytes(payload_length_length, sys.byteorder)
+		data += payload_type.to_bytes(payload_type_length, sys.byteorder)
+		data += command.encode()
 
-async def receive(reader):
-	header = await reader.read(magic_string_len + payload_length_length + payload_type_length)
-	payload_length_bytes = header[magic_string_len : magic_string_len + payload_length_length]
-	payload_length = int.from_bytes(payload_length_bytes, sys.byteorder)
-	response = await reader.read(payload_length)
-	return (response).decode()
+		(reader, writer) = await asyncio.open_unix_connection(path=socket)
+		writer.write(data)
+		await writer.drain()
 
-async def receive_json(reader):
-	response = await receive(reader)
-	return json.loads(response)
+		self.reader = reader
+		self.writer = writer
 
-async def send_receive(message_type, command=''):
-	reader = await send(message_type, command)
-	return await receive(reader)
+	async def receive(self):
+		header = await self.reader.read(magic_string_len + payload_length_length + payload_type_length)
+		payload_length_bytes = header[magic_string_len : magic_string_len + payload_length_length]
+		payload_length = int.from_bytes(payload_length_bytes, sys.byteorder)
+		response = await self.reader.read(payload_length)
+		return (response).decode()
 
-async def send_receive_json(message_type, command=''):
-	reader = await send(message_type, command)
-	return await receive_json(reader)
+	async def receive_json(self):
+		response = await self.receive()
+		return json.loads(response)
+
+	async def send_receive(self, message_type, command=''):
+		await self.send(message_type, command)
+		response = await self.receive()
+		await self.close()
+		return response
+
+	async def send_receive_json(self, message_type, command=''):
+		await self.send(message_type, command)
+		response = await self.receive_json()
+		await self.close()
+		return response
+
+	async def close(self):
+		self.writer.close()
+		await self.writer.wait_closed()
+
 
 async def run_command(command):
-	return await send_receive_json('RUN_COMMAND', command)
+	return await SwayIPCConnection().send_receive_json('RUN_COMMAND', command)
 
 async def get_workspaces():
-	return await send_receive_json('GET_WORKSPACES')
+	return await SwayIPCConnection().send_receive_json('GET_WORKSPACES')
 
 async def subscribe(events):
-	return await send('SUBSCRIBE', events)
+	connection = SwayIPCConnection()
+	await connection.send('SUBSCRIBE', events)
+	return connection
 
 async def get_outputs():
-	return sorted(await send_receive_json('GET_OUTPUTS'), key = lambda o : o['rect']['x'])
+	return sorted(await SwayIPCConnection().send_receive_json('GET_OUTPUTS'), key = lambda o : o['rect']['x'])
