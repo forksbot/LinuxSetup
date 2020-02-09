@@ -60,28 +60,31 @@ class SwayIPCConnection():
 		response = await self.receive()
 		return json.loads(response)
 
-	async def send_receive(self, message_type, command=''):
-		await self.send(message_type, command)
-		response = await self.receive()
-		await self.close()
-		return response
-
-	async def send_receive_json(self, message_type, command=''):
-		await self.send(message_type, command)
-		response = await self.receive_json()
-		await self.close()
-		return response
-
 	async def close(self):
 		self.writer.close()
 		await self.writer.wait_closed()
 
 
+async def send_receive(message_type, command=''):
+	connection = SwayIPCConnection()
+	await connection.send(message_type, command)
+	response = await connection.receive()
+	await connection.close()
+	return response
+
+async def send_receive_json(message_type, command=''):
+	connection = SwayIPCConnection()
+	await connection.send(message_type, command)
+	response = await connection.receive_json()
+	await connection.close()
+	return response
+
+
 async def run_command(command):
-	return await SwayIPCConnection().send_receive_json('RUN_COMMAND', command)
+	return await send_receive_json('RUN_COMMAND', command)
 
 async def get_workspaces():
-	return await SwayIPCConnection().send_receive_json('GET_WORKSPACES')
+	return await send_receive_json('GET_WORKSPACES')
 
 async def subscribe(events):
 	connection = SwayIPCConnection()
@@ -89,4 +92,4 @@ async def subscribe(events):
 	return connection
 
 async def get_outputs():
-	return sorted(await SwayIPCConnection().send_receive_json('GET_OUTPUTS'), key = lambda o : o['rect']['x'])
+	return sorted(await send_receive_json('GET_OUTPUTS'), key = lambda o : o['rect']['x'])
