@@ -33,7 +33,9 @@ message_types = {
 
 class SwayIPCConnection():
 
-	async def send(self, message_type, command=''):
+	async def new(message_type, command=''):
+		self = SwayIPCConnection()
+
 		payload_length = len(command)
 		payload_type = message_types[message_type.upper()]
 
@@ -48,6 +50,8 @@ class SwayIPCConnection():
 
 		self.reader = reader
 		self.writer = writer
+
+		return self
 
 	async def receive(self):
 		header = await self.reader.read(magic_string_len + payload_length_length + payload_type_length)
@@ -66,8 +70,7 @@ class SwayIPCConnection():
 
 
 async def send_receive(message_type, command=''):
-	connection = SwayIPCConnection()
-	await connection.send(message_type, command)
+	connection = await SwayIPCConnection.new(message_type, command)
 	response = await connection.receive()
 	await connection.close()
 	return response
@@ -84,9 +87,7 @@ async def get_workspaces():
 	return await send_receive_json('GET_WORKSPACES')
 
 async def subscribe(events):
-	connection = SwayIPCConnection()
-	await connection.send('SUBSCRIBE', events)
-	return connection
+	return await SwayIPCConnection.new('SUBSCRIBE', events)
 
 async def get_outputs():
 	return sorted(await send_receive_json('GET_OUTPUTS'), key = lambda o : o['rect']['x'])
