@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import asyncio
+import json
 import os
 import signal
 import sys
@@ -30,15 +31,12 @@ async def shell_command(command):
 	stdout, stderr = await proc.communicate()
 	return stdout.decode('utf-8').rstrip("\n")
 
-
 async def shutdown(s, loop):
 	if 'connection' in state:
 		await state['connection'].close()
-		print("Shutdown connection")
 	for task in [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]:
 		task.cancel()
 	loop.stop()
-
 
 async def main():
 
@@ -61,33 +59,36 @@ async def main():
 		sys.exit(1)
 
 	# Loop forever
-	while True:
+	try:
+		while True:
 
-		# Get events from connection
-		event = await connection.receive_json()
+			# Get events from connection
+			event = await connection.receive_json()
 
-		# Skip events that aren't focus events
-		if event['change'] != 'focus':
-			continue
+			# Skip events that aren't focus events
+			if event['change'] != 'focus':
+				continue
 
-		workspace = event['current']
-		name = workspace['name']
-		rules = workspace_rules[name]
-		output = workspace['output']
-		output_i = outputs.index(output)
+			workspace = event['current']
+			name = workspace['name']
+			rules = workspace_rules[name]
+			output = workspace['output']
+			output_i = outputs.index(output)
 
-		# Scale output
-		scale = rules['scale']
-		await swayipc.run_command("output {} scale {}".format(output, scale))
+			# Scale output
+			scale = rules['scale']
+			await swayipc.run_command("output {} scale {}".format(output, scale))
 
-		# Re-position all outputs to right of the output that was rescaled
-		if output_i + 1 < len(outputs):
-			outputs_info = await swayipc.get_outputs()
-			outputs_width = [o['rect']['width'] for o in outputs_info]
-			for i in range(output_i + 1, len(outputs)):
-				output_x = sum(outputs_width[0 : i])
-				if output_x > 0:
-					await swayipc.run_command("output {} position {} 0".format(outputs[i], round(output_x)))
+			# Re-position all outputs to right of the output that was rescaled
+			if output_i + 1 < len(outputs):
+				outputs_info = await swayipc.get_outputs()
+				outputs_width = [o['rect']['width'] for o in outputs_info]
+				for i in range(output_i + 1, len(outputs)):
+					output_x = sum(outputs_width[0 : i])
+					if output_x > 0:
+						await swayipc.run_command("output {} position {} 0".format(outputs[i], round(output_x)))
+	except json.decoder.JSONDecodeError:
+		pass
 
 
 state = {}
