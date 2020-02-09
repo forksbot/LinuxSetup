@@ -2,6 +2,7 @@
 
 import asyncio
 import os
+import signal
 import sys
 import swayipc
 
@@ -30,6 +31,15 @@ async def shell_command(command):
 	return stdout.decode('utf-8').rstrip("\n")
 
 
+async def shutdown(s, loop):
+	if 'connection' in state:
+		await state['connection'].close()
+		print("Shutdown connection")
+	for task in [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]:
+		task.cancel()
+	loop.stop()
+
+
 async def main():
 
 	# Kill other running instances
@@ -43,7 +53,8 @@ async def main():
 	outputs = [output['name'] for output in outputs_info]
 
 	# Open subscribe IPC connection
-	connection = await swayipc.subscribe(['workspace'])
+	state['connection'] = await swayipc.subscribe(['workspace'])
+	connection = state['connection']
 	response = await connection.receive_json()
 	if not response['success']:
 		print("Could not open IPC connection to Sway", file=sys.stderr)
@@ -79,4 +90,13 @@ async def main():
 					await swayipc.run_command("output {} position {} 0".format(outputs[i], round(output_x)))
 
 
-asyncio.run(main())
+state = {}
+loop = asyncio.get_event_loop()
+signals = (signal.SIGHUP, signal.SIGTERM, signal.SIGINT)
+for s in signals:
+	loop.add_signal_handler(s, lambda s=s: asyncio.create_task(shutdown(s, loop)))
+
+try:
+	loop.run_until_complete(main())
+finally:
+	loop.close()
