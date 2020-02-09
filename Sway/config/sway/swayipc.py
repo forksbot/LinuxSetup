@@ -65,8 +65,9 @@ class SwayIPCConnection():
 		return json.loads(response)
 
 	async def close(self):
-		self.writer.close()
-		await self.writer.wait_closed()
+		if not self.writer.is_closing():
+			self.writer.close()
+			await self.writer.wait_closed()
 
 
 async def send_receive(message_type, command=''):
