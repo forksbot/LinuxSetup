@@ -1,3 +1,9 @@
+### MAKING USB
+
+sudo dd bs=4M if=archlinux-2020.02.01-x86_64.iso of=<USB DEVICE>
+
+
+
 ### LOCALE ###
 
 # Keyboard layout
@@ -15,6 +21,9 @@ ls /sys/firmware/efi/efivars
 
 # List all drives
 fdisk -l
+
+# Removes the parition table
+wipefs --all /dev/sda
 
 # Edit partitions
 cfdisk /dev/sda1
@@ -114,6 +123,14 @@ systemctl enable ntpd.service
 
 
 
+### NETWORK DRIVES ###
+
+cd /tmp
+wget https://raw.githubusercontent.com/JordanL2/LinuxSetup/master/fstab
+#!!! REPLACE __PASSWORD__ with the NAS password
+cat fstab >> /etc/fstab
+
+
 ### REBOOT ###
 
 exit
@@ -142,7 +159,7 @@ Gnome:
 
 ### AUR / Yay ###
 
-sudo pacman -S git
+sudo pacman -S git go
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si

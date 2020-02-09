@@ -17,6 +17,8 @@ mount /dev/mmcblk0p3 /mnt
 mkdir /mnt/boot
 mount /dev/mmcblk0p1 /mnt/boot
 
+pacman-key --refresh-keys
+pacman -Syy
 pacstrap /mnt base base-devel linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
@@ -61,8 +63,15 @@ linux   /vmlinuz-linux
 initrd  /initramfs-linux.img
 options root=UUID=<UUID> rw quiet loglevel=3 vga=current rd.systemd.show_status=auto rd.udev.log_priority=3 vt.global_cursor_default=0" > /boot/loader/entries/arch.conf
 
-# Silent boot - fsck section
-https://wiki.archlinux.org/index.php/Silent_boot
+# Silent boot - fsck - https://wiki.archlinux.org/index.php/Silent_boot
+vim /etc/mkinitcpio.conf
+#on line "HOOKS (" replace "udev" with "systemd"
+mkinitcpio -p linux
+systemctl edit --full systemd-fsck-root.service
+systemctl edit --full systemd-fsck@.service
+# Append:
+StandardOutput=null
+StandardError=journal+console
 
 
 systemctl enable dhcpcd.service

@@ -1,4 +1,4 @@
-pacman -S sway swayidle bemenu waybar grim jq xorg-server-xwayland pulseaudio pamixer pavucontrol gsimplecal nm-connection-editor lxtask-gtk3 breeze breeze-gtk xsettingsd plasma-integration
+pacman -S sway swayidle bemenu waybar grim jq xorg-server-xwayland pulseaudio pamixer pavucontrol gsimplecal nm-connection-editor lxtask-gtk3 breeze breeze-gtk xsettingsd plasma-integration qt5-wayland
 yay -S wofi gtk-layer-shell wlogout redshift-wlr-gamma-control
 
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
@@ -28,6 +28,11 @@ If using SDDM:
 	chown root:root /usr/share/wayland-sessions/sway.desktop
 
 
+# THEME
+gsettings set org.gnome.desktop.interface gtk-theme 'Breeze-Dark'
+gsettings set org.gnome.desktop.interface icon-theme 'breeze-dark'
+flatpak --user install Breeze-Dark
+
 # FONTS
 pacman -S gsfonts ttf-dejavu noto-fonts-emoji otf-font-awesome kcharselect
 gsettings set org.gnome.desktop.interface font-name "Noto Sans Regular 10"
@@ -38,7 +43,7 @@ pacman -S gnome-settings-daemon # Fixes GTK flatpaks font rendering via wayland
 
 # APPS
 
-pacman -S termite thunar thunar-archive-plugin tumbler ristretto firefox flatpak mesa-demos openssh screen mpv intel-ucode
+pacman -S termite thunar thunar-archive-plugin file-roller tumbler ristretto firefox flatpak mesa-demos openssh screen mpv intel-ucode
 # FOR FLATPAK USE xdg-desktop-portal-gdk
 flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak --user install org.gimp.GIMP com.valvesoftware.Steam com.mojang.Minecraft com.github.wwmm.pulseeffects org.libreoffice.LibreOffice com.sublimetext.three org.kde.okular
@@ -77,3 +82,7 @@ sudo ln -s /home/jordan/Scripts/python/modularcalculator/run /usr/bin/modularcal
 
 # Steam Flatpak
 sudo cp /home/jordan/Scripts/LinuxSetup/Sway/steam_flatpak /usr/bin/steam
+
+# Minecraft
+ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/.minecraft
+ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/Minecraft

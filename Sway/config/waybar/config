@@ -3,7 +3,7 @@
     "position": "bottom",
     
     "modules-left": ["sway/workspaces", "custom/apps", "custom/exit", "sway/mode"],
-    "modules-right": ["custom/status", "tray", "custom/disk#root", "custom/disk#home", "custom/disk#jordan", "cpu", "memory", "network", "idle_inhibitor", "pulseaudio", "clock"],
+    "modules-right": ["custom/status", "tray", "custom/disk#root", "custom/disk#jordan", "cpu", "memory", "network", "idle_inhibitor", "pulseaudio", "clock"],
 
     "sway/mode": {
         "format": " {}",
@@ -77,14 +77,6 @@
         "tooltip": false,
         "on-click": "thunar /",
         "format": " /: {:4} "
-    },
-
-    "custom/disk#home": {
-        "interval": 30,
-        "exec": "df -h --output=avail /home | tail -n+2 | sed -e's/ //g'",
-        "tooltip": false,
-        "on-click": "thunar /home/jordan",
-        "format": " /home: {:4} "
     },
 
     "custom/disk#jordan": {
