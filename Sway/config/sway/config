@@ -323,26 +323,12 @@ for_window [app_id="waybar" floating] {
 
 
 
-#######################
-# Auto-start Services #
-#######################
-
-# Xsettingsd - For Flatpak themes to work
-exec $config/sway/xsettingsd
-
-# Reshift
-exec_always {
-	$config/sway/redshift_launcher
-}
-
-# Monitor power saving
-exec_always {
-	$config/sway/swayidle_launcher
-}
-
-# Workspace rules
-exec_always {
-    $config/sway/workspace_rules
-}
-
 include /etc/sway/config.d/*
+
+
+
+###########
+# Systemd #
+###########
+
+exec "systemctl --user import-environment; systemctl --user start sway-session.target"

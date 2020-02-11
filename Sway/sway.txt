@@ -2,8 +2,12 @@ pacman -S sway swayidle bemenu waybar grim jq xorg-server-xwayland pulseaudio pa
 yay -S wofi gtk-layer-shell wlogout redshift-wlr-gamma-control
 
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
-cp /home/jordan/Scripts/LinuxSetup/Sway/_.xsettingsd /home/jordan/.xsettingsd
 cp /home/jordan/Scripts/LinuxSetup/Sway/_.Xresources /home/jordan/.Xresources
+
+# Enable services
+systemctl --user enable --now swayidle@1800
+systemctl --user enable --now redshift@4500
+systemctl --user enable --now workspace_rules
 
 Add to /etc/systemd/logind.conf -
 HandlePowerKey=suspend
@@ -30,6 +34,9 @@ If using SDDM:
 gsettings set org.gnome.desktop.interface gtk-theme 'Breeze-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'breeze-dark'
 flatpak --user install Breeze-Dark
+cp /home/jordan/Scripts/LinuxSetup/Sway/_.xsettingsd /home/jordan/.xsettingsd
+systemctl --user enable --now xsettingsd
+
 
 # FONTS
 pacman -S gsfonts ttf-dejavu noto-fonts-emoji otf-font-awesome kcharselect

@@ -1,0 +1,10 @@
+[Unit]
+Description=Redshift Blue-light Filter
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=redshift -l -51:0 -t 6500:%i
+
+[Install]
+WantedBy=sway-session.target

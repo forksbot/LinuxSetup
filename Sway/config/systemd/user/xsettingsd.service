@@ -1,0 +1,10 @@
+[Unit]
+Description=XSettings Daemon
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/xsettingsd
+
+[Install]
+WantedBy=sway-session.target

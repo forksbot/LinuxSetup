@@ -1,5 +1,0 @@
-#!/usr/bin/sh
-
-killall swayidle
-sleep 1
-swayidle timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; /home/jordan/.config/sway/fix_workspaces' &

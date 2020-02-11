@@ -1,0 +1,10 @@
+[Unit]
+Description=Sway workspace scaling rules
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/home/jordan/.config/sway/workspace_rules
+
+[Install]
+WantedBy=sway-session.target
