@@ -231,7 +231,6 @@ bindsym --whole-window --border $mod+Shift+Control+button4 move container to wor
 bindsym --whole-window --border $mod+Shift+Control+button5 move container to workspace  next ; workspace next
 
 
-
 #
 # Layout stuff
 #
@@ -322,6 +321,10 @@ for_window [app_id="waybar" floating] {
 }
 
 
+
+################
+# Other Config #
+################
 
 include /etc/sway/config.d/*
 
