@@ -2,8 +2,6 @@ pacman -S sway swayidle bemenu waybar grim jq xorg-server-xwayland pulseaudio pa
 yay -S wofi gtk-layer-shell wlogout redshift-wlr-gamma-control
 
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
-cp -r /home/jordan/Scripts/LinuxSetup/Sway/icons /home/jordan/.icons
-cp /home/jordan/Scripts/LinuxSetup/Sway/_.gtkrc-2.0 /home/jordan/.gtkrc-2.0
 cp /home/jordan/Scripts/LinuxSetup/Sway/_.xsettingsd /home/jordan/.xsettingsd
 cp /home/jordan/Scripts/LinuxSetup/Sway/_.Xresources /home/jordan/.Xresources
 

@@ -87,8 +87,8 @@ async def main():
 	await swayipc.run_command("workspace {}".format(focused))
 
 	# Reload
-	await asyncio.sleep(0.5)
-	await swayipc.run_command("reload")
+	#await asyncio.sleep(0.5)
+	#await swayipc.run_command("reload")
 
 
 asyncio.run(main())
