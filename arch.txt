@@ -1,7 +1,6 @@
-### MAKING USB
+### MAKING USB DRIVE ###
 
-sudo dd bs=4M if=archlinux-2020.02.01-x86_64.iso of=<USB DEVICE>
-
+sudo dd bs=4M if=<PATH TO ISO> of=<USB DEVICE>
 
 
 ### LOCALE ###
@@ -13,10 +12,9 @@ loadkeys uk
 timedatectl set-ntp true
 
 
-
 ### DISK SETUP ###
 
-# Verify if UEFI enabled
+# Verify if UEFI enabled - this should list some files
 ls /sys/firmware/efi/efivars
 
 # List all drives
@@ -25,34 +23,35 @@ fdisk -l
 # Removes the parition table
 wipefs --all /dev/sda
 
-# Edit partitions
-cfdisk /dev/sda1
+# Create partitions
+# Select gpd partition table
+# 1 - 512M - EFI System
+# 2 - Default size - Linux root (X86-64)
+cfdisk /dev/sda
 
-# Format partition
-mkfs.btrfs /dev/sda1
-mkfs.ext4 /dev/sda2
+# Format partitions
+mkfs.fat -F32 /dev/sda1
+mkfs.xfs /dev/sda2
 
 # Mount partition
-mount /dev/sda1 /mnt
-mount /dev/sda2 /mnt/home
-
+mount /dev/sda2 /mnt
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
 
 
 ### INSTALLATION ###
 
-# Move UK mirrors higher up the list
-vim /etc/pacman.d/mirrorlist
-
 # Install OS to mounted filesystem
-pacstrap /mnt base base-devel
+pacstrap /mnt base base-devel linux linux-firmware
 
 # Generate FS table
 genfstab -U /mnt >> /mnt/etc/fstab
-genfstab -U /mnt/home >> /mnt/etc/fstab
 
 # Chroot into system
 arch-chroot /mnt
 
+# Install basics
+pacman -S efibootmgr vim ntp networkmanager cifs-utils git wget
 
 
 ### LOCALIZATION ###
@@ -67,7 +66,6 @@ echo "LANG=en_GB.UTF-8" > /etc/locale.conf
 echo "KEYMAP=uk" > /etc/vconsole.conf
 
 
-
 ### HOSTNAME / HOSTS ###
 
 echo "rupert" > /etc/hostname
@@ -78,7 +76,6 @@ echo "127.0.0.1       localhost
 	192.168.0.24    humphrey" > /etc/hosts
 
 
-
 ### USERS ###
 
 # Set root password
@@ -87,27 +84,32 @@ passwd
 useradd -m -g wheel jordan
 passwd jordan
 
-chmod 0640 /etc/sudoers
-vi /etc/sudoers
-# Uncomment "%wheel ALL=(ALL) ALL"
+echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/wheel
 
 
+### BOOTLOADER ###
 
-### BOOTLOADER
+bootctl --path=/boot install
+efibootmgr # Check "Linux Boot Manager" appears, if not first will need to be reordered in BIOS
+pacman -S linux
 
-pacman -S grub
-grub-install --target=i386-pc /dev/sda
-vim /etc/default/grub #remove quiet
-grub-mkconfig -o /boot/grub/grub.cfg
+echo "default arch
+timeout  4
+console-mode max" > /boot/loader/loader.conf
+
+lsblk -o NAME,MOUNTPOINT,SIZE,TYPE,UUID
+
+# Replace <UUID> with UUID for root partition from table
+echo "title Arch Linux
+linux   /vmlinuz-linux
+initrd  /initramfs-linux.img
+options root=UUID=<UUID> rw quiet loglevel=3 vga=current rd.systemd.show_status=auto rd.udev.log_priority=3 vt.global_cursor_default=0" > /boot/loader/entries/arch.conf
 
 
+### NETWORKING / TIME ###
 
-### NETWORKING ###
-
-systemctl enable dhcpcd.service # is this needed when installing network manager?
-pacman -S networkmanager network-manager-applet
 systemctl enable NetworkManager.service
-
+systemctl enable ntpd.service
 
 
 ### KERNEL ENTROPY FIX ###
@@ -116,19 +118,14 @@ pacman -S haveged
 systemctl enable haveged.service
 
 
-
-### NETWORK TIME ###
-pacman -S ntp
-systemctl enable ntpd.service
-
-
-
 ### NETWORK DRIVES ###
 
 cd /tmp
 wget https://raw.githubusercontent.com/JordanL2/LinuxSetup/master/fstab
 #!!! REPLACE __PASSWORD__ with the NAS password
 cat fstab >> /etc/fstab
+cd /mnt
+mkdir jordan download public multimedia
 
 
 ### REBOOT ###
@@ -143,18 +140,19 @@ reboot
 #############################
 
 
+Log into TTY as jordan
 
-### Graphical environment setup
 
-Plasma:
-	pacman -S xorg xorg-server xf86-video-amdgpu
-	pacman -S plasma plasma-wayland-session konsole dolphin gwenview kio-extras packagekit-qt5
-	pacman -S gsfonts ttf-dejavu
-	systemctl enable sddm.service
-Gnome:
-	pacman -S gnome gnome-tweaks ttf-dejavu
-	systemctl enable gdm.service
+### Home dir and basic config ###
 
+cd ~
+/mnt/jordan/Scripts/LinuxSetup/links.sh
+cp /home/jordan/Scripts/LinuxSetup/.bashrc .
+cp /home/jordan/Scripts/LinuxSetup/.vimrc .
+cp /home/jordan/Scripts/LinuxSetup/env.sh .
+cp /home/jordan/Scripts/LinuxSetup/aliases .
+sudo cp /home/jordan/Scripts/LinuxSetup/root.bashrc /root/.bashrc
+sudo cp /home/jordan/Scripts/LinuxSetup/.vimrc /root/
 
 
 ### AUR / Yay ###
@@ -165,51 +163,31 @@ cd yay
 makepkg -si
 
 
-
-### Software ###
-
-yay -S google-chrome aur/inxi ttf-ms-fonts tor-browser
-sudo pacman -S flatpak mesa-demos openssh screen mpv intel-ucode
-flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak --user install flathub com.sublimetext.three org.gimp.GIMP org.kde.okular com.valvesoftware.Steam com.mojang.Minecraft org.libreoffice.LibreOffice
-#flatpak --user override com.valvesoftware.Steam --filesystem=$HOME (this isn't supported)
-#ln -s .local/share/Steam/steamapps/ ~/SteamApps (this needs updating for when not allowing home dir access)
-ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/Minecraft
-systemctl enable sshd.service
-
-# Timeshift
-yay -S timeshift
-sudo systemctl enable cronie.service
-sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-boot /etc/cron.d/
-sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-hourly /etc/cron.d/
-
-# Software Installer
-sudo ln -s /home/jordan/Scripts/python/softwareinstaller/softwareinstaller /usr/bin/si
-
-# Modular calculator
-sudo pacman -S extra/python-pyqt5
-sudo ln -s /home/jordan/Scripts/python/modularcalculator/run /usr/bin/modularcalculator
-
-# Tor
-sudo pacman -S tor
-yay -S tor-browser
-
-
-
 ### Printing & Scanning ###
 
-sudo pacman -S extra/cups extra/hplip extra/wget sane community/python-pillow
-sudo systemctl enable org.cups.cupsd.service
-sudo systemctl start org.cups.cupsd.service
-sudo hp-setup -i
+sudo pacman -S cups hplip sane python-pillow
+sudo systemctl enable --now org.cups.cupsd.service
+sudo hp-setup -i # select 1
 sudo hp-plugin # select d
 # To scan: hp-scan
 
 
-
 ### Update Mirror List ###
 
-sudo cp /home/jordan/Scripts/LinuxSetup/mirrorlist /etc/pacman.d/mirrorlist
+sudo cp /home/jordan/Scripts/LinuxSetup/mirrorlist2 /etc/pacman.d/mirrorlist
 sudo pacman -Sc
 sudo pacman-key --refresh-keys
 sudo pacman -Syy
+
+
+### Silent boot - fsck - https://wiki.archlinux.org/index.php/Silent_boot ###
+
+vim /etc/mkinitcpio.conf
+# On line "HOOKS (" replace "udev" with "systemd"
+mkinitcpio -p linux
+# For each of these files:
+systemctl edit --full systemd-fsck-root.service
+systemctl edit --full systemd-fsck@.service
+# Append:
+StandardOutput=null
+StandardError=journal+console
