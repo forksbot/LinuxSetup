@@ -55,11 +55,7 @@ yay -S timeshift
 sudo systemctl enable cronie.service
 sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-boot /etc/cron.d/
 sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-hourly /etc/cron.d/
-sudo sh -c "cat /home/jordan/Scripts/LinuxSetup/timeshift.json | sed -e \"s/ROOT_DEVICE_UUID/`lsblk -o UUID -n /dev/sda2 | perl -pe 'chomp'`/\" - > /etc/timeshift.json"
-
-# INXI
-sudo pacman -S mesa-demos
-yay -S inxi
+sudo sh -c "cat /home/jordan/Scripts/LinuxSetup/timeshift.json | sed -e \"s/ROOT_DEVICE_UUID/`lsblk -o UUID -n /dev/sda2 | perl -pe 'chomp' -`/\" > /etc/timeshift.json"
 
 
 ### THEME ###
