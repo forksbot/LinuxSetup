@@ -32,11 +32,13 @@ Default font: Nimbus Sans
 
 
 == Firefox ==
-Go to about:config:
-	general.smoothScroll.currentVelocityWeighting = 0
-	general.smoothScroll.mouseWheel.durationMaxMS = 200
-	general.smoothScroll.mouseWheel.durationMinMS = 0
+about:config >
 	layers.acceleration.force-enabled = true
+	general.smoothScroll.mouseWheel.durationMinMS = 100
+	general.smoothScroll.mouseWheel.durationMaxMS = 200
+	browser.urlbar.clickSelectsAll = true
+	gfx.webrender.enabled = true
+Customise > enable Title Bar
 
 
 
@@ -94,3 +96,31 @@ Python-specific settings:
 {
 	"translate_tabs_to_spaces": true
 }
+
+
+
+=== Configuring individual apps to use X11/Wayland ===
+
+Edit a .desktop file and prefix the Exec with:
+env GDK_BACKEND=x11
+
+Flatpak:
+flatpak --user override --env=GDK_BACKEND=x11/wayland <appid>
+flatpak --user override --env=QT_QPA_PLATFORM=xcb/wayland <appid>
+flatpak info --show-metadata <appid>
+
+
+
+=== Sway stuff ===
+
+To use SDDM:
+	Edit /etc/sddm.conf - 
+	CursorTheme=Breeze_Snow
+
+	cp /home/jordan/Scripts/LinuxSetup/Sway/sway_env /usr/bin/
+	chmod 0755 /usr/bin/sway_env
+	chown root:root /usr/bin/sway_env
+	
+	cp /home/jordan/Scripts/LinuxSetup/Sway/sway.desktop /usr/share/wayland-sessions/sway.desktop
+	chmod 0644 /usr/share/wayland-sessions/sway.desktop
+	chown root:root /usr/share/wayland-sessions/sway.desktop

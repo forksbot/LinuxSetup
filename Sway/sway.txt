@@ -1,89 +1,43 @@
-pacman -S sway swayidle bemenu waybar grim jq xorg-server-xwayland pulseaudio pamixer pavucontrol gsimplecal nm-connection-editor lxtask-gtk3 breeze breeze-gtk xsettingsd plasma-integration qt5-wayland
+### SWAY ###
+
+# Install
+sudo pacman -S sway swayidle bemenu waybar grim jq xorg-server-xwayland termite pulseaudio pamixer pavucontrol gsimplecal nm-connection-editor lxtask-gtk3 breeze breeze-gtk xsettingsd plasma-integration qt5-wayland
 yay -S wofi gtk-layer-shell wlogout redshift-wlr-gamma-control
 
+# Config
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
 cp /home/jordan/Scripts/LinuxSetup/Sway/_.Xresources /home/jordan/.Xresources
 
 # Enable services
-systemctl --user enable --now swayidle@1800
-systemctl --user enable --now redshift@4500
-systemctl --user enable --now workspace_rules
+systemctl --user enable swayidle@1800
+systemctl --user enable redshift@4500
+systemctl --user enable workspace_rules
 
-Add to /etc/systemd/logind.conf -
-HandlePowerKey=suspend
+# Fix power button behaviour
+sudo echo "HandlePowerKey=suspend" >> /etc/systemd/logind.conf
 
-If using autostarting systemd unit:
-	cp /home/jordan/Scripts/LinuxSetup/Sway/sway@.service /etc/systemd/system/
-	cp /home/jordan/Scripts/LinuxSetup/Sway/sway-debug@.service /etc/systemd/system/
-	systemctl enable sway@1
+# Startup
+sudo cp /home/jordan/Scripts/LinuxSetup/Sway/sway@.service /etc/systemd/system/
+sudo cp /home/jordan/Scripts/LinuxSetup/Sway/sway-debug@.service /etc/systemd/system/
+sudo systemctl enable sway@1
 
-If using SDDM:
-	Edit /etc/sddm.conf - 
-	CursorTheme=Breeze_Snow
-
-	cp /home/jordan/Scripts/LinuxSetup/Sway/sway_env /usr/bin/
-	chmod 0755 /usr/bin/sway_env
-	chown root:root /usr/bin/sway_env
-	
-	cp /home/jordan/Scripts/LinuxSetup/Sway/sway.desktop /usr/share/wayland-sessions/sway.desktop
-	chmod 0644 /usr/share/wayland-sessions/sway.desktop
-	chown root:root /usr/share/wayland-sessions/sway.desktop
+# Reboot into Sway
+sudo reboot
 
 
-# THEME
-gsettings set org.gnome.desktop.interface gtk-theme 'Breeze-Dark'
-gsettings set org.gnome.desktop.interface icon-theme 'breeze-dark'
-flatpak --user install Breeze-Dark
-cp /home/jordan/Scripts/LinuxSetup/Sway/_.xsettingsd /home/jordan/.xsettingsd
-systemctl --user enable --now xsettingsd
+### APPS ###
 
+# General
+sudo pacman -S thunar thunar-archive-plugin file-roller tumbler ristretto firefox mpv
 
-# FONTS
-pacman -S gsfonts ttf-dejavu noto-fonts-emoji otf-font-awesome kcharselect
-gsettings set org.gnome.desktop.interface font-name "Noto Sans Regular 10"
-yay -S ttf-ms-fonts fontconfig-ubuntu cairo-ubuntu
-fc-cache -f -v
-pacman -S gnome-settings-daemon # Fixes GTK flatpaks font rendering via wayland
-
-
-# APPS
-
-pacman -S termite thunar thunar-archive-plugin file-roller tumbler ristretto firefox flatpak mesa-demos openssh screen mpv intel-ucode
-# FOR FLATPAK USE xdg-desktop-portal-gdk
+# Flatpak
+sudo pacman -S flatpak
+# Select: xdg-desktop-portal-gdk
 flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak --user install org.gimp.GIMP com.valvesoftware.Steam com.mojang.Minecraft com.github.wwmm.pulseeffects org.libreoffice.LibreOffice com.sublimetext.three org.kde.okular
-yay -S inxi
-
-# Configuring individual apps to use X11/Wayland
-Edit a .desktop file and prefix the Exec with:
-env GDK_BACKEND=x11
-Flatpak:
-flatpak --user override --env=GDK_BACKEND=x11/wayland <appid>
-flatpak --user override --env=QT_QPA_PLATFORM=xcb/wayland <appid>
-flatpak info --show-metadata <appid>
-
-# Firefox
-about:config >
-	layers.acceleration.force-enabled = true
-	general.smoothScroll.mouseWheel.durationMinMS = 100
-	general.smoothScroll.mouseWheel.durationMaxMS = 200
-	browser.urlbar.clickSelectsAll = true
-	gfx.webrender.enabled = true
-Customise > enable Title Bar
-
-# Timeshift
-yay -S timeshift
-sudo systemctl enable cronie.service
-sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-boot /etc/cron.d/
-sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-hourly /etc/cron.d/
-sudo cp /home/jordan/Scripts/LinuxSetup/timeshift.json /etc/timeshift.json
 
 # Software Installer
 sudo ln -s /home/jordan/Scripts/python/softwareinstaller/softwareinstaller /usr/bin/si
-
-# Modular calculator
-sudo pacman -S extra/python-pyqt5
-sudo ln -s /home/jordan/Scripts/python/modularcalculator/run /usr/bin/modularcalculator
 
 # Steam Flatpak
 sudo cp /home/jordan/Scripts/LinuxSetup/Sway/steam_flatpak /usr/bin/steam
@@ -91,3 +45,36 @@ sudo cp /home/jordan/Scripts/LinuxSetup/Sway/steam_flatpak /usr/bin/steam
 # Minecraft
 ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/.minecraft
 ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/Minecraft
+
+# Modular calculator
+sudo pacman -S python-pyqt5
+sudo ln -s /home/jordan/Scripts/python/modularcalculator/run /usr/bin/modularcalculator
+
+# Timeshift
+yay -S timeshift
+sudo systemctl enable cronie.service
+sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-boot /etc/cron.d/
+sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-hourly /etc/cron.d/
+sudo sh -c "cat /home/jordan/Scripts/LinuxSetup/timeshift.json | sed -e \"s/ROOT_DEVICE_UUID/`lsblk -o UUID -n /dev/sda2 | perl -pe 'chomp'`/\" - > /etc/timeshift.json"
+
+# INXI
+sudo pacman -S mesa-demos
+yay -S inxi
+
+
+### THEME ###
+
+gsettings set org.gnome.desktop.interface gtk-theme 'Breeze-Dark'
+gsettings set org.gnome.desktop.interface icon-theme 'breeze-dark'
+flatpak --user install Breeze-Dark
+cp /home/jordan/Scripts/LinuxSetup/Sway/_.xsettingsd /home/jordan/.xsettingsd
+systemctl --user enable --now xsettingsd
+
+
+### FONTS ###
+
+pacman -S gsfonts ttf-dejavu noto-fonts-emoji otf-font-awesome kcharselect
+gsettings set org.gnome.desktop.interface font-name "Noto Sans Regular 10"
+yay -S ttf-ms-fonts fontconfig-ubuntu cairo-ubuntu
+fc-cache -f -v
+pacman -S gnome-settings-daemon # Fixes GTK flatpaks font rendering via wayland

@@ -51,7 +51,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
 # Install basics
-pacman -S efibootmgr vim ntp networkmanager cifs-utils git wget
+pacman -S efibootmgr vim ntp networkmanager cifs-utils git wget openssh screen intel-ucode
 
 
 ### LOCALIZATION ###
@@ -90,7 +90,7 @@ echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/wheel
 ### BOOTLOADER ###
 
 bootctl --path=/boot install
-efibootmgr # Check "Linux Boot Manager" appears, if not first will need to be reordered in BIOS
+efibootmgr # Check "Linux Boot Manager" appears
 pacman -S linux
 
 echo "default arch
@@ -163,6 +163,11 @@ sudo pacman -S git go
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
+
+
+### Bootloader Automatic Update ###
+
+yay -S systemd-boot-pacman-hook
 
 
 ### Printing & Scanning ###

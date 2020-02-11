@@ -1,5 +1,5 @@
 {
-  "backup_device_uuid" : "920be76d-2337-4e78-8fd5-54450a1765a3",
+  "backup_device_uuid" : "ROOT_DEVICE_UUID",
   "parent_device_uuid" : "",
   "do_first_run" : "false",
   "btrfs_mode" : "false",
