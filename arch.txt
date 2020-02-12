@@ -198,3 +198,9 @@ systemctl edit --full systemd-fsck@.service
 # Append:
 StandardOutput=null
 StandardError=journal+console
+
+
+### Other ###
+
+# Fix power button behaviour
+sudo echo "HandlePowerKey=suspend" >> /etc/systemd/logind.conf

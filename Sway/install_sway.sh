@@ -1,8 +1,12 @@
+#!/usr/bin/sh
+
+
 ### SWAY ###
 
 # Install
-sudo pacman -S sway swayidle bemenu waybar grim jq xorg-server-xwayland termite pulseaudio pamixer pavucontrol gsimplecal nm-connection-editor lxtask-gtk3 breeze breeze-gtk xsettingsd plasma-integration qt5-wayland
-yay -S wofi gtk-layer-shell wlogout redshift-wlr-gamma-control
+sudo pacman --noconfirm -S sway swayidle bemenu waybar grim jq xorg-server-xwayland qt5-wayland pulseaudio pamixer pavucontrol gsimplecal nm-connection-editor lxtask-gtk3 termite
+#TODO switch wofi-hg to wofi when search result sorting fix is released
+yay --noconfirm -S wofi-hg gtk-layer-shell wlogout redshift-wlr-gamma-control
 
 # Config
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
@@ -14,31 +18,25 @@ systemctl --user enable swayidle@1800
 systemctl --user enable redshift@4500
 systemctl --user enable workspace_rules
 
-# Fix power button behaviour
-sudo echo "HandlePowerKey=suspend" >> /etc/systemd/logind.conf
-
 # Startup
 sudo cp /home/jordan/Scripts/LinuxSetup/Sway/sway@.service /etc/systemd/system/
 sudo cp /home/jordan/Scripts/LinuxSetup/Sway/sway-debug@.service /etc/systemd/system/
 sudo systemctl enable sway@1
 
-# Reboot into Sway
-sudo reboot
-
 
 ### APPS ###
 
 # General
-sudo pacman -S thunar thunar-archive-plugin file-roller tumbler ristretto firefox mpv
+sudo pacman --noconfirm -S thunar thunar-archive-plugin file-roller tumbler ristretto firefox mpv kcharselect
 
 # Flatpak
-sudo pacman -S flatpak
+sudo pacman --noconfirm -S flatpak
 # Select: xdg-desktop-portal-gdk
-flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak --user install org.gimp.GIMP com.valvesoftware.Steam com.mojang.Minecraft com.github.wwmm.pulseeffects org.libreoffice.LibreOffice com.sublimetext.three org.kde.okular
+flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo -y
+flatpak --user install -y flathub org.gimp.GIMP com.valvesoftware.Steam com.mojang.Minecraft com.github.wwmm.pulseeffects org.libreoffice.LibreOffice com.sublimetext.three org.kde.okular
 
 # Software Installer
-sudo ln -s /home/jordan/Scripts/python/softwareinstaller/softwareinstaller /usr/bin/si
+sudo ln -snf /home/jordan/Scripts/python/softwareinstaller/softwareinstaller /usr/bin/si
 
 # Steam Flatpak
 sudo cp /home/jordan/Scripts/LinuxSetup/Sway/steam_flatpak /usr/bin/steam
@@ -48,11 +46,11 @@ ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/.minecraft
 ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/Minecraft
 
 # Modular calculator
-sudo pacman -S python-pyqt5
-sudo ln -s /home/jordan/Scripts/python/modularcalculator/run /usr/bin/modularcalculator
+sudo pacman --noconfirm -S python-pyqt5
+sudo ln -snf /home/jordan/Scripts/python/modularcalculator/run /usr/bin/modularcalculator
 
 # Timeshift
-yay -S timeshift
+yay --noconfirm -S timeshift
 sudo systemctl enable cronie.service
 sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-boot /etc/cron.d/
 sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-hourly /etc/cron.d/
@@ -61,17 +59,18 @@ sudo sh -c "cat /home/jordan/Scripts/LinuxSetup/timeshift.json | sed -e \"s/ROOT
 
 ### THEME ###
 
+sudo pacman --noconfirm -S breeze breeze-gtk xsettingsd plasma-integration
 gsettings set org.gnome.desktop.interface gtk-theme 'Breeze-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'breeze-dark'
-flatpak --user install Breeze-Dark
+flatpak --user install -y Breeze-Dark
 cp /home/jordan/Scripts/LinuxSetup/Sway/_.xsettingsd /home/jordan/.xsettingsd
 systemctl --user enable --now xsettingsd
 
 
 ### FONTS ###
 
-pacman -S gsfonts ttf-dejavu noto-fonts-emoji otf-font-awesome kcharselect
+pacman --noconfirm -S gsfonts ttf-dejavu noto-fonts-emoji otf-font-awesome
 gsettings set org.gnome.desktop.interface font-name "Noto Sans Regular 10"
-yay -S ttf-ms-fonts fontconfig-ubuntu cairo-ubuntu
+yay --noconfirm -S ttf-ms-fonts fontconfig-ubuntu cairo-ubuntu
 fc-cache -f -v
-pacman -S gnome-settings-daemon # Fixes GTK flatpaks font rendering via wayland
+pacman --noconfirm -S gnome-settings-daemon # Fixes GTK flatpaks font rendering via wayland
