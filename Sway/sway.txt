@@ -9,6 +9,7 @@ cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
 cp /home/jordan/Scripts/LinuxSetup/Sway/_.Xresources /home/jordan/.Xresources
 
 # Enable services
+systemctl --user enable waybar
 systemctl --user enable swayidle@1800
 systemctl --user enable redshift@4500
 systemctl --user enable workspace_rules

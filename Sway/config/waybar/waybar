@@ -1,3 +1,0 @@
-#!/usr/bin/sh
-
-waybar > ~/waybar_log 2>&1

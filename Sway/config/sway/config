@@ -304,10 +304,6 @@ mode "$mode_screenshot" {
 # Status Bar #
 ##############
 
-bar {
-    swaybar_command $config/waybar/waybar
-}
-
 # Calendar
 for_window [app_id="gsimplecal" floating] {
     move position 1714 862
