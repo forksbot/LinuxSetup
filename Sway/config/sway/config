@@ -287,12 +287,12 @@ bindsym --whole-window --border $mod+Mod1+button5 exec --no-startup-id pactl set
 bindsym --whole-window --border $mod+Mod1+button2 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 
 # Screenshot
-bindsym Print exec grim ~/output-`date +%Y-%m-%d_%T`.png
+bindsym Print exec grim ~/SCREENSHOT-`date +%Y-%m-%d_%T`.png
 set $mode_screenshot Take Screenshot: [1] $output0 [2] $output1
 bindsym $mod+Print mode "$mode_screenshot"
 mode "$mode_screenshot" {
-    bindsym 1 exec grim -o $output0 ~/output-`date +%Y-%m-%d_%T`-$output0.png ; mode "default"
-    bindsym 2 exec grim -o $output1 ~/output-`date +%Y-%m-%d_%T`-$output1.png ; mode "default"
+    bindsym 1 exec grim -o $output0 ~/SCREENSHOT-`date +%Y-%m-%d_%T`-$output0.png ; mode "default"
+    bindsym 2 exec grim -o $output1 ~/SCREENSHOT-`date +%Y-%m-%d_%T`-$output1.png ; mode "default"
 
     bindsym Escape mode "default"
     bindsym Return mode "default"
