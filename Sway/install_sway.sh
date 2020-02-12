@@ -52,8 +52,8 @@ sudo ln -snf /home/jordan/Scripts/python/modularcalculator/run /usr/bin/modularc
 # Timeshift
 yay --noconfirm -S timeshift
 sudo systemctl enable cronie.service
-sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-boot /etc/cron.d/
-sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-hourly /etc/cron.d/
+sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-* /etc/cron.d/
+sudo chmod 0644 /etc/cron.d/timeshift-*
 sudo sh -c "cat /home/jordan/Scripts/LinuxSetup/timeshift.json | sed -e \"s/ROOT_DEVICE_UUID/`lsblk -o UUID -n /dev/sda2 | perl -pe 'chomp' -`/\" > /etc/timeshift.json"
 
 
