@@ -24,40 +24,6 @@ sudo cp /home/jordan/Scripts/LinuxSetup/Sway/sway-debug@.service /etc/systemd/sy
 sudo systemctl enable sway@1
 
 
-### APPS ###
-
-# General
-sudo pacman --noconfirm -S thunar thunar-archive-plugin file-roller tumbler ristretto firefox mpv kcharselect
-
-# Flatpak
-sudo pacman --noconfirm -S flatpak
-# Select: xdg-desktop-portal-gdk
-flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo -y
-flatpak --user install -y flathub org.gimp.GIMP com.valvesoftware.Steam com.mojang.Minecraft com.github.wwmm.pulseeffects org.libreoffice.LibreOffice com.sublimetext.three org.kde.okular
-
-# Software Installer
-sudo ln -snf /home/jordan/Scripts/python/softwareinstaller/softwareinstaller /usr/bin/si
-
-# Steam Flatpak
-sudo cp /home/jordan/Scripts/LinuxSetup/Sway/steam_flatpak /usr/bin/steam
-
-# Minecraft
-ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/.minecraft
-ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/Minecraft
-
-# Modular calculator
-sudo pacman --noconfirm -S python-pyqt5
-sudo ln -snf /home/jordan/Scripts/python/modularcalculator/run /usr/bin/modularcalculator
-
-# Timeshift
-yay --noconfirm -S timeshift
-sudo systemctl enable cronie.service
-sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-* /etc/cron.d/
-sudo chmod 0644 /etc/cron.d/timeshift-*
-uuid=`lsblk -o UUID -n /dev/sda2 | perl -pe 'chomp' -`
-sudo sh -c "cat /home/jordan/Scripts/LinuxSetup/timeshift.json | sed -e \"s/ROOT_DEVICE_UUID/$uuid/\" > /etc/timeshift.json"
-
-
 ### THEME ###
 
 sudo pacman --noconfirm -S breeze breeze-gtk xsettingsd plasma-integration
@@ -75,3 +41,21 @@ gsettings set org.gnome.desktop.interface font-name "Noto Sans Regular 10"
 yay --noconfirm -S ttf-ms-fonts fontconfig-ubuntu cairo-ubuntu
 fc-cache -f -v
 pacman --noconfirm -S gnome-settings-daemon # Fixes GTK flatpaks font rendering via wayland
+
+
+### APPS ###
+
+# General
+sudo pacman --noconfirm -S thunar thunar-archive-plugin file-roller tumbler ristretto firefox mpv kcharselect
+flatpak --user install -y flathub org.gimp.GIMP com.valvesoftware.Steam com.mojang.Minecraft com.github.wwmm.pulseeffects org.libreoffice.LibreOffice com.sublimetext.three org.kde.okular
+
+# Steam Flatpak
+sudo cp /home/jordan/Scripts/LinuxSetup/Sway/steam_flatpak /usr/bin/steam
+
+# Minecraft
+ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/.minecraft
+ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/Minecraft
+
+# Modular calculator
+sudo pacman --noconfirm -S python-pyqt5
+sudo ln -snf /home/jordan/Scripts/python/modularcalculator/run /usr/bin/modularcalculator
