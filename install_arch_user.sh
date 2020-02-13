@@ -17,10 +17,11 @@ sudo cp /home/jordan/Scripts/LinuxSetup/.vimrc /root/
 
 ### AUR / Yay ###
 
+cd /tmp
 sudo pacman --noconfirm -S git go
 git clone https://aur.archlinux.org/yay.git
 cd yay
-makepkg -si
+makepkg -si --noconfirm
 
 
 ### Bootloader Automatic Update ###

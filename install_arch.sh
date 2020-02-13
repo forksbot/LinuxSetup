@@ -88,6 +88,8 @@ pacman --noconfirm -S cifs-utils
 cd /tmp
 wget https://raw.githubusercontent.com/JordanL2/LinuxSetup/master/fstab
 read -p "Enter NAS password: " password
+cp -n /etc/fstab /etc/fstab.ORIGINAL
+cp /etc/fstab.ORIGINAL /etc/fstab
 cat fstab | sed -e "s/__PASSWORD__/$password/" >> /etc/fstab
 cd /mnt
 mkdir jordan download public multimedia
@@ -109,10 +111,12 @@ systemctl enable --now org.cups.cupsd.service
 sed -i -e "s/^HOOKS\\(.\\+\\) udev \\(.\\+\\)\$/HOOKS\\1 systemd \\2/" /etc/mkinitcpio.conf
 mkinitcpio -p linux
 
-for f in /usr/lib/systemd/system/systemd-fsck-root.service /usr/lib/systemd/system/systemd-fsck\@.service
+for f in systemd-fsck-root.service systemd-fsck\@.service
 do
+	cp /usr/lib/systemd/system/$f /etc/systemd/system/$f
 	echo "StandardOutput=null
-StandardError=journal+console" >> $f
+StandardError=journal+console" >> /etc/systemd/system/$f
+done
 
 
 ### Other ###
