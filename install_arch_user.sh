@@ -9,7 +9,7 @@ cp /home/jordan/Scripts/LinuxSetup/.bash_profile .
 cp /home/jordan/Scripts/LinuxSetup/.bashrc .
 cp /home/jordan/Scripts/LinuxSetup/.vimrc .
 cp /home/jordan/Scripts/LinuxSetup/env.sh .
-cp /home/jordan/Scripts/LinuxSetup/aliases .
+cp /home/jordan/Scripts/LinuxSetup/aliases.sh .
 sudo cp /home/jordan/Scripts/LinuxSetup/.bash_profile /root/
 sudo cp /home/jordan/Scripts/LinuxSetup/root.bashrc /root/.bashrc
 sudo cp /home/jordan/Scripts/LinuxSetup/.vimrc /root/
@@ -31,7 +31,7 @@ yay --noconfirm -S systemd-boot-pacman-hook
 
 ### Optimise Mirror List ###
 
-sudo pacman -S reflector
+sudo pacman --noconfirm -S reflector
 reflector --sort rate --age 1 > /etc/pacman.d/mirrorlist
 sudo pacman --noconfirm -Sc
 sudo pacman-key --refresh-keys
@@ -49,7 +49,7 @@ yay --noconfirm -S timeshift
 sudo systemctl enable cronie.service
 sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-* /etc/cron.d/
 sudo chmod 0644 /etc/cron.d/timeshift-*
-uuid=`lsblk -o UUID -n /dev/sda2 | perl -pe 'chomp' -`
+uuid=`lsblk -o UUID -n $ROOT | perl -pe 'chomp' -`
 sudo sh -c "cat /home/jordan/Scripts/LinuxSetup/timeshift.json | sed -e \"s/ROOT_DEVICE_UUID/$uuid/\" > /etc/timeshift.json"
 
 # Software Installer

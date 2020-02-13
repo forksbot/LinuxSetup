@@ -253,7 +253,7 @@ bindsym XF86MonBrightnessDown exec sudo brightnessctl s 10%-
 ##############
 
 bar {
-    swaybar_command $config/waybar/waybar
+    swaybar_command waybar
 }
 
 
