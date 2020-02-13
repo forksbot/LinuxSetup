@@ -117,7 +117,7 @@ bindsym --whole-window --border $mod+button2 kill
 bindsym $mod+x exec wlogout -b 2 --protocol=layer-shell
 
 # Send monitors to sleep
-bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; $config/sway/fix_workspaces ; pkill -nx swayidle'
+bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; $config/sway/fix_workspaces ; pkill swayidle'
 
 # Reload the configuration file
 bindsym $mod+F5 Reload

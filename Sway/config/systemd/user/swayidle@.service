@@ -6,7 +6,7 @@ PartOf=graphical-session.target
 [Service]
 Type=simple
 ExecStart=swayidle timeout %i 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; /home/jordan/.config/sway/fix_workspaces'
-Restart=on-failure
+Restart=always
 RestartSec=1
 
 [Install]
