@@ -29,12 +29,13 @@ makepkg -si --noconfirm
 yay --noconfirm -S systemd-boot-pacman-hook
 
 
-### Update Mirror List ###
+### Optimise Mirror List ###
 
-sudo cp /home/jordan/Scripts/LinuxSetup/mirrorlist2 /etc/pacman.d/mirrorlist
+sudo pacman -S reflector
+reflector --sort rate --age 1 > /etc/pacman.d/mirrorlist
 sudo pacman --noconfirm -Sc
-sudo pacman-key --noconfirm --refresh-keys
-sudo pacman --noconfirm -Syy
+sudo pacman-key --refresh-keys
+sudo pacman -Syy
 
 
 ### Apps ###
