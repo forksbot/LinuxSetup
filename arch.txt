@@ -57,11 +57,11 @@ wget https://raw.githubusercontent.com/JordanL2/LinuxSetup/master/install_arch.s
 wget https://raw.githubusercontent.com/JordanL2/LinuxSetup/master/install_arch_user.sh
 
 # Install system
-./install_arch.sh
+sh install_arch.sh
 
 # Reboot
 exit
 reboot
 
 # Log into TTY as jordan, then run:
-/tmp/install_arch_user.sh
+sh /tmp/install_arch_user.sh

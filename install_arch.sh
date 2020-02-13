@@ -1,8 +1,12 @@
 #!/usr/bin/sh
 
 
+hostname=rupert
+username=jordan
+
+
 # Install basics
-pacman --noconfirm -S efibootmgr vim ntp networkmanager cifs-utils git openssh screen intel-ucode man-db man-pages
+pacman --noconfirm -S vim git openssh screen intel-ucode man-db man-pages
 
 
 ### LOCALIZATION ###
@@ -10,7 +14,7 @@ pacman --noconfirm -S efibootmgr vim ntp networkmanager cifs-utils git openssh s
 ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime
 hwclock --systohc
 
-echo "en_GB.UTF-8" >> /etc/locale.gen
+echo "en_GB.UTF-8" > /etc/locale.gen
 locale-gen
 
 echo "LANG=en_GB.UTF-8" > /etc/locale.conf
@@ -19,10 +23,10 @@ echo "KEYMAP=uk" > /etc/vconsole.conf
 
 ### HOSTNAME / HOSTS ###
 
-echo "rupert" > /etc/hostname
+echo $hostname > /etc/hostname
 
 echo "127.0.0.1       localhost
-	127.0.1.1       rupert
+	127.0.1.1       $hostname
 	::1     localhost ip6-localhost ip6-loopback
 	192.168.0.24    humphrey" > /etc/hosts
 
@@ -33,20 +37,21 @@ echo "127.0.0.1       localhost
 echo "Enter root password"
 passwd
 
-useradd -m -g wheel jordan
-echo "Enter jordan password"
-passwd jordan
+useradd -m -g wheel $username
+echo "Enter $username password"
+passwd $username
 
 echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/wheel
 
 
 ### BOOTLOADER ###
 
+pacman --noconfirm -S efibootmgr
 bootctl --path=/boot install
 pacman --noconfirm -S linux linux-lts
 
 echo "default arch
-timeout  4
+timeout 4
 console-mode max" > /boot/loader/loader.conf
 
 uuid=`lsblk -o UUID -n /dev/sda2 | perl -pe 'chomp' -`
@@ -62,20 +67,24 @@ initrd  /initramfs-linux-lts.img
 options root=UUID=$uuid rw" > /boot/loader/entries/arch-lts.conf
 
 
-### NETWORKING / TIME ###
+### SERVICES ###
 
+# Network Manager
+pacman --noconfirm -S networkmanager
 systemctl enable NetworkManager.service
+
+# Network Time
+pacman --noconfirm -S ntp
 systemctl enable ntpd.service
 
-
-### KERNEL ENTROPY FIX ###
-
+# Kernel entropy fix
 pacman --noconfirm -S haveged
 systemctl enable haveged.service
 
 
 ### NETWORK DRIVES ###
 
+pacman --noconfirm -S cifs-utils
 cd /tmp
 wget https://raw.githubusercontent.com/JordanL2/LinuxSetup/master/fstab
 read -p "Enter NAS password: " password
