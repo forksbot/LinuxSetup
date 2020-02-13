@@ -68,6 +68,7 @@ wget https://raw.githubusercontent.com/JordanL2/LinuxSetup/master/install_arch.s
 wget https://raw.githubusercontent.com/JordanL2/LinuxSetup/master/install_arch_user.sh
 
 # Install system
+export ROOT=/dev/sda2
 sh install_arch.sh
 
 # Reboot

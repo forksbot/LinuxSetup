@@ -54,7 +54,7 @@ echo "default arch
 timeout 4
 console-mode max" > /boot/loader/loader.conf
 
-uuid=`lsblk -o UUID -n /dev/sda2 | perl -pe 'chomp' -`
+uuid=`lsblk -o UUID -n $ROOT | perl -pe 'chomp' -`
 
 echo "title Arch Linux
 linux   /vmlinuz-linux
