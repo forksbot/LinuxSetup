@@ -1,8 +1,9 @@
 #!/usr/bin/sh
 
 
-hostname=rupert
-username=jordan
+# Set ROOT to the root partition
+hostname=$HOST
+username=$USERNAME
 
 
 # Install basics
@@ -97,8 +98,8 @@ mkdir jordan download public multimedia
 
 ### Printing & Scanning ###
 
-pacman --noconfirm -S cups hplip sane python-pillow
-systemctl enable --now org.cups.cupsd.service
+#pacman --noconfirm -S cups hplip sane python-pillow
+#systemctl enable --now org.cups.cupsd.service
 #hp-setup -i -a -b net -x
 #sudo hp-setup -i # select 1
 #sudo hp-plugin # select d

@@ -32,7 +32,7 @@ yay --noconfirm -S systemd-boot-pacman-hook
 ### Optimise Mirror List ###
 
 sudo pacman --noconfirm -S reflector
-reflector --sort rate --age 1 > /etc/pacman.d/mirrorlist
+sudo sh -c "reflector --sort rate --age 1 > /etc/pacman.d/mirrorlist"
 sudo pacman --noconfirm -Sc
 sudo pacman-key --refresh-keys
 sudo pacman -Syy
