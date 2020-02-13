@@ -50,157 +50,18 @@ genfstab -U /mnt >> /mnt/etc/fstab
 # Chroot into system
 arch-chroot /mnt
 
-# Install basics
-pacman -S efibootmgr vim ntp networkmanager cifs-utils git wget openssh screen intel-ucode
-
-
-### LOCALIZATION ###
-
-ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
-hwclock --systohc
-
-echo "en_GB.UTF-8" >> /etc/locale.gen
-locale-gen
-
-echo "LANG=en_GB.UTF-8" > /etc/locale.conf
-echo "KEYMAP=uk" > /etc/vconsole.conf
-
-
-### HOSTNAME / HOSTS ###
-
-echo "rupert" > /etc/hostname
-
-echo "127.0.0.1       localhost
-	127.0.1.1       rupert
-	::1     localhost ip6-localhost ip6-loopback
-	192.168.0.24    humphrey" > /etc/hosts
-
-
-### USERS ###
-
-# Set root password
-passwd
-
-useradd -m -g wheel jordan
-passwd jordan
-
-echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/wheel
-
-
-### BOOTLOADER ###
-
-bootctl --path=/boot install
-efibootmgr # Check "Linux Boot Manager" appears
-pacman -S linux
-
-echo "default arch
-timeout  4
-console-mode max" > /boot/loader/loader.conf
-
-lsblk -o NAME,MOUNTPOINT,SIZE,TYPE,UUID
-
-# Replace <UUID> with UUID for root partition from table
-echo "title Arch Linux
-linux   /vmlinuz-linux
-initrd  /initramfs-linux.img
-options root=UUID=<UUID> rw quiet loglevel=3 vga=current rd.systemd.show_status=auto rd.udev.log_priority=3 vt.global_cursor_default=0" > /boot/loader/entries/arch.conf
-
-
-### NETWORKING / TIME ###
-
-systemctl enable NetworkManager.service
-systemctl enable ntpd.service
-
-
-### KERNEL ENTROPY FIX ###
-
-pacman -S haveged
-systemctl enable haveged.service
-
-
-### NETWORK DRIVES ###
-
+# Get install scripts
+pacman -S wget
 cd /tmp
-wget https://raw.githubusercontent.com/JordanL2/LinuxSetup/master/fstab
-#!!! REPLACE __PASSWORD__ with the NAS password
-cat fstab >> /etc/fstab
-cd /mnt
-mkdir jordan download public multimedia
+wget https://raw.githubusercontent.com/JordanL2/LinuxSetup/master/install_arch.sh
+wget https://raw.githubusercontent.com/JordanL2/LinuxSetup/master/install_arch_user.sh
 
+# Install system
+./install_arch.sh
 
-### REBOOT ###
-
+# Reboot
 exit
 reboot
 
-
-
-#############################
-### ARCH IS NOW INSTALLED ###
-#############################
-
-
-Log into TTY as jordan
-
-
-### Home dir and basic config ###
-
-cd ~
-/mnt/jordan/Scripts/LinuxSetup/links.sh
-cp /home/jordan/Scripts/LinuxSetup/.bash_profile .
-cp /home/jordan/Scripts/LinuxSetup/.bashrc .
-cp /home/jordan/Scripts/LinuxSetup/.vimrc .
-cp /home/jordan/Scripts/LinuxSetup/env.sh .
-cp /home/jordan/Scripts/LinuxSetup/aliases .
-sudo cp /home/jordan/Scripts/LinuxSetup/.bash_profile /root/
-sudo cp /home/jordan/Scripts/LinuxSetup/root.bashrc /root/.bashrc
-sudo cp /home/jordan/Scripts/LinuxSetup/.vimrc /root/
-
-
-### AUR / Yay ###
-
-sudo pacman -S git go
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-
-
-### Bootloader Automatic Update ###
-
-yay -S systemd-boot-pacman-hook
-
-
-### Printing & Scanning ###
-
-sudo pacman -S cups hplip sane python-pillow
-sudo systemctl enable --now org.cups.cupsd.service
-sudo hp-setup -i # select 1
-sudo hp-plugin # select d
-# To scan: hp-scan
-
-
-### Update Mirror List ###
-
-sudo cp /home/jordan/Scripts/LinuxSetup/mirrorlist2 /etc/pacman.d/mirrorlist
-sudo pacman -Sc
-sudo pacman-key --refresh-keys
-sudo pacman -Syy
-
-
-### Silent boot - fsck - https://wiki.archlinux.org/index.php/Silent_boot ###
-
-vim /etc/mkinitcpio.conf
-# On line "HOOKS (" replace "udev" with "systemd"
-mkinitcpio -p linux
-# For each of these files:
-systemctl edit --full systemd-fsck-root.service
-systemctl edit --full systemd-fsck@.service
-# Append:
-StandardOutput=null
-StandardError=journal+console
-
-
-### Other ###
-
-# Fix power button behaviour
-sudo echo "HandlePowerKey=suspend" >> /etc/systemd/logind.conf
+# Log into TTY as jordan, then run:
+/tmp/install_arch_user.sh
