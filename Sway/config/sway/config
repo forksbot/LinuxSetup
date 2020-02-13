@@ -279,12 +279,19 @@ bindsym $mod+Shift+equal resize grow height 10px
 #
 
 # Volume
-bindsym $mod+Mod1+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
-bindsym $mod+Mod1+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
+bindsym $mod+Mod1+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym $mod+Mod1+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym $mod+Mod1+m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 bindsym --whole-window --border $mod+Mod1+button4 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym --whole-window --border $mod+Mod1+button5 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym --whole-window --border $mod+Mod1+button2 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
+bindsym --whole-window --border $mod+Mod1+button2 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# Screen brightness
+bindsym XF86MonBrightnessUp exec sudo brightnessctl s +10%
+bindsym XF86MonBrightnessDown exec sudo brightnessctl s 10%-
 
 # Screenshot
 bindsym Print exec grim ~/SCREENSHOT-`date +%Y-%m-%d_%T`.png
