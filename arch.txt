@@ -3,6 +3,17 @@
 sudo dd bs=4M if=<PATH TO ISO> of=<USB DEVICE>
 
 
+### NOTES ###
+
+To copy and paste in TTY:
+	pacman -S screen
+	screen
+	Ctrl+A, [
+	Use arrow keys to point to start of text, press Space
+	Use arrow keys to point to end of text, press Space
+	Ctrl+A, ]
+
+
 ### LOCALE ###
 
 # Keyboard layout

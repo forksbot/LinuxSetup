@@ -91,3 +91,31 @@ read -p "Enter NAS password: " password
 cat fstab | sed -e "s/__PASSWORD__/$password/" >> /etc/fstab
 cd /mnt
 mkdir jordan download public multimedia
+
+
+### Printing & Scanning ###
+
+pacman --noconfirm -S cups hplip sane python-pillow
+systemctl enable --now org.cups.cupsd.service
+#hp-setup -i -a -b net -x
+#sudo hp-setup -i # select 1
+#sudo hp-plugin # select d
+# To scan: hp-scan
+
+
+
+### Silent boot - fsck - https://wiki.archlinux.org/index.php/Silent_boot ###
+
+sed -i -e "s/^HOOKS\\(.\\+\\) udev \\(.\\+\\)\$/HOOKS\\1 systemd \\2/" /etc/mkinitcpio.conf
+mkinitcpio -p linux
+
+for f in /usr/lib/systemd/system/systemd-fsck-root.service /usr/lib/systemd/system/systemd-fsck\@.service
+do
+	echo "StandardOutput=null
+StandardError=journal+console" >> $f
+
+
+### Other ###
+
+# Fix power button behaviour
+sed -i -e "s/^#\\?HandlePowerKey=.\\+\$/HandlePowerKey=suspend/" /etc/systemd/logind.conf

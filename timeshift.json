@@ -21,8 +21,6 @@
   "snapshot_count" : "212258",
   "date_format" : "%Y-%m-%d %H:%M:%S",
   "exclude" : [
-    "+ /root/.**",
-    "+ /home/jordan/.**"
   ],
   "exclude-apps" : [
   ]
