@@ -2,6 +2,8 @@
 # General #
 ###########
 
+set $config ~/.config
+
 # Output configuration
 output * bg #000000 solid_color
 
@@ -77,9 +79,7 @@ bindsym $mod+r exec $runner
 bindsym $mod+Return exec $term
 
 # Browser
-#bindsym $mod+w exec google-chrome-stable
 bindsym $mod+w exec firefox
-#bindsym $mod+w exec /home/jordan/.config/sway/firefox
 
 # File manager
 bindsym $mod+f exec thunar
@@ -116,7 +116,9 @@ mode "$mode_quit" {
 bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill -nx swayidle'
 
 # Reload the configuration file
-bindsym Control+Alt+BackSpace exec cp -r /home/jordan/Scripts/LinuxSetup/Wilfred/config/* ~/.config/ ; reload
+bindsym $mod+F5 Reload
+# Copy config from NAS and reload the configuration file
+bindsym Control+$mod+F5 exec cp -r ~/Scripts/LinuxSetup/Wilfred/config/* $config/ ; reload
 
 
 #
@@ -251,7 +253,7 @@ bindsym XF86MonBrightnessDown exec sudo brightnessctl s 10%-
 ##############
 
 bar {
-    swaybar_command /home/jordan/.config/waybar/waybar
+    swaybar_command $config/waybar/waybar
 }
 
 
@@ -261,11 +263,11 @@ bar {
 #######################
 
 # Xsettingsd - For Flatpak themes to work
-exec /home/jordan/.config/sway/xsettingsd
+exec $config/sway/xsettingsd
 
 # Reshift
 exec_always {
-    /home/jordan/.config/sway/redshift_launcher
+    $config/sway/redshift_launcher
 }
 
 # Monitor power saving
