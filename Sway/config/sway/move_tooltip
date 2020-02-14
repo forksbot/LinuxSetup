@@ -5,20 +5,35 @@ import sys
 import swayipc
 
 
-app_id = 'waybar'
+# USAGE
+# move_tooltip <APP_ID> <TARGETX> <ALIGNX> <TARGETY> <ALIGNY>
+# APP_ID   app_id attribute
+# TARGETX  x coordinate to move to, or "cursor" to move to cursor's x coordinate
+# ALIGNX   0 = align left, 0.5 = align centre, 1 = align right
+# TARGETY  y coordinate to move to, or "cursor" to move to cursor's y coordinate
+# ALIGNY   0 = align top, 0.5 = align centre, 1 = align bottom
+
+
+scriptpath = sys.argv.pop(0)
+
+app_id = sys.argv.pop(0)
 match = {
 	'app_id': app_id,
 	'type': 'floating_con',
 }
 app_match_string = "[app_id=\"{}\" floating]".format(app_id)
 
-target_x = 'cursor'
+target_x = sys.argv.pop(0)
+if target_x != 'cursor':
+	target_x = int(target_x)
 # 0 = Left, 0.5 = Middle, 1 = Right
-align_x = 0.5
+align_x = float(sys.argv.pop(0))
 
-target_y = 1061
+target_y = sys.argv.pop(0)
+if target_y != 'cursor':
+	target_y = int(target_y)
 # 0 = Top, 0.5 = Middle, 1 = Bottom
-align_y = 1
+align_y = float(sys.argv.pop(0))
 
 
 def tree_to_list(tree):
@@ -59,9 +74,9 @@ async def main():
 				left = (x - target_x)
 			left += (width * align_x)
 			if left > 0:
-				commands.append("{} move left {}".format(app_match_string, left))
+				commands.append("{} move left {}".format(app_match_string, int(left)))
 			else:
-				commands.append("{} move right {}".format(app_match_string, -left))
+				commands.append("{} move right {}".format(app_match_string, int(-left)))
 
 			height = n['geometry']['height']
 			y = n['rect']['y']
@@ -70,14 +85,12 @@ async def main():
 				up = (y - target_y)
 			up += (height * align_y)
 			if up > 0:
-				commands.append("{} move up {}".format(app_match_string, up))
+				commands.append("{} move up {}".format(app_match_string, int(up)))
 			else:
-				commands.append("{} move down {}".format(app_match_string, -up))
+				commands.append("{} move down {}".format(app_match_string, int(-up)))
 
 			command = ' ; '.join(commands)
-			print(command)
-			res = await swayipc.run_command(command)
-			print(res)
+			await swayipc.run_command(command)
 
 
 asyncio.run(main())
