@@ -26,13 +26,11 @@ app_match_string = "[app_id=\"{}\" floating]".format(app_id)
 target_x = sys.argv.pop(0)
 if target_x != 'cursor':
 	target_x = int(target_x)
-# 0 = Left, 0.5 = Middle, 1 = Right
 align_x = float(sys.argv.pop(0))
 
 target_y = sys.argv.pop(0)
 if target_y != 'cursor':
 	target_y = int(target_y)
-# 0 = Top, 0.5 = Middle, 1 = Bottom
 align_y = float(sys.argv.pop(0))
 
 
