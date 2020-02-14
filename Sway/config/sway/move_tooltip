@@ -1,16 +1,20 @@
 #!/usr/bin/python3
 
 import asyncio
-import json
-import signal
 import sys
 import swayipc
 
 
+app_id = 'waybar'
 match = {
-	'app_id': 'waybar',
+	'app_id': app_id,
 	'type': 'floating_con',
 }
+app_match_string = "[app_id=\"{}\" floating]".format(app_id)
+
+target_x = 'cursor'
+# 0 = Left, 0.5 = Middle, 1 = Right
+align_x = 0.5
 
 target_y = 1061
 # 0 = Top, 0.5 = Middle, 1 = Bottom
@@ -35,6 +39,8 @@ def add_nodes(tree, nodes):
 
 async def main():
 
+	await swayipc.run_command("{} move position cursor".format(app_match_string))
+
 	tree = await swayipc.get_tree()
 	nodes = tree_to_list(tree)
 	for n in nodes:
@@ -44,13 +50,34 @@ async def main():
 			if n[key] != val:
 				break
 		else:
+			commands = []
+
+			width = n['geometry']['width']
+			x = n['rect']['x']
+			left = int(-width/2)
+			if target_x != 'cursor':
+				left = (x - target_x)
+			left += (width * align_x)
+			if left > 0:
+				commands.append("{} move left {}".format(app_match_string, left))
+			else:
+				commands.append("{} move right {}".format(app_match_string, -left))
+
 			height = n['geometry']['height']
 			y = n['rect']['y']
-			up = (y - target_y) + (height * align_y)
+			up = int(-height/2)
+			if target_y != 'cursor':
+				up = (y - target_y)
+			up += (height * align_y)
 			if up > 0:
-				await swayipc.run_command("[app_id=\"waybar\" floating] move up {}".format(up))
+				commands.append("{} move up {}".format(app_match_string, up))
 			else:
-				await swayipc.run_command("[app_id=\"waybar\" floating] move down {}".format(-up))
+				commands.append("{} move down {}".format(app_match_string, -up))
+
+			command = ' ; '.join(commands)
+			print(command)
+			res = await swayipc.run_command(command)
+			print(res)
 
 
 asyncio.run(main())
