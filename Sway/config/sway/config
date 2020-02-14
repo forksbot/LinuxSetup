@@ -320,7 +320,7 @@ for_window [app_id="gsimplecal" floating] {
 # Waybar tooltips
 for_window [app_id="waybar" floating] {
     move position cursor
-    move up 150
+    exec $config/sway/move_tooltip >> ~/log 2>> ~/log
 }
 
 

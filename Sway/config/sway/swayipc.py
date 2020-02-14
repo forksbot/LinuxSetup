@@ -92,3 +92,6 @@ async def subscribe(events):
 
 async def get_outputs():
 	return sorted(await send_receive_json('GET_OUTPUTS'), key = lambda o : o['rect']['x'])
+
+async def get_tree():
+	return await send_receive_json('GET_TREE')

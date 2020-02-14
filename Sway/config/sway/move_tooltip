@@ -1,0 +1,56 @@
+#!/usr/bin/python3
+
+import asyncio
+import json
+import signal
+import sys
+import swayipc
+
+
+match = {
+	'app_id': 'waybar',
+	'type': 'floating_con',
+}
+
+target_y = 1061
+# 0 = Top, 0.5 = Middle, 1 = Bottom
+align_y = 1
+
+
+def tree_to_list(tree):
+	nodes = [tree]
+	if 'nodes' in tree:
+		add_nodes(tree['nodes'], nodes)
+	if 'floating_nodes' in tree:
+		add_nodes(tree['floating_nodes'], nodes)
+	return nodes
+
+def add_nodes(tree, nodes):
+	for node in tree:
+		nodes.append(node)
+		if 'nodes' in node:
+			add_nodes(node['nodes'], nodes)
+		if 'floating_nodes' in node:
+			add_nodes(node['floating_nodes'], nodes)
+
+async def main():
+
+	tree = await swayipc.get_tree()
+	nodes = tree_to_list(tree)
+	for n in nodes:
+		for key, val in match.items():
+			if key not in n:
+				break
+			if n[key] != val:
+				break
+		else:
+			height = n['geometry']['height']
+			y = n['rect']['y']
+			up = (y - target_y) + (height * align_y)
+			if up > 0:
+				await swayipc.run_command("[app_id=\"waybar\" floating] move up {}".format(up))
+			else:
+				await swayipc.run_command("[app_id=\"waybar\" floating] move down {}".format(-up))
+
+
+asyncio.run(main())
