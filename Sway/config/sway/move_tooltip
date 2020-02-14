@@ -13,6 +13,13 @@ import swayipc
 # TARGETY  y coordinate to move to, or "cursor" to move to cursor's y coordinate
 # ALIGNY   0 = align top, 0.5 = align centre, 1 = align bottom
 
+# Example usage in Sway config:
+
+# for_window [app_id="waybar" floating] {
+#     move position 5000 5000
+#     exec ~/.config/sway/move_tooltip waybar cursor 0.5 1061 1
+# }
+
 
 scriptpath = sys.argv.pop(0)
 
@@ -56,18 +63,18 @@ async def main():
 
 	tree = await swayipc.get_tree()
 	nodes = tree_to_list(tree)
-	for n in nodes:
+	for node in nodes:
 		for key, val in match.items():
-			if key not in n:
+			if key not in node:
 				break
-			if n[key] != val:
+			if node[key] != val:
 				break
 		else:
 			commands = []
 
-			width = n['geometry']['width']
-			x = n['rect']['x']
-			left = int(-width/2)
+			width = node['geometry']['width']
+			x = node['rect']['x']
+			left = int(-width / 2)
 			if target_x != 'cursor':
 				left = (x - target_x)
 			left += (width * align_x)
@@ -76,9 +83,9 @@ async def main():
 			else:
 				commands.append("{} move right {}".format(app_match_string, int(-left)))
 
-			height = n['geometry']['height']
-			y = n['rect']['y']
-			up = int(-height/2)
+			height = node['geometry']['height']
+			y = node['rect']['y']
+			up = int(-height / 2)
 			if target_y != 'cursor':
 				up = (y - target_y)
 			up += (height * align_y)
