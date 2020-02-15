@@ -38,10 +38,13 @@
     },
 
     "network": {
-        "tooltip": false,
-        "format-ethernet": "  {ipaddr:15} ",
-        "format-wifi": "  {ipaddr:15} ",
-        "format-disconnected": "    DISCONNECTED    ",
+        "tooltip": true,
+        "tooltip-format-ethernet": "{ifname} ({ipaddr})",
+        "tooltip-format-wifi": "{essid} ({ipaddr}) {signalStrength}",
+        "tooltip-format-disconnected": "DISCONNECTED",
+        "format-ethernet": "  ",
+        "format-wifi": "  ",
+        "format-disconnected": " -- ",
         "on-click": "nm-connection-editor"
     },
 
