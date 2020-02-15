@@ -317,12 +317,6 @@ for_window [app_id="gsimplecal" floating] {
     border none
 }
 
-# Waybar tooltips
-for_window [app_id="waybar" floating] {
-    move position 5000 5000
-    exec $config/sway/move_tooltip waybar cursor 0.5 1061 1
-}
-
 
 
 ################
