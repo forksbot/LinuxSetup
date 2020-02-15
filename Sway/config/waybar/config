@@ -44,7 +44,7 @@
         "tooltip-format-disconnected": "DISCONNECTED",
         "format-ethernet": "  ",
         "format-wifi": "  ",
-        "format-disconnected": " -- ",
+        "format-disconnected": "--",
         "on-click": "nm-connection-editor"
     },
 
