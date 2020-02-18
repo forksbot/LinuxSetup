@@ -36,11 +36,11 @@ systemctl --user enable --now xsettingsd
 
 ### FONTS ###
 
-pacman --noconfirm -S gsfonts ttf-dejavu noto-fonts-emoji otf-font-awesome
+sudo pacman --noconfirm -S gsfonts ttf-dejavu noto-fonts-emoji otf-font-awesome
 gsettings set org.gnome.desktop.interface font-name "Noto Sans Regular 10"
 yay --noconfirm -S ttf-ms-fonts fontconfig-ubuntu cairo-ubuntu
 fc-cache -f -v
-pacman --noconfirm -S gnome-settings-daemon # Fixes GTK flatpaks font rendering via wayland
+sudo pacman --noconfirm -S gnome-settings-daemon # Fixes GTK flatpaks font rendering via wayland
 
 
 ### APPS ###
