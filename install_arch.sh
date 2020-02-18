@@ -6,6 +6,15 @@ hostname=$HOST
 username=$USERNAME
 
 
+### Optimise Mirror List ###
+
+pacman --noconfirm -S reflector
+sh -c "reflector --sort rate --age 1 > /etc/pacman.d/mirrorlist"
+pacman --noconfirm -Sc
+pacman-key --refresh-keys
+pacman -Syy
+
+
 # Install basics
 pacman --noconfirm -S vim git openssh screen intel-ucode man-db man-pages
 

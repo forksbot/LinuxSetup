@@ -15,15 +15,6 @@ sudo cp /home/jordan/Scripts/LinuxSetup/root.bashrc /root/.bashrc
 sudo cp /home/jordan/Scripts/LinuxSetup/.vimrc /root/
 
 
-### Optimise Mirror List ###
-
-sudo pacman --noconfirm -S reflector
-sudo sh -c "reflector --sort rate --age 1 > /etc/pacman.d/mirrorlist"
-sudo pacman --noconfirm -Sc
-sudo pacman-key --refresh-keys
-sudo pacman -Syy
-
-
 ### AUR / Yay ###
 
 cd /tmp
