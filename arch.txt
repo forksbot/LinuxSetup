@@ -69,6 +69,8 @@ wget https://raw.githubusercontent.com/JordanL2/LinuxSetup/master/install_arch_u
 
 # Install system
 export ROOT=/dev/sda2
+export USERNAME=jordan
+export HOST=rupert
 sh install_arch.sh
 
 # Reboot
@@ -76,4 +78,5 @@ exit
 reboot
 
 # Log into TTY as jordan, then run:
+export ROOT=/dev/sda2
 sh /tmp/install_arch_user.sh

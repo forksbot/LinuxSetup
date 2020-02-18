@@ -41,5 +41,6 @@ ln -s /mnt/multimedia/Pictures Pictures
 rm -rf Podcasts
 ln -s /mnt/multimedia/Podcasts Podcasts
 
+rm -rf Temp
 mkdir Temp
 

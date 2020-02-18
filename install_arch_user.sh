@@ -15,6 +15,15 @@ sudo cp /home/jordan/Scripts/LinuxSetup/root.bashrc /root/.bashrc
 sudo cp /home/jordan/Scripts/LinuxSetup/.vimrc /root/
 
 
+### Optimise Mirror List ###
+
+sudo pacman --noconfirm -S reflector
+sudo sh -c "reflector --sort rate --age 1 > /etc/pacman.d/mirrorlist"
+sudo pacman --noconfirm -Sc
+sudo pacman-key --refresh-keys
+sudo pacman -Syy
+
+
 ### AUR / Yay ###
 
 cd /tmp
@@ -29,22 +38,14 @@ makepkg -si --noconfirm
 yay --noconfirm -S systemd-boot-pacman-hook
 
 
-### Optimise Mirror List ###
-
-sudo pacman --noconfirm -S reflector
-sudo sh -c "reflector --sort rate --age 1 > /etc/pacman.d/mirrorlist"
-sudo pacman --noconfirm -Sc
-sudo pacman-key --refresh-keys
-sudo pacman -Syy
-
-
 ### Apps ###
 
 # Flatpak
 sudo pacman --noconfirm -S flatpak # This should auto-select xdg-desktop-portal-gdk
-flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo -y
+flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Timeshift
+sudo pacman  --noconfirm -S cronie
 yay --noconfirm -S timeshift
 sudo systemctl enable cronie.service
 sudo cp /home/jordan/Scripts/LinuxSetup/timeshift-* /etc/cron.d/
