@@ -39,10 +39,12 @@
 
     "network": {
         "tooltip": true,
-        "format-ethernet": "  {ipaddr:15} ",
-        "format-wifi": "  {ipaddr:15} ",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
-        "format-disconnected": "    DISCONNECTED    ",
+        "tooltip-format-ethernet": "{ifname} ({ipaddr})",
+        "tooltip-format-wifi": "{essid} ({ipaddr}) {signalStrength}",
+        "tooltip-format-disconnected": "DISCONNECTED",
+        "format-ethernet": "  ",
+        "format-wifi": "  ",
+        "format-disconnected": "  ",
         "on-click": "nm-connection-editor"
     },
 
