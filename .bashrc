@@ -34,3 +34,6 @@ source ~/aliases.sh
 reniceall() {
 	for p in `pgrep -f "$1"` ; do sudo renice -20 $p ; done
 }
+
+# Best viewed as a side pane with lines=41
+alias smalltop="watch -n5 -t \"top -b -n1 -o '%MEM' -w512 | tail -n+8 | head -n \$((\$LINES-2)) | awk 'BEGIN{printf \\\"%-10s %5s%% %5s%% %-15s\n\\\", \\\"USER\\\", \\\"CPU\\\", \\\"MEM\\\", \\\"COMMAND\\\"} {printf \\\"%-10s %5s%% %5s%% %-15s\n\\\", \\\$2, \\\$9, \\\$10, \\\$12}'\""
