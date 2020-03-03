@@ -5,9 +5,8 @@
 
 # Install
 sudo pacman --noconfirm -S sway swayidle bemenu gtk-layer-shell grim jq xorg-server-xwayland qt5-wayland pulseaudio pamixer pavucontrol gsimplecal nm-connection-editor lxtask-gtk3 termite
-#TODO switch wofi-hg to wofi when 1.1 is released
 #TODO remove waybar-git and install waybar via pacman when 0.9.2 is released
-yay --noconfirm -S wofi-hg waybar-git wlogout redshift-wlr-gamma-control
+yay --noconfirm -S wofi waybar-git wlogout redshift-wlr-gamma-control
 
 # Config
 cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
