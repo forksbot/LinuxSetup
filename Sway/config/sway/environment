@@ -1,6 +1,6 @@
 GDK_BACKEND=wayland
 PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/home/jordan/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
-QT_QPA_PLATFORM=wayland
+QT_QPA_PLATFORM=wayland-egl
 SHLVL=2
 XCURSOR_SIZE=24
 XCURSOR_THEME=Breeze_Snow
