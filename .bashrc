@@ -32,7 +32,7 @@ source ~/aliases.sh
 
 # Helper functions
 reniceall() {
-	for p in `pgrep -f "$1"` ; do sudo renice -20 $p ; done
+	for p in `pgrep -f "$1"` ; do sudo renice $2 $p ; done
 }
 
 # Best viewed as a side pane with lines=37
