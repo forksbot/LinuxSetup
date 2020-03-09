@@ -1,5 +1,9 @@
 #!/usr/bin/sh
 
+# Before running this set:
+# export ROOT=<your root disk device eg /dev/sda2>
+# export HOST=<hostname>
+# export USERNAME=<main user name>
 
 # Set ROOT to the root partition
 hostname=$HOST
