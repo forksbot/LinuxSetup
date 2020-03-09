@@ -94,7 +94,7 @@ systemctl enable haveged.service
 
 ### NETWORK DRIVES ###
 
-pacman --noconfirm -S cifs-utils
+pacman --noconfirm -S cifs-utils nfs-utils
 cd /tmp
 wget https://raw.githubusercontent.com/JordanL2/LinuxSetup/master/fstab
 read -p "Enter NAS password: " password
@@ -102,7 +102,7 @@ cp -n /etc/fstab /etc/fstab.ORIGINAL
 cp /etc/fstab.ORIGINAL /etc/fstab
 cat fstab | sed -e "s/__PASSWORD__/$password/" >> /etc/fstab
 cd /mnt
-mkdir jordan download public multimedia
+mkdir jordan download public multimedia flatpakrepo gitrepo
 
 
 ### Printing & Scanning ###

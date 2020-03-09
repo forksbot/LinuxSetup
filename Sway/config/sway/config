@@ -101,7 +101,7 @@ bindsym $mod+f exec $filemanager
 bindsym $mod+e exec $texteditor
 
 # Calculator
-bindsym $mod+c exec modularcalculator
+bindsym $mod+c exec flatpak run io.github.modularcalculator.ModularCalculator
 
 
 #

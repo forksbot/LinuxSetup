@@ -34,6 +34,7 @@ yay --noconfirm -S systemd-boot-pacman-hook
 # Flatpak
 sudo pacman --noconfirm -S flatpak # This should auto-select xdg-desktop-portal-gdk
 flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak --user remote-add --if-not-exists jordan-repo /mnt/flatpakrepo/repo --gpg-import=/mnt/flatpakrepo/repo/jordan-repo.gpg
 
 # Timeshift
 sudo pacman  --noconfirm -S cronie

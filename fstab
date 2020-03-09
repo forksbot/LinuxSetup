@@ -1,4 +1,6 @@
-//humphrey/Jordan       /mnt/jordan     cifs    x-systemd.automount,x-systemd.device-timeout=10,uid=jordan,username=jordan,password=__PASSWORD__,vers=1.0 0       0 
-//humphrey/Download     /mnt/download   cifs    x-systemd.automount,x-systemd.device-timeout=10,uid=jordan,username=jordan,password=__PASSWORD__,vers=1.0 0       0 
-//humphrey/Public       /mnt/public     cifs    x-systemd.automount,x-systemd.device-timeout=10,uid=jordan,username=jordan,password=__PASSWORD__,vers=1.0 0       0 
-//humphrey/Multimedia   /mnt/multimedia cifs    x-systemd.automount,x-systemd.device-timeout=10,uid=jordan,username=jordan,password=__PASSWORD__,vers=1.0 0       0
+//humphrey/Jordan       /mnt/jordan       cifs  x-systemd.automount,x-systemd.device-timeout=10,uid=jordan,username=jordan,password=__PASSWORD__,vers=1.0  0  0 
+//humphrey/Download     /mnt/download     cifs  x-systemd.automount,x-systemd.device-timeout=10,uid=jordan,username=jordan,password=__PASSWORD__,vers=1.0  0  0 
+//humphrey/Public       /mnt/public       cifs  x-systemd.automount,x-systemd.device-timeout=10,uid=jordan,username=jordan,password=__PASSWORD__,vers=1.0  0  0 
+//humphrey/Multimedia   /mnt/multimedia   cifs  x-systemd.automount,x-systemd.device-timeout=10,uid=jordan,username=jordan,password=__PASSWORD__,vers=1.0  0  0
+humphrey:/FlatpakRepo   /mnt/flatpakrepo  nfs4  x-systemd.automount,x-systemd.mount-timeout=10,timeo=14,x-systemd.idle-timeout=1min,_netdev                0  0
+humphrey:/GitRepo       /mnt/gitrepo      nfs4  x-systemd.automount,x-systemd.mount-timeout=10,timeo=14,x-systemd.idle-timeout=1min,_netdev                0  0
