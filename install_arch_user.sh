@@ -49,4 +49,4 @@ uuid=`lsblk -o UUID -n $ROOT | perl -pe 'chomp' -`
 sudo sh -c "cat /home/jordan/GitRepo/LinuxSetup/timeshift.json | sed -e \"s/ROOT_DEVICE_UUID/$uuid/\" > /etc/timeshift.json"
 
 # Software Installer
-sudo ln -snf /home/jordan/GitRepo/SoftwareInstaller/softwareinstaller /usr/bin/si
+sudo ln -snf /home/jordan/GitRepo/SoftwareInstaller/softwareinstaller-run /usr/bin/si
