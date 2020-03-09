@@ -9,8 +9,11 @@ ln -s /mnt/jordan Jordan
 rm -rf Documents
 ln -s Jordan/Documents Documents
 
+rm -rf GitRepo
+ln -s /mnt/gitrepo GitRepo
+
 rm -rf Scripts
-ln -s Jordan/Scripts Scripts
+ln -s GitRepo/Scripts Scripts
 
 rm -rf Personal
 ln -s Jordan/Personal Personal

@@ -4,7 +4,7 @@
 ### Home dir and basic config ###
 
 cd ~
-/mnt/jordan/Scripts/LinuxSetup/links.sh
+sh /mnt/gitrepo/LinuxSetup/links.sh
 cp /home/jordan/Scripts/LinuxSetup/.bash_profile .
 cp /home/jordan/Scripts/LinuxSetup/.bashrc .
 cp /home/jordan/Scripts/LinuxSetup/.vimrc .
