@@ -102,7 +102,7 @@ bindsym $mod+f exec $filemanager
 bindsym $mod+e exec $texteditor
 
 # Calculator
-bindsym $mod+c exec flatpak run io.github.modularcalculator.ModularCalculator
+bindsym $mod+c exec flatpak run io.github.jordanl2.ModularCalculator
 
 
 #
