@@ -34,11 +34,19 @@ Default font: Nimbus Sans
 == Firefox ==
 about:config >
 	layers.acceleration.force-enabled = true
+	gfx.webrender.enabled = true
 	general.smoothScroll.mouseWheel.durationMinMS = 100
 	general.smoothScroll.mouseWheel.durationMaxMS = 200
 	browser.urlbar.clickSelectsAll = true
-	gfx.webrender.enabled = true
+	browser.urlbar.doubleClickSelectsAll = false
 Customise > enable Title Bar
+
+Flatpak:
+flatpak install --user https://flathub.org/beta-repo/appstream/org.mozilla.firefox.flatpakref
+flatpak --user override --socket=wayland org.mozilla.firefox
+#flatpak --user override --env=GDK_BACKEND=wayland org.mozilla.firefox
+flatpak --user override --filesystem=home org.mozilla.firefox
+flatpak run org.mozilla.firefox
 
 
 

@@ -70,7 +70,8 @@ set $term termite
 set $menu killall wofi || wofi
 set $runner bemenu-run --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 10"
 set $filemanager thunar
-set $webbrowser firefox
+#set $webbrowser firefox
+set $webbrowser flatpak run org.mozilla.firefox
 set $texteditor flatpak run com.sublimetext.three
 
 
@@ -122,7 +123,7 @@ bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swa
 # Reload the configuration file
 bindsym $mod+F5 Reload
 # Copy config from NAS and reload the configuration file
-bindsym Control+$mod+F5 exec cp -r ~/Scripts/LinuxSetup/Sway/config/* $config/ ; reload
+bindsym Control+$mod+F5 exec cp -r ~/GitRepo/LinuxSetup/Sway/config/* $config/ ; reload
 # Fix workspaces
 bindsym $mod+F6 exec $config/sway/fix_workspaces
 
