@@ -57,4 +57,4 @@ ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/.minecraft
 ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/Minecraft
 
 # Modular calculator
-flatpak --user install jordan-repo io.github.modularcalculator.ModularCalculator -y
+flatpak --user install jordan-repo io.github.jordanl2.ModularCalculator -y
