@@ -1,7 +1,10 @@
 #!/usr/bin/sh
 
-# Before running this set:
-# export ROOT=<your root disk device eg /dev/sda2>
+if [[ -z "$ROOT" ]]
+then
+	echo "Set ROOT to your main partition device eg /dev/sda2"
+	exit 1
+fi
 
 
 ### Home dir and basic config ###

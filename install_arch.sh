@@ -1,13 +1,22 @@
 #!/usr/bin/sh
 
-# Before running this set:
-# export ROOT=<your root disk device eg /dev/sda2>
-# export HOST=<hostname>
-# export USERNAME=<main user name>
+if [[ -z "$ROOT" ]]
+then
+	echo "Set ROOT to your main partition device eg /dev/sda2"
+	exit 1
+fi
 
-# Set ROOT to the root partition
-hostname=$HOST
-username=$USERNAME
+if [[ -z "$HOST" ]]
+then
+	echo "Set HOST to your computer hostname"
+	exit 1
+fi
+
+if [[ -z "$USERNAME" ]]
+then
+	echo "Set USERNAME to your main user name"
+	exit 1
+fi
 
 
 ### Optimise Mirror List ###
@@ -37,10 +46,10 @@ echo "KEYMAP=uk" > /etc/vconsole.conf
 
 ### HOSTNAME / HOSTS ###
 
-echo $hostname > /etc/hostname
+echo $HOST > /etc/hostname
 
 echo "127.0.0.1       localhost
-	127.0.1.1       $hostname
+	127.0.1.1       $HOST
 	::1     localhost ip6-localhost ip6-loopback
 	192.168.0.24    humphrey" > /etc/hosts
 
@@ -51,9 +60,9 @@ echo "127.0.0.1       localhost
 echo "Enter root password"
 passwd
 
-useradd -m -g wheel $username
-echo "Enter $username password"
-passwd $username
+useradd -m -g wheel $USERNAME
+echo "Enter $USERNAME password"
+passwd $USERNAME
 
 echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/wheel
 
