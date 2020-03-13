@@ -37,7 +37,7 @@ pacman --noconfirm -S vim git openssh screen intel-ucode man-db man-pages
 ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime
 hwclock --systohc
 
-echo "en_GB.UTF-8" > /etc/locale.gen
+echo "en_GB.UTF-8 UTF-8" > /etc/locale.gen
 locale-gen
 
 echo "LANG=en_GB.UTF-8" > /etc/locale.conf
