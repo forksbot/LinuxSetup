@@ -2,8 +2,8 @@
     "layer": "top",
     "position": "bottom",
     
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["tray", "custom/disk#root", "cpu", "memory", "network", "pulseaudio", "clock"],
+    "modules-left": ["sway/workspaces", "custom/apps", "custom/exit", "sway/mode"],
+    "modules-right": ["custom/status", "tray", "custom/disk#root", "custom/disk#jordan", "cpu", "memory", "network", "idle_inhibitor", "pulseaudio", "clock"],
 
     "sway/mode": {
         "format": " {}",
@@ -33,7 +33,7 @@
 
     "tray": {
         "tooltip": false,
-        "icon-size": 36,
+        "icon-size": 18,
         "spacing": 10
     },
 
@@ -49,19 +49,28 @@
     },
 
     "pulseaudio": {
+        "tooltip": false,
         "format": " ♪{volume:3}% ",
         "format-muted": " MUTED ",
         "on-click": "pavucontrol",
         "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "scroll-step": 5,
-        "tooltip": false
+        "scroll-step": 5
     },
 
     "clock": {
-        "format": " {:%a, %2d %b %H:%M:%S} ",
+        "format": " {:%a, %d %b %H:%M:%S} ",
         "interval": 1,
         "tooltip": false,
         "on-click": "gsimplecal"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "  ",
+            "deactivated": "  "
+        },
+        "tooltip": false
     },
 
     "custom/disk#root": {
@@ -70,5 +79,33 @@
         "tooltip": false,
         "on-click": "thunar /",
         "format": " /: {:4} "
+    },
+
+    "custom/disk#jordan": {
+        "interval": 30,
+        "exec": "df -h --output=avail /mnt/jordan | tail -n+2 | sed -e's/ //g'",
+        "tooltip": false,
+        "on-click": "thunar /mnt/jordan",
+        "format": " /mnt/jordan: {:4} "
+    },
+
+    "custom/status": {
+        "interval": 30,
+        "exec": "/home/jordan/.config/waybar/status",
+        "format": " {} ",
+        "tooltip": false,
+        "on-click": "/home/jordan/.config/waybar/status | swaynag -m \"Problems have been found:\" -l --detailed-button \"Show Problems\" --font 'Noto Sans Bold 20'"
+    },
+
+    "custom/apps": {
+        "format": "  ",
+        "tooltip": false,
+        "on-click": "killall wofi || wofi"
+    },
+
+    "custom/exit": {
+        "format": "  ",
+        "tooltip": false,
+        "on-click": "wlogout -b 2 --protocol=layer-shell"
     }
 }

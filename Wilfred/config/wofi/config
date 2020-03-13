@@ -1,0 +1,9 @@
+mode=drun
+allow_images=true
+insensitive=true
+prompt=
+x=0
+y=0
+width=1920
+height=1017
+term=termite

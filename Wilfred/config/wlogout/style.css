@@ -1,0 +1,66 @@
+* {
+	background-image: none;
+	border-radius: 0;
+	font-size: 18px;
+	font-weight: bold;
+}
+window {
+	background-color: rgba(0, 0, 0, 0.9);
+}
+button {
+	background-color: rgba(0, 0, 0, 0);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25%;
+	color: #3daee9;
+}
+
+button:focus, button:active, button:hover {
+	background-color: #3daee9;
+	outline-style: none;
+	color: #ffffff;
+}
+
+#logout {
+    background-image: image(url("/home/jordan/.config/wlogout/logout_unselected.png"));
+	border-top: 2px solid #3daee9;
+	border-right: 1px solid #3daee9;
+	border-bottom: 1px solid #3daee9;
+	border-left: 2px solid #3daee9;
+}
+#logout:focus, #logout:active, #logout:hover {
+    background-image: image(url("/home/jordan/.config/wlogout/logout.png"));
+}
+
+#suspend {
+    background-image: image(url("/home/jordan/.config/wlogout/suspend_unselected.png"));
+	border-top: 2px solid #3daee9;
+	border-right: 2px solid #3daee9;
+	border-bottom: 1px solid #3daee9;
+	border-left: 1px solid #3daee9;
+}
+#suspend:focus, #suspend:active, #suspend:hover {
+    background-image: image(url("/home/jordan/.config/wlogout/suspend.png"));
+}
+
+#shutdown {
+    background-image: image(url("/home/jordan/.config/wlogout/shutdown_unselected.png"));
+	border-top: 1px solid #3daee9;
+	border-right: 1px solid #3daee9;
+	border-bottom: 2px solid #3daee9;
+	border-left: 2px solid #3daee9;
+}
+#shutdown:focus, #shutdown:active, #shutdown:hover {
+    background-image: image(url("/home/jordan/.config/wlogout/shutdown.png"));
+}
+
+#reboot {
+    background-image: image(url("/home/jordan/.config/wlogout/reboot_unselected.png"));
+	border-top: 1px solid #3daee9;
+	border-right: 2px solid #3daee9;
+	border-bottom: 2px solid #3daee9;
+	border-left: 1px solid #3daee9;
+}
+#reboot:focus, #reboot:active, #reboot:hover {
+    background-image: image(url("/home/jordan/.config/wlogout/reboot.png"));
+}

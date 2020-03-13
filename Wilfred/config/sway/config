@@ -18,6 +18,12 @@ input type:touchpad {
     middle_emulation enabled
 }
 
+# Mouse
+input type:pointer {
+    accel_profile flat
+    pointer_accel 0.3
+}
+
 # Cursor theme and size
 set $cursor_theme Breeze_Snow
 set $cursor_size 24
@@ -57,8 +63,12 @@ workspace_layout tabbed
 
 # Apps
 set $term termite
-set $menu j4-dmenu-desktop --dmenu='bemenu -i --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 10"' --term='$term'
+set $menu killall wofi || wofi
 set $runner bemenu-run --tb "$c_back" --tf "$c_high" --fb "$c_back" --ff "$c_fore" --hb "$c_back" --hf "$c_high" --nb "$c_back" --nf "$c_fore" --fn "noto:NotoSansMono-Bold 10"
+set $filemanager thunar
+set $webbrowser firefox
+#set $webbrowser flatpak run org.mozilla.firefox
+set $texteditor flatpak run com.sublimetext.three
 
 
 
@@ -79,16 +89,16 @@ bindsym $mod+r exec $runner
 bindsym $mod+Return exec $term
 
 # Browser
-bindsym $mod+w exec firefox
+bindsym $mod+w exec $webbrowser
 
 # File manager
-bindsym $mod+f exec thunar
+bindsym $mod+f exec $filemanager
 
 # Text editor
-bindsym $mod+e exec flatpak run com.sublimetext.three
+bindsym $mod+e exec $texteditor
 
 # Calculator
-bindsym $mod+c exec modularcalculator
+bindsym $mod+c exec flatpak run io.github.jordanl2.ModularCalculator
 
 
 #
@@ -97,28 +107,19 @@ bindsym $mod+c exec modularcalculator
 
 # Kill focused window
 bindsym $mod+q kill
+bindsym --border button2 kill
 bindsym --whole-window --border $mod+button2 kill
 
 # Exit / Power off etc menu
-set $mode_quit Exit: [x] Exit Sway - [p] Power Off - [r] Reboot - [s] Suspend
-bindsym $mod+x mode "$mode_quit"
-mode "$mode_quit" {
-    bindsym x exec swaymsg exit
-    bindsym p exec systemctl poweroff
-    bindsym r exec systemctl reboot
-    bindsym s mode "default" ; exec systemctl suspend
-
-    bindsym Escape mode "default"
-    bindsym Return mode "default"
-}
+bindsym $mod+x exec wlogout -b 2 --protocol=layer-shell
 
 # Send monitors to sleep
-bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill -nx swayidle'
+bindsym $mod+l exec swayidle timeout 1 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" ; pkill swayidle'
 
 # Reload the configuration file
 bindsym $mod+F5 Reload
 # Copy config from NAS and reload the configuration file
-bindsym Control+$mod+F5 exec cp -r ~/Scripts/LinuxSetup/Wilfred/config/* $config/ ; reload
+bindsym Control+$mod+F5 exec cp -r ~/GitRepo/LinuxSetup/Wilfred/config/* $config/ ; reload
 
 
 #
@@ -164,11 +165,14 @@ bindsym $mod+0 workspace 10
 
 # Switch to previous / next workspace
 bindsym $mod+Control+Prior workspace prev
-bindsym $mod+Control+Next workspace next
-bindsym $mod+Control+Left workspace prev
+bindsym $mod+Control+Next  workspace next
+bindsym $mod+Control+Left  workspace prev
 bindsym $mod+Control+Right workspace next
 bindsym --whole-window --border $mod+Control+button4 workspace prev
 bindsym --whole-window --border $mod+Control+button5 workspace next
+
+# Switch between last focused workspaces
+bindsym $mod+Tab workspace back_and_forth
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -182,6 +186,25 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+# Move all containers in focused workspace to another workspace
+bindsym Control+$mod+Shift+1 [workspace=\"__focused__\"] move container to workspace 1
+bindsym Control+$mod+Shift+2 [workspace=\"__focused__\"] move container to workspace 2
+bindsym Control+$mod+Shift+3 [workspace=\"__focused__\"] move container to workspace 3
+bindsym Control+$mod+Shift+4 [workspace=\"__focused__\"] move container to workspace 4
+bindsym Control+$mod+Shift+5 [workspace=\"__focused__\"] move container to workspace 5
+bindsym Control+$mod+Shift+6 [workspace=\"__focused__\"] move container to workspace 6
+bindsym Control+$mod+Shift+7 [workspace=\"__focused__\"] move container to workspace 7
+bindsym Control+$mod+Shift+8 [workspace=\"__focused__\"] move container to workspace 8
+bindsym Control+$mod+Shift+9 [workspace=\"__focused__\"] move container to workspace 9
+bindsym Control+$mod+Shift+0 [workspace=\"__focused__\"] move container to workspace 10
+
+# Move focused container to previous / next workspace and then switch to that workspace
+bindsym $mod+Shift+Control+Prior move container to workspace prev ; workspace prev
+bindsym $mod+Shift+Control+Next  move container to workspace next ; workspace next
+bindsym $mod+Shift+Control+Left  move container to workspace prev ; workspace prev
+bindsym $mod+Shift+Control+Right move container to workspace next ; workspace next
+bindsym --whole-window --border $mod+Shift+Control+button4 move container to workspace  prev ; workspace prev
+bindsym --whole-window --border $mod+Shift+Control+button5 move container to workspace  next ; workspace next
 
 
 #
@@ -246,33 +269,33 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86MonBrightnessUp exec sudo brightnessctl s +10%
 bindsym XF86MonBrightnessDown exec sudo brightnessctl s 10%-
 
+# Screenshot
+bindsym Print exec grim ~/SCREENSHOT-`date +%Y-%m-%d_%T`.png
+
 
 
 ##############
 # Status Bar #
 ##############
 
-bar {
-    swaybar_command waybar
+# Calendar
+for_window [app_id="gsimplecal" floating] {
+    move position 1714 862
+    border none
 }
 
 
 
-#######################
-# Auto-start Services #
-#######################
-
-# Xsettingsd - For Flatpak themes to work
-exec $config/sway/xsettingsd
-
-# Reshift
-exec_always {
-    $config/sway/redshift_launcher
-}
-
-# Monitor power saving
-exec_always {
-    killall swayidle || true ; swayidle timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' 
-}
+################
+# Other Config #
+################
 
 include /etc/sway/config.d/*
+
+
+
+###########
+# Systemd #
+###########
+
+exec "systemctl --user import-environment; systemctl --user start sway-session.target"
