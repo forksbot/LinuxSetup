@@ -37,6 +37,7 @@ about:config >
 	gfx.webrender.enabled = true
 	gfx.webrender.all = true
 	gfx.webrender.compositor = true
+	media.webrtc.hw.h264.enabled = true
 	general.smoothScroll.mouseWheel.durationMinMS = 100
 	general.smoothScroll.mouseWheel.durationMaxMS = 200
 	browser.urlbar.clickSelectsAll = true
@@ -45,6 +46,7 @@ Customise > enable Title Bar
 
 Flatpak:
 flatpak install --user https://flathub.org/beta-repo/appstream/org.mozilla.firefox.flatpakref
+#flatpak install --user flathub-beta org.freedesktop.Platform.openh264
 flatpak --user override --socket=wayland org.mozilla.firefox
 flatpak --user override --filesystem=home org.mozilla.firefox
 flatpak run org.mozilla.firefox

@@ -9,8 +9,8 @@ sudo pacman --noconfirm -S sway swayidle bemenu gtk-layer-shell grim jq xorg-ser
 yay --noconfirm -S wofi waybar-git wlogout redshift-wlr-gamma-control
 
 # Config
-cp -r /home/jordan/Scripts/LinuxSetup/Sway/config/* /home/jordan/.config/
-cp /home/jordan/Scripts/LinuxSetup/Sway/_.Xresources /home/jordan/.Xresources
+cp -r /home/jordan/GitRepo/LinuxSetup/Sway/config/* /home/jordan/.config/
+cp /home/jordan/GitRepo/LinuxSetup/Sway/_.Xresources /home/jordan/.Xresources
 
 # Enable services
 systemctl --user enable waybar
@@ -19,8 +19,8 @@ systemctl --user enable redshift@4500
 systemctl --user enable workspace_rules
 
 # Startup
-sudo cp /home/jordan/Scripts/LinuxSetup/Sway/sway@.service /etc/systemd/system/
-sudo cp /home/jordan/Scripts/LinuxSetup/Sway/sway-debug@.service /etc/systemd/system/
+sudo cp /home/jordan/GitRepo/LinuxSetup/Sway/sway@.service /etc/systemd/system/
+sudo cp /home/jordan/GitRepo/LinuxSetup/Sway/sway-debug@.service /etc/systemd/system/
 sudo systemctl enable sway@1
 
 
@@ -30,7 +30,7 @@ sudo pacman --noconfirm -S breeze breeze-gtk xsettingsd plasma-integration
 gsettings set org.gnome.desktop.interface gtk-theme 'Breeze-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'breeze-dark'
 flatpak --user install -y Breeze-Dark
-cp /home/jordan/Scripts/LinuxSetup/Sway/_.xsettingsd /home/jordan/.xsettingsd
+cp /home/jordan/GitRepo/LinuxSetup/Sway/_.xsettingsd /home/jordan/.xsettingsd
 systemctl --user enable --now xsettingsd
 
 
@@ -50,7 +50,7 @@ sudo pacman --noconfirm -S thunar thunar-archive-plugin file-roller tumbler rist
 flatpak --user install -y flathub org.gimp.GIMP com.valvesoftware.Steam com.mojang.Minecraft com.github.wwmm.pulseeffects org.libreoffice.LibreOffice com.sublimetext.three org.kde.okular
 
 # Steam Flatpak
-sudo cp /home/jordan/Scripts/LinuxSetup/Sway/steam_flatpak /usr/bin/steam
+sudo cp /home/jordan/GitRepo/LinuxSetup/Sway/steam_flatpak /usr/bin/steam
 
 # Minecraft
 ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/.minecraft
