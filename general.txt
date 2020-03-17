@@ -135,3 +135,9 @@ To use SDDM:
 	cp /home/jordan/Scripts/LinuxSetup/Sway/sway.desktop /usr/share/wayland-sessions/sway.desktop
 	chmod 0644 /usr/share/wayland-sessions/sway.desktop
 	chown root:root /usr/share/wayland-sessions/sway.desktop
+
+
+
+=== Steam Flatpak ===
+
+ln -snf /home/jordan/.var/app/com.valvesoftware.Steam/data/Steam/steamapps /home/jordan/SteamApps

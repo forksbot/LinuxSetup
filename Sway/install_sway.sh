@@ -51,6 +51,7 @@ flatpak --user install -y flathub org.gimp.GIMP com.valvesoftware.Steam com.moja
 
 # Steam Flatpak
 sudo cp /home/jordan/GitRepo/LinuxSetup/Sway/steam_flatpak /usr/bin/steam
+ln -snf /home/jordan/.var/app/com.valvesoftware.Steam/data/Steam/steamapps /home/jordan/SteamApps
 
 # Minecraft
 ln -snf /home/jordan/.var/app/com.mojang.Minecraft/.minecraft ~/.minecraft
